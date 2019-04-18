@@ -152,7 +152,7 @@ class Solution:
 - 正无穷：float('inf')   负无穷：float('-inf')
 - 7 or 9 等于 7
 - None and 7 等于 None
-- sorted用在这里为了保证$l1$的值小于等于$l2$的值
+- sorted用在这里为了保证 l1 的值小于等于 l2 的值
 ## [26. Remove Duplicates from Sorted Array 4行](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 ```
