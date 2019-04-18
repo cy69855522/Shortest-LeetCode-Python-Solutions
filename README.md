@@ -105,7 +105,7 @@ class Solution:
         return r == r[::-1]
 ```
 - 思路是一样的，这里把整数转成了列表而不是字符串
-- 比如一个整数12321，我想取出百位数可以这么做：<a href="https://www.codecogs.com/eqnedit.php?latex=12321*10^{int(log_{10}12321)}\%10=123\%10=3" target="_blank"><img src="https://latex.codecogs.com/gif.latex?12321*10^{int(log_{10}12321)}\%10=123\%10=3" title="12321*10^{int(log_{10}12321)}\%10=123\%10=3" /></a>
+- 比如一个整数12321，我想取出百位数可以这么做：12321 * 10^{int(log_{10}12321)} % 10 = 123 % 10 = 3
 ## [13. Roman to Integer 2行](https://leetcode.com/problems/roman-to-integer/)
 
 ```
