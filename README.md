@@ -59,8 +59,24 @@ class Solution:
         return max(m, len(s) - b)
 ```
 - b代表起始位置，m代表上一步的最大无重复子串，d是一个字典，记录着到当前步骤出现过的字符对应的最大位置
-- 每次迭代过程中，遇到遇见过的字符时，b就会变为那个字符上一次出现位置+1，m记录上一次应该达到的全局最大值，所以最后需要再比较一次。
+- 每次迭代过程中，遇到遇见过的字符时，b就会变为那个字符上一次出现位置+1，m记录上一次应该达到的全局最大值，所以最后需要再比较一次
+## [4. Median of Two Sorted Arrays 4行](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
+```
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        a, b, m = *sorted((nums1, nums2), key=len), (len(nums1) + len(nums2) - 1) // 2
+        i = bisect.bisect_left([m-i-1 < 0 or a[i] >= b[m-i-1] for i in range(len(a))], True)
+        r = sorted(a[i:i+2] + b[m-i:m-i+2])
+        return (r[0] + r[1 - (len(a) + len(b)) % 2]) / 2
+```
+- 本题思路与官方题解类似，没看过的话建议先大体了解一下
+- 在一个有序递增数列中，中位数左边的那部分的最大值一定小于或等于右边部分的最小值
+- 如果总数组长度为奇数，m 代表中位数的索引，否则 m 代表用于计算中位数的那两个数字的左边一个。比如输入为[1,2]，[3]，那么m应该为[1,2,3]中位数2的索引1，如果输入为[1,3]，[2,4]，那么m应该为[1,2,3,4]中2的索引1
+- 使用二分搜索找到 m 对应的值在a或b中对应的索引，也就是说，我们要找的中位数或中位数左部应该是 a[i] 或者 b[m-i]
+- bisect.bisect_left 搜索列表中保持列表升序的情况下，True应该插入的位置（从左侧），比如 [F,F,T] 返回 2，[F,F] 返回 2
+- 这里保证 a 是 nums1 和 nums2 中较短的那个，是为了防止二分搜索的时候索引越界
+- sorted返回一个list，假设返回值是 [nums1, nums2]，那么前面加个 * 号就代表取出列表的所有内容，相当于一个迭代器，结果相当于直接写 nums1, nums2
 ## [7. Reverse Integer 2行](https://leetcode.com/problems/reverse-integer/)
 
 ```
