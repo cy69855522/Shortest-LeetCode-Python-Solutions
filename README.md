@@ -165,7 +165,6 @@ class Solution:
             l1.next = self.mergeTwoLists(l1.next, l2)
         return l1 or l2
 ```
-- 正无穷：float('inf')   负无穷：float('-inf')
 - 7 or 9 等于 7
 - None and 7 等于 None
 - sorted用在这里为了保证 l1 的值小于等于 l2 的值
