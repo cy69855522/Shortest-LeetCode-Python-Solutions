@@ -99,6 +99,14 @@ class Solution:
 - [::-1]代表序列反转
 - 2^31^ 和 -2^31^ 的比特数为32，其中正负号占用了一位
 - 32位整数范围 [−2^31^,  2^31^ − 1] 中正数范围小一个是因为0的存在
+## [8. String to Integer (atoi) 1行](https://leetcode.com/problems/string-to-integer-atoi/)
+```
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        return max(min(int(*re.findall('(^[\+\-]?\d+)\D*', s.strip())[0:1] or '0'), 2**31 - 1), -2**31)
+```
+- 使用正则表达式 ^：匹配字符串开头，[\+\-]：代表一个+字符或-字符，?：前面一个字符可有可无，\d：一个数字，+：前面一个字符的一个或多个，\D：一个非数字字符，*：0个或多个
+- max(min(数字, 2**31 - 1), -2**31) 用来防止结果越界
 ## [9. Palindrome Number 1行](https://leetcode.com/problems/palindrome-number/)
 
 ```
