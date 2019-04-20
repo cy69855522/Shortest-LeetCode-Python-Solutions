@@ -124,6 +124,16 @@ class Solution:
 ```
 - 思路是一样的，这里把整数转成了列表而不是字符串
 - 比如一个整数12321，我想取出百位数可以这么做：12321 * 10^{int(log_{10}12321)} % 10 = 123 % 10 = 3
+## [11. Container With Most Water 3行](https://leetcode.com/problems/container-with-most-water/)
+```
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        res, l, r = 0, 0, len(height) - 1
+        while l < r: res, l, r = (max(res,  height[l] * (r - l)), l + 1, r) if height[l] < height[r] else (max(res,  height[r] * (r - l)), l, r - 1)
+        return res
+```
+- res：结果，l：容器左壁索引，r：容器右壁索引
+- 如果 height[l] < height[r] 那么 l += 1 否则 r -= 1，说明：如果 height[0] < height[3] 那么(0, 1), (0, 2)对应的容器体积一定小于(0, 3)的，因为此时计算体积的时候高为 height(0)，容器的宽减少而高不增加，面积必然缩小
 ## [13. Roman to Integer 2行](https://leetcode.com/problems/roman-to-integer/)
 
 ```
@@ -135,16 +145,6 @@ class Solution:
 - 构建一个字典记录所有罗马数字子串，注意长度为2的子串记录的值是（实际值-子串内左边罗马数字代表的数值）
 - 这样一来，遍历整个s的时候判断当前位置和前一个位置的两个字符组成的字符串是否在字典内，如果在就记录值，不在就说明当前位置不存在小数字在前面的情况，直接记录当前位置字符对应值
 - 举个例子，遍历经过IV的时候先记录I的对应值1再往前移动一步记录IV的值3，加起来正好是IV的真实值4。max函数在这里是为了防止遍历第一个字符的时候出现[-1:0]的情况
-## [11. Container With Most Water 3行](https://leetcode.com/problems/container-with-most-water/)
-```
-class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        res, l, r = 0, 0, len(height) - 1
-        while l < r: res, l, r = (max(res,  height[l] * (r - l)), l + 1, r) if height[l] < height[r] else (max(res,  height[r] * (r - l)), l, r - 1)
-        return res
-```
-- res：结果，l：容器左壁索引，r：容器右壁索引
-- 如果 height[l] < height[r] 那么 l += 1 否则 r -= 1，说明：如果 height[0] < height[3] 那么(0, 1), (0, 2)对应的容器体积一定小于(0, 3)的，因为此时计算体积的时候高为 height(0)，容器的宽减少而高不增加，面积必然缩小
 ## [14. Longest Common Prefix 2行](https://leetcode.com/problems/longest-common-prefix/)
 
 ```
