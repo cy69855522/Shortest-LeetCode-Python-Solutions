@@ -389,6 +389,35 @@ class Solution:
         return now
 ```
 - DP不一定要数组，这里两个变量就够了，空间复杂度为O(1)
+## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode, tail=None) -> ListNode:
+        head.next, tail, head = tail, head, head.next
+        return self.reverseList(head, tail) if head else tail
+        
+```
+- 递归解法
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        p = None
+        while head: head.next, p, head = p, head, head.next
+        return p
+```
+- 迭代解法
 ## [268. Missing Number 1行](https://leetcode.com/problems/missing-number/)
 ```
 class Solution:
