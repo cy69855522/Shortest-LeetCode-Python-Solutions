@@ -169,6 +169,22 @@ class Solution:
 - 这里 sort 一是为了避免重复，这一点可以体现在我们输出的结果都是升序的，如果不这么做 set 无法排除一些相同结果，而是为了节省计算，防止超时
 - for 循环内部的代码思想同` 第一题 Two Sum`，用字典记录｛需要的值:当前索引｝，如果字典中存在相同的数字，那么将会记录比较大的那个索引，因此可以用`d[n] > i`来避免一个元素重复选择
 - `(nums[i], n, -nums[i]-n)`保证了列表升序
+## [16. 3Sum Closest 7行](https://leetcode.com/problems/3sum-closest/)
+```
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums, r, end = sorted(nums), float('inf'), len(nums) - 1
+        for c in range(len(nums) - 2):
+            i, j = max(c + 1, bisect.bisect_left(nums, target - nums[end] - nums[c], c + 1, end) - 1), end
+            while r != target and i < j:
+                s = nums[c] + nums[i] + nums[j]
+                r, i, j = min(r, s, key=lambda x: abs(x - target)), i + (s < target), j - (s > target)
+        return r
+```
+- float('inf') = 正无穷
+- 排序，遍历，双指针
+- 排序是为了使用双指针，首先遍历得到索引 c，然后计算 c，左指针 i，右指针 j 对应数字之和，如果大于 target，j 向内移动，否则 i 向内移动
+- i 的初始值不是 c + 1，是为了减少计算量，用二分法得到一个合理的初始值
 ## [20. Valid Parentheses 3行](https://leetcode.com/problems/valid-parentheses/)
 
 ```
