@@ -71,7 +71,7 @@ class Solution:
         r = sorted(a[i:i+2] + b[m-i:m-i+2])
         return (r[0] + r[1 - (len(a) + len(b)) % 2]) / 2
 ```
-- 本题思路与官方题解类似，没看过的话建议先大体了解一下
+- 本题思路与官方题解类似，时间复杂度O(log(min(m, n)))，没看过的话建议先大体了解一下
 - 在一个有序递增数列中，中位数左边的那部分的最大值一定小于或等于右边部分的最小值
 - 如果总数组长度为奇数，m 代表中位数的索引，否则 m 代表用于计算中位数的那两个数字的左边一个。比如输入为[1,2]，[3]，那么m应该为[1,2,3]中位数2的索引1，如果输入为[1,3]，[2,4]，那么m应该为[1,2,3,4]中2的索引1
 - 使用二分搜索找到 m 对应的值在a或b中对应的索引，也就是说，我们要找的中位数或中位数左部应该是 a[i] 或者 b[m-i]
@@ -134,6 +134,7 @@ class Solution:
         while l < r: res, l, r = (max(res,  height[l] * (r - l)), l + 1, r) if height[l] < height[r] else (max(res,  height[r] * (r - l)), l, r - 1)
         return res
 ```
+- 双指针 O(N) 解法
 - res：结果，l：容器左壁索引，r：容器右壁索引
 - 如果 height[l] < height[r] 那么 l += 1 否则 r -= 1，说明：如果 height[0] < height[3] 那么(0, 1), (0, 2)对应的容器体积一定小于(0, 3)的，因为此时计算体积的时候高为 height(0)，容器的宽减少而高不增加，面积必然缩小
 ## [13. Roman to Integer 2行](https://leetcode.com/problems/roman-to-integer/)
@@ -166,6 +167,7 @@ class Solution:
             r.update([(nums[i], n, -nums[i]-n) for j, n in enumerate(nums[i+1:]) if n in d and d[n] > j])
         return list(map(list, r))
 ```
+- 时间复杂度：O(N^2)
 - 这里 sort 一是为了避免重复，这一点可以体现在我们输出的结果都是升序的，如果不这么做 set 无法排除一些相同结果，而是为了节省计算，防止超时
 - for 循环内部的代码思想同` 第一题 Two Sum`，用字典记录｛需要的值:当前索引｝，如果字典中存在相同的数字，那么将会记录比较大的那个索引，因此可以用`d[n] > i`来避免一个元素重复选择
 - `(nums[i], n, -nums[i]-n)`保证了列表升序
@@ -182,7 +184,7 @@ class Solution:
         return r
 ```
 - float('inf') = 正无穷
-- 排序，遍历，双指针
+- 排序，遍历，双指针，O(N^2) 时间复杂度，二分法初始化
 - 排序是为了使用双指针，首先遍历得到索引 c，然后计算 c，左指针 i，右指针 j 对应数字之和，如果大于 target，j 向内移动，否则 i 向内移动
 - i 的初始值不是 c + 1，是为了减少计算量，用二分法得到一个合理的初始值
 ## [20. Valid Parentheses 3行](https://leetcode.com/problems/valid-parentheses/)
@@ -303,7 +305,7 @@ class Solution:
 
 - 题目可以转换为排列组合问题，解是C(min(m,n), m+n)，从m+n个中选出m个下移或n个右移。
 - 用DP做也很快，以后自己算 C(a, b) 也可以用算这题的DP法代替
-- math.factorial 的速度不亚于DP，可能内部有优化，不是直接连乘
+- math.factorial 的速度不亚于DP，可能内部有优化
 ## [66. Plus One 1行](https://leetcode.com/problems/plus-one/)
 
 ```
