@@ -187,13 +187,12 @@ class Solution:
 - 排序，遍历，双指针，O(N^2) 时间复杂度，二分法初始化
 - 排序是为了使用双指针，首先遍历得到索引 c，然后计算 c，左指针 i，右指针 j 对应数字之和，如果大于 target，j 向内移动，否则 i 向内移动
 - i 的初始值不是 c + 1，是为了减少计算量，用二分法得到一个合理的初始值
-## [20. Valid Parentheses 3行](https://leetcode.com/problems/valid-parentheses/)
+## [20. Valid Parentheses 2行](https://leetcode.com/problems/valid-parentheses/)
 
 ```
 class Solution:
     def isValid(self, s: str) -> bool:
-        while any(('()' in s, '[]' in s, '{}' in s)):
-            s = s.replace('()', '').replace('[]', '').replace('{}', '')
+        while any(('()' in s, '[]' in s, '{}' in s)): s = s.replace('()', '').replace('[]', '').replace('{}', '')
         return not s
 ```
 - 不断删除有效括号直到不能删除，思路简单效率低。另外，stack的方法也很简单，而且快多了。
@@ -247,14 +246,13 @@ class Solution:
 - 第一行：初始化一些变量，r：结果，n：节点，p：前一个节点
 - 第二行：把所有节点放进列表 r
 - 第三行：按顺序排列所有节点并构建连接
-## [26. Remove Duplicates from Sorted Array 4行](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+## [26. Remove Duplicates from Sorted Array 3行](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 ```
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         for i in range(len(nums)-1, 0, -1):
-            if nums[i] == nums[i-1]:
-                nums.pop(i)
+            if nums[i] == nums[i-1]: nums.pop(i)
         return len(nums)
 ```
 - 时间效率O(N)空间效率O(1)，逆遍历可以防止删除某个元素后影响下一步索引的定位。
@@ -276,14 +274,13 @@ class Solution:
 	    	return -1
 	```
 
-## [38. Count and Say 4行](https://leetcode.com/problems/count-and-say/)
+## [38. Count and Say 3行](https://leetcode.com/problems/count-and-say/)
 
 ```
 class Solution:
     def countAndSay(self, n: int) -> str:
         r = '1'
-        for _ in range(n - 1):
-            r = re.sub(r'(.)\1*', lambda m: str(len(m.group())) + m.group(1), r)
+        for _ in range(n - 1): r = re.sub(r'(.)\1*', lambda m: str(len(m.group())) + m.group(1), r)
         return r
 ```
 - 正则表达式 re.sub(正则，替换字符串或函数，被替换字符串，是否区分大小写)
