@@ -229,6 +229,24 @@ class Solution:
 - 7 or 9 等于 7
 - None and 7 等于 None
 - sorted用在这里为了保证 l1 的值小于等于 l2 的值
+## [23. Merge k Sorted Lists 4行](https://leetcode.com/problems/merge-k-sorted-lists/)
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        r, n, p = [], lists and lists.pop(), None
+        while lists or n: r[len(r):], n = ([n], n.next or lists and lists.pop()) if n else ([], lists.pop())
+        for n in sorted(r, key=lambda x: x.val, reverse=True): n.next, p = p, n
+        return n if r else []
+```
+- 第一行：初始化一些变量，r：结果，n：节点，p：前一个节点
+- 第二行：把所有节点放进列表 r
+- 第三行：按顺序排列所有节点并构建连接
 ## [26. Remove Duplicates from Sorted Array 4行](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 ```
