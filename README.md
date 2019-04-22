@@ -296,6 +296,7 @@ class Solution:
 ```
 - 每次固定第一个数字递归地排列数组剩余部分
 - python 有内置函数可以直接实现
+
 	```
 	class Solution:
 	    def permute(self, nums: List[int]) -> List[List[int]]:
