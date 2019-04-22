@@ -29,7 +29,7 @@ class Solution:
 	            d[target-n] = i
 	```
 
-## [2. Add Two Numbers 6行](https://leetcode.com/problems/add-two-numbers/)
+## [2. Add Two Numbers 5行](https://leetcode.com/problems/add-two-numbers/)
 
 ```
 # Definition for singly-linked list.
@@ -43,9 +43,8 @@ class Solution:
         if not (l1 or l2): return ListNode(1) if carry else None
         l1, l2 = l1 or ListNode(0), l2 or ListNode(0)
         val = l1.val + l2.val + carry
-        res = ListNode(val % 10)
-        res.next = self.addTwoNumbers(l1.next, l2.next, int(val > 9))
-        return res
+        l1.val, l1.next = val % 10, self.addTwoNumbers(l1.next, l2.next, int(val > 9))
+        return l1
 ```
 - int(True) 等于 1
 - None or 7 等于 7
