@@ -273,14 +273,12 @@ class Solution:
 	    	return -1
 	```
 
-## [38. Count and Say 3行](https://leetcode.com/problems/count-and-say/)
+## [38. Count and Say 1行](https://leetcode.com/problems/count-and-say/)
 
 ```
 class Solution:
     def countAndSay(self, n: int) -> str:
-        r = '1'
-        for _ in range(n - 1): r = re.sub(r'(.)\1*', lambda m: str(len(m.group())) + m.group(1), r)
-        return r
+        return '1' * (n is 1) or re.sub(r'(.)\1*', lambda m: str(len(m.group())) + m.group(1), self.countAndSay(n - 1))
 ```
 - 正则表达式 re.sub(正则，替换字符串或函数，被替换字符串，是否区分大小写)
 - . 可匹配任意一个除了\n的字符
