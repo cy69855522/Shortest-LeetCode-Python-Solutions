@@ -288,6 +288,20 @@ class Solution:
 (.)\1 匹配一个任意字符的二次重复并把那个字符放入数组
 (.)\1* 匹配一个任意字符的多次重复并把那个字符放入数组
 - group(default=0)可以取匹配文本   group(1)取第一个括号内的文本
+## [46. Permutations 1行](https://leetcode.com/problems/permutations/)
+```
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        return [[n] + sub for i, n in enumerate(nums) for sub in self.permute(nums[:i] + nums[i+1:])] or [nums]
+```
+- 每次固定第一个数字递归地排列数组剩余部分
+- python 有内置函数可以直接实现
+	```
+	class Solution:
+	    def permute(self, nums: List[int]) -> List[List[int]]:
+		from itertools import permutations
+		return list(permutations(nums))
+	```
 ## [53. Maximum Subarray 2行](https://leetcode.com/problems/maximum-subarray/)
 
 ```
@@ -307,20 +321,6 @@ class Solution:
 	        for i in range(1, len(nums)):
 	            nums[i] = max(nums[i], nums[i] + nums[i-1])
 	        return max(nums)
-	```
-## [46. Permutations 1行](https://leetcode.com/problems/permutations/)
-```
-class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        return [[n] + sub for i, n in enumerate(nums) for sub in self.permute(nums[:i] + nums[i+1:])] or [nums]
-```
-- 每次固定第一个数字递归地排列数组剩余部分
-- python 有内置函数可以直接实现
-	```
-	class Solution:
-	    def permute(self, nums: List[int]) -> List[List[int]]:
-		from itertools import permutations
-		return list(permutations(nums))
 	```
 ## [62. Unique Paths 1行](https://leetcode.com/problems/unique-paths/)
 
