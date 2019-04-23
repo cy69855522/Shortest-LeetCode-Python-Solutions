@@ -493,6 +493,34 @@ class Solution:
         return p
 ```
 - 迭代解法
+## [237. Delete Node in a Linked List 1行](https://leetcode.com/problems/delete-node-in-a-linked-list/)
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        node.val, node.next = node.next.val, node.next.next
+```
+- `node = node.next`是不行的，因为这里只是改了函数参数引用的对象，而原来传进来的 node 没有任何改变
+## [238. Product of Array Except Self 5行](https://leetcode.com/problems/product-of-array-except-self/)
+```
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res, l, r = [1] * len(nums), 1, 1
+        for i, j in zip(range(len(nums)), reversed(range(len(nums)))):
+            res[i], l = res[i] * l, l * nums[i]
+            res[j], r = res[j] * r, r * nums[j]
+        return res
+```
+- O(N)双指针双向遍历
 ## [268. Missing Number 1行](https://leetcode.com/problems/missing-number/)
 ```
 class Solution:
@@ -500,6 +528,13 @@ class Solution:
         return int(len(nums) * (len(nums) + 1) / 2 - sum(nums))
 ```
 - 等差数列求和公式
+## [292. Nim Game 1行](https://leetcode.com/problems/nim-game/)
+```
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return bool(n % 4)
+```
+- 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4
 ## [344. Reverse String 1行](https://leetcode.com/problems/reverse-string/)
 
 ```
