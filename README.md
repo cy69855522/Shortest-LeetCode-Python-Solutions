@@ -1,5 +1,5 @@
 # Short-LeetCode-Python-Solutions
-  Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅，Shorter is better here.
+  Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅:zap:，Shorter is better here.
 
 # 前言
 - 代码精炼是 Python 的核心，同时能够反应对于语言的熟练程度，本项目目的在于汇总 leet code 最短最优雅的解法，拒绝长篇大论，缩短学习周期，掌握各种技巧，助您在面试中写出令人眼前一亮的解答，给考官留个好印象。
