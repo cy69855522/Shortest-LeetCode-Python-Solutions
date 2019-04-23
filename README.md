@@ -475,9 +475,8 @@ class Solution:
 
 class Solution:
     def reverseList(self, head: ListNode, tail=None) -> ListNode:
-        head.next, tail, head = tail, head, head.next
+        if head: head.next, tail, head = tail, head, head.next
         return self.reverseList(head, tail) if head else tail
-        
 ```
 - 递归解法
 ```
