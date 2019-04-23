@@ -1,9 +1,9 @@
 # Short-LeetCode-Python-Solutions
-  Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅🐩:zap:，Shorter is better here.
+  Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅:leave:，Shorter is better here.
 
 # 前言
 - 代码精炼是 Python 的核心，同时能够反应对于语言的熟练程度，本项目目的在于汇总 leet code 最短最优雅的解法，拒绝长篇大论，缩短学习周期，掌握各种技巧，助您在面试中写出令人眼前一亮的解答，给考官留个好印象。
-- 项目持续更新中，默认使用 python3，如果已编辑题目中有更短更优雅的解法欢迎联系我更新~  [直接发issue 或 fork 或 联系 QQ1272068154  微信ly18597591102，记得留下署名和联系方式💫]
+- 项目持续更新中，默认使用 python3，如果已编辑题目中有更短更优雅的解法欢迎联系我更新~  [直接发issue 或 fork 或 联系 QQ1272068154  微信ly18597591102，记得留下署名和联系方式:panda_face:]
 - 由于CSDN博客更新需要人工审核比较慢，所以迁移到github上，优先更新github内容。
 - 为了快速找到题目可以按 [**Ctrl键 + F键**] 输入题目序号或名字定位。
 # 解析
@@ -282,7 +282,7 @@ class Solution:
         i = bisect.bisect_left(self, True, 0, len(nums))
         return i if target in nums[i:i+1] else -1
 ```
-- 作出数列的函数图像，可以看作是一个含断点的局部递增函数，形如 ⚡，前面一段总是比较高
+- 作出数列的函数图像，可以看作是一个含断点的局部递增函数，形如:zap:，前面一段总是比较高
 - python 中 bisect 模块针对的是 list, 如果直接构造 list，相当于遍历所有元素，时间复杂度为 O(N) 而不是 O(logN)，因此我们修改当前类的魔法方法伪造 list，然后用当前类代替list
 - 用二分搜索时，m 代表 middle，low 代表 low，hi 代表 high，当满足任一条件｛① targe < middle 且 middle 在前一段上 且 target < nums[0] ② target > middle 且 middle 在第一段上 ③ target > middle 且 middle 在第二段上 且 target <= nums[-1]｝时，应该向右搜索，因此 getitem 返回 False。
 ## [38. Count and Say 1行](https://leetcode.com/problems/count-and-say/)
