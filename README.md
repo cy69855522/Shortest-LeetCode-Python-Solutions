@@ -1,5 +1,5 @@
 # Short-LeetCode-Python-Solutions
-  Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅:leave:，Shorter is better here.
+  Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅:herb:，Shorter is better here.
 
 # 前言
 - 代码精炼是 Python 的核心，同时能够反应对于语言的熟练程度，本项目目的在于汇总 leet code 最短最优雅的解法，拒绝长篇大论，缩短学习周期，掌握各种技巧，助您在面试中写出令人眼前一亮的解答，给考官留个好印象。
@@ -7,7 +7,7 @@
 - 由于CSDN博客更新需要人工审核比较慢，所以迁移到github上，优先更新github内容。
 - 为了快速找到题目可以按 [**Ctrl键 + F键**] 输入题目序号或名字定位。
 # 解析
-默认已看过题目，没看过的话点标题可以跳转链接🤡
+默认已看过题目，🤡没看过的话点标题可以跳转链接
 ## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
 
 ```
