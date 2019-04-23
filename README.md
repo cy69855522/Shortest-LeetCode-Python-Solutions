@@ -519,6 +519,12 @@ class Solution:
 ```
 - 7 or 8 = 7
 - 0 or 8 = 8
+## [557. 反转字符串中的单词 III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
+```
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        return ' '.join(s.split(' ')[::-1])[::-1]
+```
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
