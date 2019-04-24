@@ -449,6 +449,12 @@ class Solution:
 		    r.extend([x | 1<<i for x in r[::-1]])
 		return r
 	```
+- 或者直接背格雷码的公式吧：
+```
+class Solution:
+    def grayCode(self, n: int) -> List[int]:
+        return [i ^ i >> 1  for i in range(1 << n)]
+```
 ## [104. Maximum Depth of Binary Tree 1行](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 ```
 # Definition for a binary tree node.
