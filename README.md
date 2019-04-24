@@ -424,7 +424,21 @@ class Solution:
 	            else:
 	                nums1[m+n-1], m, n = nums2[n - 1], m, n-1
 	```
-
+## [89. Gray Code 1行](https://leetcode.com/problems/gray-code/)
+```
+class Solution:
+    def grayCode(self, n: int) -> List[int]:
+        return (lambda r: r + [x | 1<<n-1 for x in r[::-1]])(self.grayCode(n-1)) if n else [0]
+```
+- 前4个结果：
+	```
+	[0]
+	[0 1]
+	[00 01 11 10]
+	[000 001 011 010 110 111 101 100]
+	```
+- 递归方程：这一步结果 = 上一步结果 + 上一步结果的镜像并在每个二进制数字前面加一位1
+	
 ## [104. Maximum Depth of Binary Tree 1行](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 ```
 # Definition for a binary tree node.
