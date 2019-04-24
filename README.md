@@ -244,7 +244,8 @@ class Solution:
         for n in sorted(r, key=lambda x: x.val, reverse=True): n.next, p = p, n
         return n if r else []
 ```
-- 1. 把题目给的所有链表中的所有节点放进一个列表 r。
+- 本题思路：
+	1. 把题目给的所有链表中的所有节点放进一个列表 r。
 	2. 对这个列表 r 中的所有节点进行从大到小的排序。O(NlogN)
 	3. 把每个节点的指针指向前一个节点。（第一个节点，也就是最大的那个，指向None。）
 	4. 返回最后一个节点，也就是真个新链表的开头。
