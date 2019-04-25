@@ -500,6 +500,12 @@ class Solution:
         return reduce(int.__xor__, nums)
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了。
+## [169. Majority Element 1行](https://leetcode.com/problems/majority-element/)
+```
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        return sorted(nums)[len(nums) // 2]
+```
 ## [198. House Robber 2行](https://leetcode.com/problems/house-robber/)
 ```
 class Solution:
