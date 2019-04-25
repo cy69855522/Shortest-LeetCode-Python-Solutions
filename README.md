@@ -492,6 +492,15 @@ class Solution:
         return max(map(self.maxDepth,(root.left, root.right))) + 1 if root else 0
 ```
 - 利用map函数递归左右节点获取最大值，map函数会将参数一所指向的函数应用于参数二里的所有对象并返回所有结果。
+## [121. Best Time to Buy and Sell Stock 2行](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+```
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        from functools import reduce
+        return reduce(lambda r, p: (max(r[0], p-r[1]), min(r[1], p)), prices, (0, float('inf')))[0]
+```
+- r = (结果，之前遍历过的所有元素中的最小值)
+- [reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
 ## [136. Single Number 2行](https://leetcode.com/problems/single-number/)
 ```
 class Solution:
@@ -514,7 +523,7 @@ class Solution:
         return reduce(lambda r, n: (max(r[0], n + r[1]), r[0]), nums, (0, 0))[0]
 ```
 - DP递归方程：一直偷到这家的钱 = max（一直偷到上一家的钱，一直偷到上上家的钱 + 这家的钱）😃有点小绕
-- 以上为下面代码的化简版，[reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)。
+- 以上为下面代码的化简版，[reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
 ```
 class Solution:
     def rob(self, nums: List[int]) -> int:
