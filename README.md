@@ -388,7 +388,18 @@ class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         return matrix and [*matrix.pop(0)] + self.spiralOrder([*zip(*matrix)][::-1])
 ```
-- 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为递归穿进来的列表中元素是tuple
+- 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为对于后面的递归，传进来的列表中元素是tuple
+## [59. Spiral Matrix II 3行](https://leetcode.com/problems/spiral-matrix-ii/)
+```
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        r, lo = [[n**2]], n**2
+        while lo > 1: lo, hi, r = lo - len(r), lo, [[*range(lo - len(r), lo)]] + [*zip(*r[::-1])]
+        return r
+```
+-     ||  =>  |9|  =>  |8|      |6 7|      |4 5|      |1 2 3|
+                     |9|  =>  |9 8|  =>  |9 6|  =>  |8 9 4|
+                                         |8 7|      |7 6 5|
 ## [62. Unique Paths 1行](https://leetcode.com/problems/unique-paths/)
 
 ```
