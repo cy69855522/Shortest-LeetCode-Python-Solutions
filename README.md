@@ -393,8 +393,8 @@ class Solution:
 ```
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
-        r, lo = [[n**2]], n**2
-        while lo > 1: lo, hi, r = lo - len(r), lo, [[*range(lo - len(r), lo)]] + [*zip(*r[::-1])]
+        r, n = [[n**2]], n**2
+        while n > 1: n, r = n - len(r), [[*range(n - len(r), n)]] + [*zip(*r[::-1])]
         return r
 ```
 - 流程图
