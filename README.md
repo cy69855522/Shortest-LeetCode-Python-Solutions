@@ -536,6 +536,33 @@ class Solution:
         return reduce(int.__xor__, nums)
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了。
+## [155. Min Stack 每个1行](https://leetcode.com/problems/min-stack/)
+```
+class MinStack:
+    
+    def __init__(self):
+        self.data = [(None, float('inf'))]
+
+    def push(self, x: 'int') -> 'None':
+        self.data.append((x, min(x, self.data[-1][1])))
+
+    def pop(self) -> 'None':
+        if len(self.data) > 1: self.data.pop()
+
+    def top(self) -> 'int':
+        return self.data[-1][0]
+
+    def getMin(self) -> 'int':
+        return self.data[-1][1]
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+```
 ## [169. Majority Element 1行](https://leetcode.com/problems/majority-element/)
 ```
 class Solution:
