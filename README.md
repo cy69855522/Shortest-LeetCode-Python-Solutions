@@ -397,9 +397,11 @@ class Solution:
         while lo > 1: lo, hi, r = lo - len(r), lo, [[*range(lo - len(r), lo)]] + [*zip(*r[::-1])]
         return r
 ```
--     ||  =>  |9|  =>  |8|      |6 7|      |4 5|      |1 2 3|
-                     |9|  =>  |9 8|  =>  |9 6|  =>  |8 9 4|
-                                         |8 7|      |7 6 5|
+- ```
+	||  =>  |9|  =>  |8|      |6 7|      |4 5|      |1 2 3|
+			 |9|  =>  |9 8|  =>  |9 6|  =>  |8 9 4|
+					     |8 7|      |7 6 5|
+	```
 ## [62. Unique Paths 1行](https://leetcode.com/problems/unique-paths/)
 
 ```
