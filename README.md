@@ -334,6 +334,19 @@ class Solution:
 (.)\1 匹配一个任意字符的二次重复并把那个字符放入数组
 (.)\1* 匹配一个任意字符的多次重复并把那个字符放入数组
 - group(default=0)可以取匹配文本   group(1)取第一个括号内的文本
+## [43. Multiply Strings 5行](https://leetcode.com/problems/multiply-strings/)
+```
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        d = {}
+        for i, n1 in enumerate(num1[::-1]):
+            for j, n2 in enumerate(num2[::-1]): d[i + j] = d.get(i + j, 0) + int(n1) * int(n2)
+        for k in [*d]: d[k + 1], d[k] = d.get(k + 1, 0) + int(d[k] * 0.1), d[k] % 10
+        return re.sub('^0*', '', ''.join(map(str, d.values()))[::-1]) or '0'
+```
+- 本题的难点在于计算整数的时候不能超过32bits
+- 我们遍历num1中的每个数字n1，然后带着这个数字遍历num2中的每个数字n2做乘法，所得乘积放进 d 中相应的位置然后逐位计算结果
+- i + j 正好对应俩个数字相乘后所在的位置，比如 0 + 0 就应该是个位， 0 + 1 就是十位， 1 + 1 百位。这里所说的位置可以参考[这篇博客中的过程图](https://blog.csdn.net/Give_me_the_who/article/details/80313860)
 ## [46. Permutations 1行](https://leetcode.com/problems/permutations/)
 ```
 class Solution:
