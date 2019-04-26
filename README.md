@@ -521,6 +521,13 @@ class Solution:
 ```
 - r = (结果，之前遍历过的所有元素中的最小值)
 - [reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
+## [122. Best Time to Buy and Sell Stock II 2行](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
+```
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        return sum(b - a for a, b in zip(prices, prices[1:]) if b > a)
+```
+- 本题可以在同一天买入和卖出，因此只要当天票价比昨天的高就可以卖出
 ## [136. Single Number 2行](https://leetcode.com/problems/single-number/)
 ```
 class Solution:
@@ -581,6 +588,25 @@ class Solution:
         return p
 ```
 - 迭代解法
+## [217. Contains Duplicate 1行](https://leetcode.com/problems/contains-duplicate/)
+```
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return len(nums) != len(set(nums))
+```
+## [231. 2的幂 1行](https://leetcode.com/problems/power-of-two/)
+```
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        return n > 0 and n & n - 1 == 0
+```
+- 2 的幂的二进制形式最高位一定是1，其余为0
+- 用常规思路也行
+	```
+	class Solution:
+	    def isPowerOfTwo(self, n: int) -> bool:
+		return n > 0 and not n & n - 1
+	```
 ## [237. Delete Node in a Linked List 1行](https://leetcode.com/problems/delete-node-in-a-linked-list/)
 ```
 # Definition for singly-linked list.
