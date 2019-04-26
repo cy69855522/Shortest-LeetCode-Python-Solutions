@@ -369,6 +369,13 @@ class Solution:
 	            nums[i] = max(nums[i], nums[i] + nums[i-1])
 	        return max(nums)
 	```
+## [54. Spiral Matrix 1行](https://leetcode.com/problems/spiral-matrix/)
+```
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        return matrix and [*matrix.pop(0)] + self.spiralOrder([*zip(*matrix)][::-1])
+```
+- 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为递归穿进来的列表中元素是tuple
 ## [62. Unique Paths 1行](https://leetcode.com/problems/unique-paths/)
 
 ```
