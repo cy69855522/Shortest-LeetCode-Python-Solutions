@@ -551,6 +551,42 @@ class Solution:
         return reduce(int.__xor__, nums)
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了。
+## [141. Linked List Cycle 2行](https://leetcode.com/problems/linked-list-cycle/)
+```
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        while head and head.val != None: head.val, head = None, head.next
+        return head != None
+```
+- 破坏走过的所有节点，下次再遇到就知道了
+- 不过以上方法会丢失原有信息，一般解法为快慢指针
+```
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        slow = fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                return True
+        return False
+```
 ## [155. Min Stack 每个1行](https://leetcode.com/problems/min-stack/)
 ```
 class MinStack:
