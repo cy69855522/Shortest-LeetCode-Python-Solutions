@@ -414,6 +414,7 @@ class Solution:
 - 题目可以转换为排列组合问题，解是C(min(m,n), m+n)，从m+n个中选出m个下移或n个右移。
 - 用DP做也很快，以后自己算 C(a, b) 也可以用算这题的DP法代替
 - math.factorial 的速度不亚于DP，可能内部有优化
+- 0的阶乘为1
 ## [66. Plus One 1行](https://leetcode.com/problems/plus-one/)
 
 ```
