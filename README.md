@@ -568,6 +568,7 @@ class Solution(object):
         while head and head.val != None: head.val, head = None, head.next
         return head != None
 ```
+- 这题不支持python3，所以用pyhton2解法代替，下题记得调回来 :baby_chick:
 - 破坏走过的所有节点，下次再遇到就知道了
 - 不过以上方法会丢失原有信息，一般解法为快慢指针
 ```
@@ -711,14 +712,18 @@ class Solution:
 ```
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
+	"""
+	:type n: int
+	:rtype: bool
+	"""
         return n > 0 and n & n - 1 == 0
 ```
 - 2 的幂的二进制形式最高位一定是1，其余为0
 - 用常规思路也行
 	```
-	class Solution:
-	    def isPowerOfTwo(self, n: int) -> bool:
-		return n > 0 and not n & n - 1
+	class Solution(object):
+	    def isPowerOfTwo(self, n):
+		return n > 0 and 2**int(math.log2(n)) == n
 	```
 ## [235. Lowest Common Ancestor of a Binary Search Tree 2行](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 ```
