@@ -588,6 +588,49 @@ class Solution(object):
                 return True
         return False
 ```
+## [142. Linked List Cycle II 5行](https://leetcode.com/problems/linked-list-cycle-ii/)
+```
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        s = {None}
+        while head not in s:
+            s.add(head)
+            head = head.next
+        return head
+```
+- 把见过的节点丢集合里，下次再遇见就是环的开始
+- 还有一个纯数学的快慢指针解法，设环的其实节点为 E，快慢指针从 head 出发，快指针速度为 2，设相交节点为 X，head 到 E 的距离为 H，E 到 X 的距离为 D，环的长度为 L，那么有：快指针走过的距离等于慢指针走过的距离加快指针多走的距离（多走了 n 圈的 L） `2(H + D) = H + D + nL`，因此可以推出 `H = nL - D`，这意味着如果我们让俩个慢指针一个从 head 出发，一个从 X 出发的话，他们一定会在节点 E 相遇
+                          _____
+                         /     \
+         head___________E       \
+                        \       /
+                         X_____/ 
+```
+class Solution(object):
+    def detectCycle(self, head):
+        slow = fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                break
+        else:
+            return None
+        while head is not slow:
+            head = head.next
+            slow = slow.next
+        return head
+```
 ## [155. Min Stack 每个1行](https://leetcode.com/problems/min-stack/)
 ```
 class MinStack:
