@@ -403,6 +403,21 @@ class Solution:
 		 |9|  =>  |9 8|  =>  |9 6|  =>  |8 9 4|
 				     |8 7|      |7 6 5|
 ```
+## [61. Rotate List 4行](https://leetcode.com/problems/rotate-list/)
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        l = []
+        while head: l[len(l):], head = [head], head.next
+        if l: l[-1].next, l[-1 - k % len(l)].next = l[0], None
+        return l[- k % len(l)] if l else None
+```
 ## [62. Unique Paths 1行](https://leetcode.com/problems/unique-paths/)
 
 ```
