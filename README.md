@@ -879,6 +879,14 @@ class Solution:
 ```
 - 7 or 8 = 7
 - 0 or 8 = 8
+## [414. Third Maximum Number 3行]()
+```
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        nums = set(nums)
+        for _ in range((2, 0)[len(nums) < 3]): nums.remove(max(nums))
+        return max(nums)
+```
 ## [557. 反转字符串中的单词 III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
 ```
 class Solution:
