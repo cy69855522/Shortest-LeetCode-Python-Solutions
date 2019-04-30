@@ -781,9 +781,9 @@ class Solution:
     def kthSmallest(self, root, k):
         from itertools import chain, islice
         def gen(x): yield from chain(gen(x.left), [x.val], gen(x.right)) if x else ()
-        return list(islice(gen(root), k - 1, k))[0]
+        return next(islice(gen(root), k - 1, k))
 ```
-- 本题利用了迭代器，化繁为简，不太了解的话看这里 [yield 推荐阅读博客](https://blog.csdn.net/mieleizhi0522/article/details/82142856)
+- 本题利用了迭代器骚了一波，不太了解的话看这里 [yield 推荐阅读博客](https://blog.csdn.net/mieleizhi0522/article/details/82142856)
 - chain 函数可以组合多个迭代器，islice 函数对迭代器做切片操作
 ## [231. 2的幂 1行](https://leetcode.com/problems/power-of-two/)
 ```
