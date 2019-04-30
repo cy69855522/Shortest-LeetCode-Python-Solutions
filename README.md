@@ -559,7 +559,7 @@ class Solution:
 ```
 - 本题可以在同一天买入和卖出，因此只要当天票价比昨天的高就可以卖出
 ## [124. Binary Tree Maximum Path Sum 4行](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -576,7 +576,7 @@ class Solution:
 ```
 - 使用 self.max 记录全局最大值，getattr 返回自身 max 属性的值或预定义的负无穷
 - 本题思路是：递归每一个节点，返回`max(以当前节点为结尾的最大路径和,0)`。并更新最大值`全局最大路径和=max(全局最大路径和，当前节点值+左子树返回结果+右子树返回结果)`
-- 用ok判断需要返回全局最大值或参与递归计算的值
+- 用ok判断是不是第一次递归，是就返回全局最大值，否则照常
 ## [136. Single Number 2行](https://leetcode.com/problems/single-number/)
 ```python
 class Solution:
