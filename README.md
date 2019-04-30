@@ -11,7 +11,7 @@
 默认已看过题目，🤡 没看过的话点标题可以跳转链接
 ## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
 
-```python
+```python3
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         d = {target - n: i for i, n in enumerate(nums)}
