@@ -11,7 +11,7 @@
 默认已看过题目，🤡 没看过的话点标题可以跳转链接
 ## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
 
-```python3
+```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         d = {target - n: i for i, n in enumerate(nums)}
@@ -21,7 +21,7 @@ class Solution:
 - 如果字典中存在相同的数字，那么将会记录比较大的那个索引，因此可以用`d[n] > i`来避免一个元素重复选择
 - 改成 for 循环加 break 再加动态修改字典能更快一点
 
-	```
+	```python
 	class Solution:
 	    def twoSum(self, nums: List[int], target: int) -> List[int]:
 	        d = {}
@@ -32,7 +32,7 @@ class Solution:
 
 ## [2. Add Two Numbers 5行](https://leetcode.com/problems/add-two-numbers/)
 
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -52,7 +52,7 @@ class Solution:
 - 用 carry 记录是否应该进位
 ## [3. Longest Substring Without Repeating Characters 3行](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 
-```
+```python
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         b, m, d = 0, 0, {}
@@ -63,7 +63,7 @@ class Solution:
 - 每次迭代过程中，遇到遇见过的字符时，b就会变为那个字符上一次出现位置+1，m记录上一次应该达到的全局最大值，所以最后需要再比较一次
 ## [4. Median of Two Sorted Arrays 5行](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
-```
+```python
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         a, b, m = *sorted((nums1, nums2), key=len), (len(nums1) + len(nums2) - 1) // 2
@@ -81,7 +81,7 @@ class Solution:
 - 这里保证 a 是 nums1 和 nums2 中较短的那个，是为了防止二分搜索的时候索引越界
 - sorted返回一个list，假设返回值是 [nums1, nums2]，那么前面加个 * 号就代表取出列表的所有内容，相当于一个迭代器，结果相当于直接写 nums1, nums2
 ## [5. Longest Palindromic Substring 4行](https://leetcode.com/problems/longest-palindromic-substring/)
-```
+```python
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         for i, j in [(i, j) for i in range(len(s)) for j in (0, 1)]:
@@ -93,7 +93,7 @@ class Solution:
 - 如果 r 已经初始化则 `locals().get('r', s[i])` 返回 r 的值，否则返回 s[i]
 ## [7. Reverse Integer 2行](https://leetcode.com/problems/reverse-integer/)
 
-```
+```python
 class Solution:
     def reverse(self, x):
         r = x // max(1, abs(x)) * int(str(abs(x))[::-1])
@@ -104,7 +104,7 @@ class Solution:
 - 2^31 和 -2^31 的比特数为32，其中正负号占用了一位
 - 32位整数范围 [−2^31,  2^31 − 1] 中正数范围小一个是因为0的存在
 ## [8. String to Integer (atoi) 1行](https://leetcode.com/problems/string-to-integer-atoi/)
-```
+```python
 class Solution:
     def myAtoi(self, s: str) -> int:
         return max(min(int(*re.findall('^[\+\-]?\d+', s.lstrip())), 2**31 - 1), -2**31)
@@ -113,14 +113,14 @@ class Solution:
 - `max(min(数字, 2**31 - 1), -2**31)` 用来防止结果越界
 ## [9. Palindrome Number 1行](https://leetcode.com/problems/palindrome-number/)
 
-```
+```python
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         return str(x) == str(x)[::-1]
 ```
 不使用字符串的进阶解法：
 
-```
+```python
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         r = list(map(lambda i: int(10**-i * x % 10), range(int(math.log10(x)), -1, -1))) if x > 0 else [0, x]
@@ -129,7 +129,7 @@ class Solution:
 - 思路是一样的，这里把整数转成了列表而不是字符串
 - 比如一个整数12321，我想取出百位数可以这么做：12321 * 10^{int(log_{10}12321)} % 10 = 123 % 10 = 3
 ## [11. Container With Most Water 3行](https://leetcode.com/problems/container-with-most-water/)
-```
+```python
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         res, l, r = 0, 0, len(height) - 1
@@ -141,7 +141,7 @@ class Solution:
 - 如果 height[l] < height[r] 那么 l += 1 否则 r -= 1，说明：如果 height[0] < height[3] 那么(0, 1), (0, 2)对应的容器体积一定小于(0, 3)的，因为此时计算体积的时候高为 height(0)，容器的宽减少而高不增加，面积必然缩小
 ## [13. Roman to Integer 2行](https://leetcode.com/problems/roman-to-integer/)
 
-```
+```python
 class Solution:
     def romanToInt(self, s: str) -> int:
         d = {'I':1, 'IV':3, 'V':5, 'IX':8, 'X':10, 'XL':30, 'L':50, 'XC':80, 'C':100, 'CD':300, 'D':500, 'CM':800, 'M':1000}
@@ -152,7 +152,7 @@ class Solution:
 - 举个例子，遍历经过IV的时候先记录I的对应值1再往前移动一步记录IV的值3，加起来正好是IV的真实值4。max函数在这里是为了防止遍历第一个字符的时候出现[-1:0]的情况
 ## [14. Longest Common Prefix 2行](https://leetcode.com/problems/longest-common-prefix/)
 
-```
+```python
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         r = [len(set(c)) == 1 for c in zip(*strs)] + [0]
@@ -160,7 +160,7 @@ class Solution:
 ```
 - 利用好zip和set
 ## [15. 3Sum 5行](https://leetcode.com/problems/3sum/)
-```
+```python
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums, r = sorted(nums), set()
@@ -174,7 +174,7 @@ class Solution:
 - for 循环内部的代码思想同` 第一题 Two Sum`，用字典记录｛需要的值:当前索引｝，如果字典中存在相同的数字，那么将会记录比较大的那个索引，因此可以用`d[n] > i`来避免一个元素重复选择
 - `(nums[i], n, -nums[i]-n)`保证了列表升序
 ## [16. 3Sum Closest 7行](https://leetcode.com/problems/3sum-closest/)
-```
+```python
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums, r, end = sorted(nums), float('inf'), len(nums) - 1
@@ -191,7 +191,7 @@ class Solution:
 - i 的初始值不是 c + 1，是为了减少计算量，用二分法得到一个合理的初始值
 ## [20. Valid Parentheses 2行](https://leetcode.com/problems/valid-parentheses/)
 
-```
+```python
 class Solution:
     def isValid(self, s: str) -> bool:
         while any(('()' in s, '[]' in s, '{}' in s)): s = s.replace('()', '').replace('[]', '').replace('{}', '')
@@ -199,7 +199,7 @@ class Solution:
 ```
 - 不断删除有效括号直到不能删除，思路简单效率低。另外，stack的方法也很简单，而且快多了。
 
-	```
+	```python
 	class Solution:
 	    def isValid(self, s: str) -> bool:
 	        stack, d = [], {'{': '}', '[': ']', '(': ')'}
@@ -213,7 +213,7 @@ class Solution:
 
 ## [21. Merge Two Sorted Lists 4行](https://leetcode.com/problems/merge-two-sorted-lists/)
 
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -231,7 +231,7 @@ class Solution:
 - None and 7 等于 None
 - sorted用在这里为了保证 l1 的值小于等于 l2 的值
 ## [23. Merge k Sorted Lists 4行](https://leetcode.com/problems/merge-k-sorted-lists/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -265,7 +265,7 @@ class Solution:
 	
 ## [26. Remove Duplicates from Sorted Array 3行](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
-```
+```python
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         for i in range(len(nums)-1, 0, -1):
@@ -275,14 +275,14 @@ class Solution:
 - 时间效率O(N)空间效率O(1)，逆遍历可以防止删除某个元素后影响下一步索引的定位。
 ## [28. Implement strStr() 1行](https://leetcode.com/problems/implement-strstr/)
 
-```
+```python
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
 		return haystack.find(needle)
 ```
 - 不用内置函数也可以
 
-	```
+	```python
 	class Solution:
 		def strStr(self, haystack: 'str', needle: 'str') -> 'int':
 		    for i in range(0, len(haystack) - len(needle) + 1):
@@ -291,7 +291,7 @@ class Solution:
 	    	return -1
 	```
 ## [33. Search in Rotated Sorted Array 3行](https://leetcode.com/problems/search-in-rotated-sorted-array/)
-```
+```python
 class Solution:
     def search(self, nums, target):
         self.__class__.__getitem__ = lambda self, m: not(target < nums[0] <= nums[m] or nums[0] <= nums[m] < target or nums[m] < target <= nums[-1])
@@ -302,7 +302,7 @@ class Solution:
 - python 中 bisect 模块针对的是 list, 如果直接构造 list，相当于遍历所有元素，时间复杂度为 O(N) 而不是 O(logN)，因此我们修改当前类的魔法方法伪造 list，然后用当前类代替list
 - 用二分搜索时，m 代表 middle，low 代表 low，hi 代表 high，当满足任一条件｛① targe < middle 且 middle 在前一段上 且 target < nums[0] ② target > middle 且 middle 在第一段上 ③ target > middle 且 middle 在第二段上 且 target <= nums[-1]｝时，应该向右搜索，因此 getitem 返回 False。
 - 另外还有一种简单的思路：二分法找到断点的位置恢复原始数组，然后正常二分法即可
-	```
+	```python
 	class Solution:
 	    def search(self, nums, target):
 		lo, hi, k = 0, len(nums) - 1, -1
@@ -323,7 +323,7 @@ class Solution:
 	```
 ## [38. Count and Say 1行](https://leetcode.com/problems/count-and-say/)
 
-```
+```python
 class Solution:
     def countAndSay(self, n: int) -> str:
         return '1' * (n is 1) or re.sub(r'(.)\1*', lambda m: str(len(m.group())) + m.group(1), self.countAndSay(n - 1))
@@ -335,7 +335,7 @@ class Solution:
 (.)\1* 匹配一个任意字符的多次重复并把那个字符放入数组
 - group(default=0)可以取匹配文本   group(1)取第一个括号内的文本
 ## [43. Multiply Strings 5行](https://leetcode.com/problems/multiply-strings/)
-```
+```python
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
         d = {}
@@ -348,7 +348,7 @@ class Solution:
 - 我们遍历num1中的每个数字n1，然后带着这个数字遍历num2中的每个数字n2做乘法，所得乘积放进 d 中相应的位置然后逐位计算结果
 - i + j 正好对应俩个数字相乘后所在的位置，比如 0 + 0 就应该是个位， 0 + 1 就是十位， 1 + 1 百位。这里所说的位置可以参考[这篇博客中的过程图](https://blog.csdn.net/Give_me_the_who/article/details/80313860)
 ## [46. Permutations 1行](https://leetcode.com/problems/permutations/)
-```
+```python
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         return [[n] + sub for i, n in enumerate(nums) for sub in self.permute(nums[:i] + nums[i+1:])] or [nums]
@@ -356,7 +356,7 @@ class Solution:
 - 每次固定第一个数字递归地排列数组剩余部分
 - python 有内置函数可以直接实现
 
-	```
+	```python
 	class Solution:
 	    def permute(self, nums: List[int]) -> List[List[int]]:
 		from itertools import permutations
@@ -364,7 +364,7 @@ class Solution:
 	```
 ## [53. Maximum Subarray 2行](https://leetcode.com/problems/maximum-subarray/)
 
-```
+```python
 class Solution:
     def maxSubArray(self, nums):
         from functools import reduce
@@ -375,7 +375,7 @@ class Solution:
 - r[1]代表全局最优解
 - 直接DP的解法更好理解一些
 
-	```
+	```python
 	class Solution:
 	    def maxSubArray(self, nums: List[int]) -> int:
 	        for i in range(1, len(nums)):
@@ -383,14 +383,14 @@ class Solution:
 	        return max(nums)
 	```
 ## [54. Spiral Matrix 1行](https://leetcode.com/problems/spiral-matrix/)
-```
+```python
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         return matrix and [*matrix.pop(0)] + self.spiralOrder([*zip(*matrix)][::-1])
 ```
 - 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为对于后面的递归，传进来的列表中元素是tuple
 ## [59. Spiral Matrix II 3行](https://leetcode.com/problems/spiral-matrix-ii/)
-```
+```python
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
         r, n = [[n**2]], n**2
@@ -404,7 +404,7 @@ class Solution:
 				     |8 7|      |7 6 5|
 ```
 ## [61. Rotate List 4行](https://leetcode.com/problems/rotate-list/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -420,7 +420,7 @@ class Solution:
 ```
 ## [62. Unique Paths 1行](https://leetcode.com/problems/unique-paths/)
 
-```
+```python
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         return int(math.factorial(m+n-2)/math.factorial(m-1)/math.factorial(n-1))
@@ -432,19 +432,19 @@ class Solution:
 - 0的阶乘为1
 ## [66. Plus One 1行](https://leetcode.com/problems/plus-one/)
 
-```
+```python
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         return list(map(int, str(int(''.join(map(str, digits))) + 1)))
 ```
 ## [69. Sqrt(x) 1行](https://leetcode.com/problems/sqrtx/)
-```
+```python
 class Solution:
     def mySqrt(self, x: int) -> int:
         return int(x ** 0.5)
 ```
 出题者应该是希望看到下面的答案：
-```
+```python
 class Solution:
     def mySqrt(self, x: int) -> int:
         r = x
@@ -456,7 +456,7 @@ class Solution:
 - r 代表 result
 ## [70. Climbing Stairs 2行](https://leetcode.com/problems/climbing-stairs/)
 
-```
+```python
 class Solution:
     def climbStairs(self, n: int) -> int:
         from functools import reduce
@@ -466,7 +466,7 @@ class Solution:
 - 这里用一个元组 r 来储存（当前楼梯路径数，下一层楼梯路径数）
 - 利用 reduce 来代替for循环。[reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
 ## [78. Subsets 2行](https://leetcode.com/problems/subsets/)
-```
+```python
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         from itertools import combinations
@@ -474,7 +474,7 @@ class Solution:
 ```
 ## [88. Merge Sorted Array 1行](https://leetcode.com/problems/merge-sorted-array/)
 
-```
+```python
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
@@ -485,7 +485,7 @@ class Solution:
 - 这种题倒着算更容易
 - 上面那行代码其实就相当于：
 	
-	```
+	```python
 	class Solution:
 	    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
 	        """
@@ -498,7 +498,7 @@ class Solution:
 	                nums1[m+n-1], m, n = nums2[n - 1], m, n-1
 	```
 ## [89. Gray Code 1行](https://leetcode.com/problems/gray-code/)
-```
+```python
 class Solution:
     def grayCode(self, n: int) -> List[int]:
         return (lambda r: r + [x | 1<<n-1 for x in r[::-1]])(self.grayCode(n-1)) if n else [0]
@@ -514,7 +514,7 @@ class Solution:
 - << 左移符号，即在二进制表示后加一位 0 ，例子：3<<1 等于 6`（011 → 110）`，相当于 3 * 2的1次方
 - x | 1<<n-1 就是在十进制数字 x 的二进制前面加一位1之后的十进制结果，比如 x = 1，有 1 | 10 等于 110
 - 循环可以避免一些不必要的操作，会比递归快一些：
-	```
+	```python
 	class Solution:
 	    def grayCode(self, n: int) -> List[int]:
 		r = [0]
@@ -522,14 +522,14 @@ class Solution:
 		    r.extend([x | 1<<i for x in r[::-1]])
 		return r
 	```
-- 或者直接背格雷码的公式吧：
-```
+- 或者直接背格雷码的公式🥶吧：
+```python
 class Solution:
     def grayCode(self, n: int) -> List[int]:
         return [i ^ i >> 1  for i in range(1 << n)]
 ```
 ## [104. Maximum Depth of Binary Tree 1行](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -543,7 +543,7 @@ class Solution:
 ```
 - 利用map函数递归左右节点获取最大值，map函数会将参数一所指向的函数应用于参数二里的所有对象并返回所有结果。
 ## [121. Best Time to Buy and Sell Stock 2行](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
-```
+```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         from functools import reduce
@@ -552,14 +552,14 @@ class Solution:
 - r = (结果，之前遍历过的所有元素中的最小值)
 - [reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
 ## [122. Best Time to Buy and Sell Stock II 2行](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
-```
+```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         return sum(b - a for a, b in zip(prices, prices[1:]) if b > a)
 ```
 - 本题可以在同一天买入和卖出，因此只要当天票价比昨天的高就可以卖出
 ## [136. Single Number 2行](https://leetcode.com/problems/single-number/)
-```
+```python
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         from functools import reduce
@@ -567,7 +567,7 @@ class Solution:
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了。
 ## [141. Linked List Cycle 2行](https://leetcode.com/problems/linked-list-cycle/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -586,7 +586,7 @@ class Solution(object):
 - 这题不支持python3，所以用pyhton2解法代替，下题记得调回来 :baby_chick:
 - 破坏走过的所有节点，下次再遇到就知道了
 - 不过以上方法会丢失原有信息，一般解法为快慢指针
-```
+```python
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -604,7 +604,7 @@ class Solution(object):
         return False
 ```
 ## [142. Linked List Cycle II 5行](https://leetcode.com/problems/linked-list-cycle-ii/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -632,7 +632,7 @@ class Solution(object):
 				\       /
 				 X_____/ 
 	```
-	```
+	```python
 	class Solution(object):
 	    def detectCycle(self, head):
 		slow = fast = head
@@ -649,7 +649,7 @@ class Solution(object):
 		return head
 	```
 ## [155. Min Stack 每个1行](https://leetcode.com/problems/min-stack/)
-```
+```python
 class MinStack:
     
     def __init__(self):
@@ -676,7 +676,7 @@ class MinStack:
 # param_4 = obj.getMin()
 ```
 ## [160. Intersection of Two Linked Lists 3行](https://leetcode.com/problems/intersection-of-two-linked-lists/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -696,13 +696,13 @@ class Solution(object):
 - 这题不支持 Python3 所以只能用 Python2 做了
 - 把第一条链表的尾部接到第二条链表的开头，第二条接到第一条的开头，就能消除俩条链表的长度差，并在某一时刻在第一个交叉点相遇，或在走完俩条链表长度的时候同时为 None
 ## [169. Majority Element 1行](https://leetcode.com/problems/majority-element/)
-```
+```python
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         return sorted(nums)[len(nums) // 2]
 ```
 ## [198. House Robber 2行](https://leetcode.com/problems/house-robber/)
-```
+```python
 class Solution:
     def rob(self, nums: List[int]) -> int:
         from functools import reduce
@@ -710,7 +710,7 @@ class Solution:
 ```
 - DP递归方程：一直偷到这家的钱 = max（一直偷到上一家的钱，一直偷到上上家的钱 + 这家的钱）😃有点小绕
 - 以上为下面代码的化简版，[reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
-```
+```python
 class Solution:
     def rob(self, nums: List[int]) -> int:
         last, now = 0, 0
@@ -720,7 +720,7 @@ class Solution:
 ```
 - DP不一定要数组，这里两个变量就够了，空间复杂度为O(1)
 ## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -733,7 +733,7 @@ class Solution:
         return self.reverseList(head, tail) if head else tail
 ```
 - 递归解法
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -748,14 +748,14 @@ class Solution:
 ```
 - 迭代解法
 ## [215. Kth Largest Element in an Array 1行](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-```
+```python
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         return sorted(nums)[-k]
 ```
 - O(NlogN)调库
 - 面试官一般不会接受以上答案的，可以参考下面这个2行的quick-selection，思路借鉴的quick-sort
-	```
+	```python
 	class Solution:
 	    def findKthLargest(self, nums: List[int], k: int) -> int:
 		# return sorted(nums)[-k]
@@ -763,13 +763,13 @@ class Solution:
 		return self.findKthLargest(l, k) if k <= len(l) else nums[0] if k <= len(l) + len(m) else self.findKthLargest(r, k - len(l) - len(m))
 	```
 ## [217. Contains Duplicate 1行](https://leetcode.com/problems/contains-duplicate/)
-```
+```python
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         return len(nums) != len(set(nums))
 ```
 ## [230. Kth Smallest Element in a BST 3行](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -786,7 +786,7 @@ class Solution:
 - 本题利用迭代器骚了一波:grinning:，不太了解的话看这里 [yield 推荐阅读博客](https://blog.csdn.net/mieleizhi0522/article/details/82142856)
 - chain 函数可以组合多个迭代器，islice 函数对迭代器做切片操作
 - 此题常规解法 中序遍历 还是需要了解下的
-	```
+	```python
 	# Definition for a binary tree node.
 	# class TreeNode(object):
 	#     def __init__(self, x):
@@ -814,7 +814,7 @@ class Solution:
 		self.visitNode(root.right, res)
 	```
 ## [231. 2的幂 1行](https://leetcode.com/problems/power-of-two/)
-```
+```python
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
 	"""
@@ -825,13 +825,13 @@ class Solution:
 ```
 - 2 的幂的二进制形式最高位一定是1，其余为0
 - 用常规思路也行
-	```
+	```python
 	class Solution(object):
 	    def isPowerOfTwo(self, n):
 		return n > 0 and 2**int(math.log2(n)) == n
 	```
 ## [235. Lowest Common Ancestor of a Binary Search Tree 2行](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -846,7 +846,7 @@ class Solution:
 ```
 - 最近公共祖先的值一定介于p、q值之间(闭区间)
 ## [236. Lowest Common Ancestor of a Binary Tree 2行](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -862,7 +862,7 @@ class Solution:
 - 递归全部节点，p 的祖先节点全部返回 p，q 的祖先节点全部返回 q，除非它同时是俩个节点的最近祖先，也就是 p，q 分别位于左右子树，那么返回自身
 - 这思路用在[235](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)也行
 ## [237. Delete Node in a Linked List 1行](https://leetcode.com/problems/delete-node-in-a-linked-list/)
-```
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -881,7 +881,7 @@ class Solution:
 - 详细说明下：如果Python的函数得到的参数是可变对象（比如list，set，这样的，内部属性可以改变的），那么我们实际得到的是这个对象的浅拷贝。比如这个函数刚刚开始的时候题目传进来一个参数node，我们设这个节点为A，那么实际上得到的参数node是一个对于A的一个浅拷贝，你可以想象node是一把钥匙，它可以打开真正的节点A的门，如果我们现在让`node = node.next`，那么我们只是换了钥匙，变成了打开 A.next 的门的对应的钥匙，因此链表没有被修改， A没有被修改，只是我们手里的钥匙变了。而如果我们直接写`node.val, node.next = node.next.val, node.next.next`，就相当于我们先用钥匙找到 A 的门，然后修改了 A 的属性，链表发生变化
 - 此题考查python函数的传参形式为“传对象引用”，相当于浅拷贝（对于可变对象来说）
 ## [238. Product of Array Except Self 5行](https://leetcode.com/problems/product-of-array-except-self/)
-```
+```python
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         res, l, r = [1] * len(nums), 1, 1
@@ -892,14 +892,14 @@ class Solution:
 ```
 - O(N)双指针双向遍历
 ## [268. Missing Number 1行](https://leetcode.com/problems/missing-number/)
-```
+```python
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         return int(len(nums) * (len(nums) + 1) / 2 - sum(nums))
 ```
 - 等差数列求和公式
 ## [292. Nim Game 1行](https://leetcode.com/problems/nim-game/)
-```
+```python
 class Solution:
     def canWinNim(self, n: int) -> bool:
         return bool(n % 4)
@@ -907,7 +907,7 @@ class Solution:
 - 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4 的倍数
 ## [344. Reverse String 1行](https://leetcode.com/problems/reverse-string/)
 
-```
+```python
 class Solution:
     def reverseString(self, s: List[str]) -> None:
         """
@@ -917,7 +917,7 @@ class Solution:
 ```
 ## [412. Fizz Buzz 1行](https://leetcode.com/problems/fizz-buzz/)
 
-```
+```python
 class Solution:
     def fizzBuzz(self, n):
         return ['Fizz' * (not i % 3) + 'Buzz' * (not i % 5) or str(i) for i in range(1, n+1)]
@@ -925,7 +925,7 @@ class Solution:
 - 7 or 8 = 7
 - 0 or 8 = 8
 ## [414. Third Maximum Number 3行]()
-```
+```python
 class Solution:
     def thirdMax(self, nums: List[int]) -> int:
         nums = set(nums)
@@ -933,7 +933,7 @@ class Solution:
         return max(nums)
 ```
 ## [557. 反转字符串中的单词 III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
-```
+```python
 class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split(' ')[::-1])[::-1]
