@@ -980,6 +980,19 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split(' ')[::-1])[::-1]
 ```
+## [771. Jewels and Stones 1行](https://leetcode.com/problems/jewels-and-stones/)
+```python
+class Solution:
+    def numJewelsInStones(self, J: str, S: str) -> int:
+        return sum(S.count(i) for i in J)
+```
+- 时间复杂度O(N^2)，另附O(N)解法（set内部实现为dict，in操作时间复杂度为O(N)）
+	```python
+	class Solution:
+	    def numJewelsInStones(self, J: str, S: str) -> int:
+		j = set(J)
+		return sum([s in j for s in S])
+	```
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
