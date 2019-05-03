@@ -1,4 +1,4 @@
-# Short-LeetCode-Python-Solutions
+# Shortest-LeetCode-Python-Solutions
   Leet Code 刷题笔记 - - 不求最快最省，但求最短最优雅 :herb:，Shorter is better here.
 
 # 前言
