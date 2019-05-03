@@ -991,7 +991,7 @@ class Solution:
 	class Solution:
 	    def numJewelsInStones(self, J: str, S: str) -> int:
 		j = set(J)
-		return sum([s in j for s in S])
+		return sum(s in j for s in S)
 	```
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
