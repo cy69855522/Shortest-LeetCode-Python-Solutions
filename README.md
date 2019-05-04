@@ -1040,7 +1040,7 @@ class Solution:
         for _ in range((2, 0)[len(nums) < 3]): nums.remove(max(nums))
         return max(nums)
 ```
-## [557. 反转字符串中的单词 III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
+## [557. Reverse Words in a String III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
 ```python
 class Solution:
     def reverseWords(self, s: str) -> str:
@@ -1059,7 +1059,7 @@ class Solution:
 		j = set(J)
 		return sum(s in j for s in S)
 	```
-## [953. 验证外星语词典 1行](https://leetcode.com/problems/verifying-an-alien-dictionary/)
+## [953. Verifying an Alien Dictionary 1行](https://leetcode.com/problems/verifying-an-alien-dictionary/)
 ```python
 class Solution(object):
     def isAlienSorted(self, words, order):
