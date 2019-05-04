@@ -1059,14 +1059,21 @@ class Solution:
 		j = set(J)
 		return sum(s in j for s in S)
 	```
-## [953. 验证外星语词典 2行](https://leetcode.com/problems/verifying-an-alien-dictionary/)
-```python
-class Solution:
-    def isAlienSorted(self, words: List[str], order: str) -> bool:
-        d = {c: i + 1 for i, c in enumerate(order)}
-        return sorted(words, key=lambda x: sum(d[c] * 10**(-2 * i) for i, c in enumerate(x))) == words
+## [953. 验证外星语词典 1行](https://leetcode.com/problems/verifying-an-alien-dictionary/)
 ```
-- 一个简单的数学计算，给每个单词赋予一个数字即可，每个字母的价值按字母表顺序，第几个就代表几，每进一位需要`*10^-2`避免冲突，比如字母表是`abcde……`，单词 cab 的价值就是 `3 * 1 + 1 * 0.01 + 2 * 0.0001`，价值越小的单词位置应该越靠前
+class Solution(object):
+    def isAlienSorted(self, words, order):
+        return words == sorted(words, key=lambda w: [order.index(x) for x in w])
+```
+- 充分利用 python 序列比较的特点
+- 另外一个通用的方法是简单的数学计算，给每个单词赋予一个数字然后排序对比和原来的数组是否一致即可，每个字母的价值按字母表顺序，第几个就代表几，每进一位需要`*10^-2`避免冲突，比如字母表是`abcde……`，单词 cab 的价值就是 `3 * 1 + 1 * 0.01 + 2 * 0.0001`，价值越小的单词位置应该越靠前
+
+	```python
+	class Solution:
+	    def isAlienSorted(self, words: List[str], order: str) -> bool:
+		d = {c: i + 1 for i, c in enumerate(order)}
+		return sorted(words, key=lambda x: sum(d[c] * 10**(-2 * i) for i, c in enumerate(x))) == words
+	```
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
