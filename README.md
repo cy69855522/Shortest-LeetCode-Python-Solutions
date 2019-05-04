@@ -715,45 +715,45 @@ class Solution:
 ```
 - 使用快慢指针寻找链表中点，并分解链表
 - 递归融合俩个有序链表，详解见 21 题
-- 此处忽略了递归开栈导致的非 常数级空间复杂度（想太多了吧:laughing:），如果一定要抬杠，推荐使用quicksort或bottom up
-```python
-class Solution(object):
-    def sortList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        def partition(start, end):
-            node = start.next.next
-            pivotPrev = start.next
-            pivotPrev.next = end
-            pivotPost = pivotPrev
-            while node != end:
-                temp = node.next
-                if node.val > pivotPrev.val:
-                    node.next = pivotPost.next
-                    pivotPost.next = node
-                elif node.val < pivotPrev.val:
-                    node.next = start.next
-                    start.next = node
-                else:
-                    node.next = pivotPost.next
-                    pivotPost.next = node
-                    pivotPost = pivotPost.next
-                node = temp
-            return [pivotPrev, pivotPost]
-        
-        def quicksort(start, end):
-            if start.next != end:
-                prev, post = partition(start, end)
-                quicksort(start, prev)
-                quicksort(post, end)
+- 此处忽略了递归开栈导致的非 常数级空间复杂度（想太多了吧:laughing:），如果一定要抬杠，推荐使用quicksort
+	```python
+	class Solution(object):
+	    def sortList(self, head):
+		"""
+		:type head: ListNode
+		:rtype: ListNode
+		"""
+		def partition(start, end):
+		    node = start.next.next
+		    pivotPrev = start.next
+		    pivotPrev.next = end
+		    pivotPost = pivotPrev
+		    while node != end:
+			temp = node.next
+			if node.val > pivotPrev.val:
+			    node.next = pivotPost.next
+			    pivotPost.next = node
+			elif node.val < pivotPrev.val:
+			    node.next = start.next
+			    start.next = node
+			else:
+			    node.next = pivotPost.next
+			    pivotPost.next = node
+			    pivotPost = pivotPost.next
+			node = temp
+		    return [pivotPrev, pivotPost]
 
-        newHead = ListNode(0)
-        newHead.next = head
-        quicksort(newHead, None)
-        return newHead.next
-```
+		def quicksort(start, end):
+		    if start.next != end:
+			prev, post = partition(start, end)
+			quicksort(start, prev)
+			quicksort(post, end)
+
+		newHead = ListNode(0)
+		newHead.next = head
+		quicksort(newHead, None)
+		return newHead.next
+	```
 ## [155. Min Stack 每个1行](https://leetcode.com/problems/min-stack/)
 ```python
 class MinStack:
