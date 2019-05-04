@@ -8,8 +8,8 @@
 - 如果您对当前解析有任何疑问，咱们 issue 见~
 - 由于CSDN博客更新需要人工审核比较慢，所以迁移到github上，优先更新github内容。
 - 为了快速找到题目可以按 [**Ctrl键 + F键**] 输入题目序号或名字定位。
-# 里程碑 :trophy:
-- :penguin: [腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：139行 平均：2.78行 [题目详情]()
+# :trophy: 里程碑
+- [:penguin: 腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：139行 平均：2.78行 [:bookmark_tabs: 题目详情](tencent50.png) [:calendar: 2019/05/05]
 # 解析
 默认已看过题目，🤡 没看过的话点标题可以跳转链接
 ## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
