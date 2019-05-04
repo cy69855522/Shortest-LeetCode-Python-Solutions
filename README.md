@@ -1060,7 +1060,7 @@ class Solution:
 		return sum(s in j for s in S)
 	```
 ## [953. 验证外星语词典 1行](https://leetcode.com/problems/verifying-an-alien-dictionary/)
-```
+```python
 class Solution(object):
     def isAlienSorted(self, words, order):
         return words == sorted(words, key=lambda w: [order.index(x) for x in w])
