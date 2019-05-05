@@ -11,7 +11,7 @@
 # :trophy: 里程碑
 - [:penguin: 腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：140行 平均：2.8行 [:bookmark_tabs: 题目详情](tencent50.png) :calendar: 2019/05/05
 ## 推荐
-- 与本项目有关联的，是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions/edit/master/README.md)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，并聚合C++篇精华总结一套运用python独特技巧的专题，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
+- 与本项目有关联的，是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，并聚合C++篇精华总结一套运用python独特技巧的专题，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
 - 🌟 推荐刷题路线：[专题剖析](#专题) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [全题解析](#解析)
 
 # 解析
