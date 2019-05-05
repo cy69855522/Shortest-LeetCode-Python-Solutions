@@ -83,7 +83,7 @@ class Solution:
 - bisect.bisect_left 搜索列表中保持列表升序的情况下，True应该插入的位置（从左侧），比如 [F,F,T] 返回 2，[F,F] 返回 2
 - 这里保证 a 是 nums1 和 nums2 中较短的那个，是为了防止二分搜索的时候索引越界
 - sorted返回一个list，假设返回值是 [nums1, nums2]，那么前面加个 * 号就代表取出列表的所有内容，相当于一个迭代器，结果相当于直接写 nums1, nums2
-## [5. Longest Palindromic Substring 4行](https://leetcode.com/problems/longest-palindromic-substring/)
+## [5. Longest Palindromic Substring 5行](https://leetcode.com/problems/longest-palindromic-substring/)
 ```python
 class Solution:
     def longestPalindrome(self, s: str) -> str:
