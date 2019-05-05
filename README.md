@@ -1059,6 +1059,19 @@ class Solution:
 		j = set(J)
 		return sum(s in j for s in S)
 	```
+## [938. Range Sum of BST 1行](https://leetcode.com/problems/range-sum-of-bst/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
+        return root and root.val * (L <= root.val <= R) + self.rangeSumBST(root.left, L, R) + self.rangeSumBST(root.right, L, R) or 0
+```
 ## [953. Verifying an Alien Dictionary 1行](https://leetcode.com/problems/verifying-an-alien-dictionary/)
 ```python
 class Solution(object):
@@ -1074,19 +1087,6 @@ class Solution(object):
 		d = {c: i + 1 for i, c in enumerate(order)}
 		return sorted(words, key=lambda x: sum(d[c] * 10**(-2 * i) for i, c in enumerate(x))) == words
 	```
-## [938. Range Sum of BST 1行](https://leetcode.com/problems/range-sum-of-bst/)
-```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-class Solution:
-    def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
-        return root and root.val * (L <= root.val <= R) + self.rangeSumBST(root.left, L, R) + self.rangeSumBST(root.right, L, R) or 0
-```
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
