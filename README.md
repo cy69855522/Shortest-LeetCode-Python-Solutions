@@ -9,7 +9,7 @@
 - 由于CSDN博客更新需要人工审核比较慢，所以迁移到github上，优先更新github内容。
 - 为了快速找到题目可以按 [**Ctrl键 + F键**] 输入题目序号或名字定位。
 # :trophy: 里程碑
-- [:penguin: 腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：139行 平均：2.78行 [:bookmark_tabs: 题目详情](tencent50.png) :calendar: 2019/05/05
+- [:penguin: 腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：140行 平均：2.8行 [:bookmark_tabs: 题目详情](tencent50.png) :calendar: 2019/05/05
 # 解析
 默认已看过题目，🤡 没看过的话点标题可以跳转链接
 ## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
@@ -87,13 +87,13 @@ class Solution:
 ```python
 class Solution:
     def longestPalindrome(self, s: str) -> str:
+        r = ''
         for i, j in [(i, j) for i in range(len(s)) for j in (0, 1)]:
             while i > -1 and i + j < len(s) and s[i] == s[i + j]: i, j = i - 1, j + 2
-            r = max(locals().get('r', s[i]), s[i + 1:i + j], key=len)
+            r = max(r, s[i + 1:i + j], key=len)
         return '' if not s else r
 ```
 - 遍历字符串的每个索引 i，判断能否以 s[i] 或 s[i:i+j+1] 为中心向往拓展回文字符串
-- 如果 r 已经初始化则 `locals().get('r', s[i])` 返回 r 的值，否则返回 s[i]
 ## [7. Reverse Integer 2行](https://leetcode.com/problems/reverse-integer/)
 
 ```python
