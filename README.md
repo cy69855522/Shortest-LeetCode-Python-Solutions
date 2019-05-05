@@ -671,7 +671,7 @@ class Solution(object):
 		return head
 	```
 ## [146. LRU Cache 7行](https://leetcode.com/problems/lru-cache/)
-```
+```python
 class LRUCache(object):
 
     def __init__(self, capacity):
