@@ -10,6 +10,10 @@
 - 为了快速找到题目可以按 [**Ctrl键 + F键**] 输入题目序号或名字定位。
 # :trophy: 里程碑
 - [:penguin: 腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：140行 平均：2.8行 [:bookmark_tabs: 题目详情](tencent50.png) :calendar: 2019/05/05
+## 推荐
+- 与本项目有关联的，是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions/edit/master/README.md)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，并聚合C++篇精华总结一套运用python独特技巧的专题，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
+- 推荐刷题路线：[专题剖析](#专题) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [全题解析](#解析)
+
 # 解析
 默认已看过题目，🤡 没看过的话点标题可以跳转链接
 ## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
@@ -1088,6 +1092,41 @@ class Solution(object):
 		d = {c: i + 1 for i, c in enumerate(order)}
 		return sorted(words, key=lambda x: sum(d[c] * 10**(-2 * i) for i, c in enumerate(x))) == words
 	```
+# 专题
+- 相比于解析部分追求代码的绝对精简，本专题追求以高可读性呈现各大专题的常规思路。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。为降低学习成本，每个方向会根据C++篇收录少数优选的经典题目，若觉得不够请转[解析部分](#解析)，若想更改例题，欢迎 issue 提出您的建议或意见。
+
+## 数组
+
+### [238. Product of Array Except Self 双指针](https://leetcode.com/problems/product-of-array-except-self/)
+```cpp
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, 1);
+        
+        int l = 1;
+        for(int i=0; i<n; ++i){
+            res[i] *= l;
+            l *= nums[i];
+        }
+        
+        int r = 1;
+        for(int j=n-1; j>=0; --j){
+            res[j] *= r;
+            r *= nums[j];
+        }
+        
+        return res;
+    }
+};
+```
+- 本题利用双指针，新数组每个位置上的值应该等于数组左边所有数字的乘积 × 数组右边所有数字的乘积
+- 1.初始化一个新的数组res（result），包含n个1
+
+  2.初始化变量l（left）代表左边的乘积，从左到右遍历数组，每次都让新数组的值乘以它左边数字的乘积l，然后更新l。此时新数组里的所有数字就代表了nums数组中对应位置左边所有数字的乘积
+  
+  3.再从右往左做一遍同样的操作，最终`res[i] = 1 * nums中i左边所有数字的乘积 * nums中i右边所有数字的乘积`
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
