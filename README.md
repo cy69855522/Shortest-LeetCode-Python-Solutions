@@ -1098,28 +1098,23 @@ class Solution(object):
 ## 数组
 
 ### [238. Product of Array Except Self 双指针](https://leetcode.com/problems/product-of-array-except-self/)
-```cpp
-class Solution {
-public:
-    vector<int> productExceptSelf(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> res(n, 1);
+```python
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = [1] * n
         
-        int l = 1;
-        for(int i=0; i<n; ++i){
-            res[i] *= l;
-            l *= nums[i];
-        }
+        l = 1
+        for i in range(n):
+            res[i] *= l
+            l *= nums[i]
         
-        int r = 1;
-        for(int j=n-1; j>=0; --j){
-            res[j] *= r;
-            r *= nums[j];
-        }
+        r = 1
+        for j in range(n - 1, -1, -1):
+            res[j] *= r
+            r *= nums[j]
         
-        return res;
-    }
-};
+        return res
 ```
 - 本题利用双指针，新数组每个位置上的值应该等于数组左边所有数字的乘积 × 数组右边所有数字的乘积
 - 1.初始化一个新的数组res（result），包含n个1
