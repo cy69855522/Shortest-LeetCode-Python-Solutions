@@ -863,7 +863,7 @@ class Solution:
         return sorted(nums)[-k]
 ```
 - O(NlogN)调库
-- 面试官一般不会接受以上答案的，可以参考下面这个2行的quick-selection，思路借鉴的quick-sort
+- 面试官一般不会接受以上答案的，可以参考下面这个2行O(N)的quick-selection，思路借鉴的quick-sort
 	```python
 	class Solution:
 	    def findKthLargest(self, nums: List[int], k: int) -> int:
