@@ -1096,7 +1096,6 @@ class Solution(object):
 - 相比于解析部分追求代码的绝对精简，本专题追求以高可读性呈现各大专题的常规思路。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。为降低学习成本，🛫 每个方向会根据C++篇收录少数优选的经典题目，若觉得不够请转[解析部分](#解析)，若想更改例题，欢迎 issue 提出您的建议或意见。
 
 ## 数组
-
 ### [238. Product of Array Except Self 双指针](https://leetcode.com/problems/product-of-array-except-self/)
 ```python
 class Solution:
@@ -1122,6 +1121,17 @@ class Solution:
   2.初始化变量l（left）代表左边的乘积，从左到右遍历数组，每次都让新数组的值乘以它左边数字的乘积l，然后更新l。此时新数组里的所有数字就代表了nums数组中对应位置左边所有数字的乘积
   
   3.再从右往左做一遍同样的操作，最终`res[i] = 1 * nums中i左边所有数字的乘积 * nums中i右边所有数字的乘积`
+## 哈希表
+### [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+	d = {}
+	for i, n in enumerate(nums): 
+	    if n in d: return [d[n], i]
+	    d[target-n] = i
+```
+- 建立一个字典，每次遍历过一个值就记录与其匹配的值（设置d[匹配值]=当前索引），今后遇见匹配值即可直接返回结果
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
