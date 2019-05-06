@@ -397,7 +397,7 @@ class Solution:
 ```
 - 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为对于后面的递归，传进来的列表中元素是tuple
 ## [58. Length of Last Word 1行](https://leetcode.com/problems/length-of-last-word/)
-```
+```python
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
         return len(s.strip(' ').split(' ')[-1])
