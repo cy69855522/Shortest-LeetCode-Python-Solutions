@@ -1024,6 +1024,25 @@ class Solution:
         return bool(n % 4)
 ```
 - 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4 的倍数
+## [328. Odd Even Linked List 6行](https://leetcode.com/problems/odd-even-linked-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        if not head or not head.next: return head
+        r, odd, p, head = head, head, head.next, head.next.next
+        while head:
+            odd.next, head.next, p.next = head, odd.next, head.next
+            p, odd, head = p.next, head, p.next and p.next.next
+        return r
+```
+- odd 记录上一个奇数位节点，p 记录前一个节点
+- 从第3个位置开始循环，每次都把当前节点接到 odd 后面，然后跳到下一个奇数位节点继续循环
 ## [344. Reverse String 1行](https://leetcode.com/problems/reverse-string/)
 
 ```python
@@ -1089,7 +1108,7 @@ class Solution(object):
     def isAlienSorted(self, words, order):
         return words == sorted(words, key=lambda w: [order.index(x) for x in w])
 ```
-- 充分利用 python 序列比较的特点
+- 充分利用 python 序列比较的特点，sorted 的参数 key 可传入一个函数，sorted 函数会将每个元素作为输入，输入到 key 函数并获得返回值，整个序列将按此值的大小来排序。此处 key 函数为`lambda w: [order.index(x) for x in w]`，其为words中每个单词 word 返回一个 list，list 中每个元素为单词中字母 x 在 order 中的索引。比如当 order 为 ‘abcde……’ 时，单词 ‘cab’ 将返回 [3, 2, 1]。关于俩个 list 的大小比较，服从 python 序列比较的特性，请参考官方文档教程 5.8 节内容。
 - 另外一个通用的方法是简单的数学计算，给每个单词赋予一个数字然后排序对比和原来的数组是否一致即可，每个字母的价值按字母表顺序，第几个就代表几，每进一位需要`*10^-2`避免冲突，比如字母表是`abcde……`，单词 cab 的价值就是 `3 * 1 + 1 * 0.01 + 2 * 0.0001`，价值越小的单词位置应该越靠前
 
 	```python
