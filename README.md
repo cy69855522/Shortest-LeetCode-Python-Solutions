@@ -1122,7 +1122,7 @@ class Solution:
   
   3.再从右往左做一遍同样的操作，最终`res[i] = 1 * nums中i左边所有数字的乘积 * nums中i右边所有数字的乘积`
 ## 哈希表
-### [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
+### [1. Two Sum 字典](https://leetcode.com/problems/two-sum/)
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
