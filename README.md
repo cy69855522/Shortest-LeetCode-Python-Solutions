@@ -1118,7 +1118,7 @@ class Solution(object):
 		return sorted(words, key=lambda x: sum(d[c] * 10**(-2 * i) for i, c in enumerate(x))) == words
 	```
 # 专题
-- 相比于解析部分追求代码的绝对精简，本专题追求以高可读性呈现各大专题的常规思路。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。为降低学习成本，🛫 每个方向会根据[C++篇]((https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions))收录少数优选的经典题目，若觉得不够请转[解析部分](#解析)，若想更改例题，欢迎 issue 提出您的建议或意见。
+- 相比于解析部分追求代码的绝对精简，本专题追求以高可读性呈现各大专题的常规思路。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。为降低学习成本，🛫 每个方向会根据[C++篇](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)收录少数优选的经典题目，若觉得不够请转[解析部分](#解析)，若想更改例题，欢迎 issue 提出您的建议或意见。
 
 ## 数组
 ### [238. Product of Array Except Self 双指针](https://leetcode.com/problems/product-of-array-except-self/)
