@@ -1024,6 +1024,29 @@ class Solution:
         return bool(n % 4)
 ```
 - 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4 的倍数
+## [283. Move Zeroes 1行](https://leetcode.com/problems/move-zeroes/)
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        nums.sort(key=bool, reverse=True)
+```
+- sort 时间复杂度为O(NlogN), 直接遍历可以达到 O(N)
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        i = 0
+        for i, n in enumerate(filter(lambda x: x, nums)):
+            nums[i] = n
+        for i in range(i + 1, len(nums)):
+            nums[i] = 0
+```
+- 直接使用 filter 迭代器可以避免交换操作，思路更简单
 ## [328. Odd Even Linked List 6行](https://leetcode.com/problems/odd-even-linked-list/)
 ```python
 # Definition for singly-linked list.
@@ -1175,7 +1198,7 @@ class Solution:
 ```
 - 此处利用 python 多重赋值表达式的特性（例：`a, b = b, a`），python 中多变量同时赋值时，右手边的表达式在任何赋值发生之前就被求值了。右手边的表达式是从左到右被求值的
 ## 数学
-### [268. Missing Number](https://leetcode.com/problems/missing-number/)
+### [268. Missing Number 等差数列](https://leetcode.com/problems/missing-number/)
 ```python
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
