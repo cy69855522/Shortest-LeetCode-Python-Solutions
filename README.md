@@ -1017,13 +1017,6 @@ class Solution:
         return int(len(nums) * (len(nums) + 1) / 2 - sum(nums))
 ```
 - 等差数列求和公式
-## [292. Nim Game 1行](https://leetcode.com/problems/nim-game/)
-```python
-class Solution:
-    def canWinNim(self, n: int) -> bool:
-        return bool(n % 4)
-```
-- 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4 的倍数
 ## [283. Move Zeroes 1行](https://leetcode.com/problems/move-zeroes/)
 ```python
 class Solution:
@@ -1047,6 +1040,13 @@ class Solution:
             nums[i] = 0
 ```
 - 直接使用 filter 迭代器可以避免交换操作，思路更简单
+## [292. Nim Game 1行](https://leetcode.com/problems/nim-game/)
+```python
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return bool(n % 4)
+```
+- 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4 的倍数
 ## [328. Odd Even Linked List 6行](https://leetcode.com/problems/odd-even-linked-list/)
 ```python
 # Definition for singly-linked list.
