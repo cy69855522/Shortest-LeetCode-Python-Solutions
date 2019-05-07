@@ -1157,6 +1157,23 @@ class Solution:
 	    d[target-n] = i
 ```
 - 建立一个字典，每次遍历过一个值就记录与其匹配的值（设置d[匹配值]=当前索引），今后遇见匹配值即可直接返回结果
+## 链表
+### [206. Reverse Linked List 迭代遍历](https://leetcode.com/problems/reverse-linked-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        p = None
+        while head:
+            head.next, head, p = p, head.next, head
+        return p
+```
+- 此处利用 python 多重赋值表达式的特性（例：a, b = b, a`），python 中多变量同时赋值时，右手边的表达式在任何赋值发生之前就被求值了。右手边的表达式是从左到右被求值的
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - Knife丶[QQ1272068154  微信ly18597591102]
