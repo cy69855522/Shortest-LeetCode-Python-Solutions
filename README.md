@@ -1250,7 +1250,7 @@ class Solution:
 ```
 - 建立一个字典，每次遍历过一个值就记录与其匹配的值（设置d[匹配值]=当前索引），今后遇见匹配值即可直接返回结果
 ## 链表
-### [206. Reverse Linked List 迭代遍历](https://leetcode.com/problems/reverse-linked-list/)
+### [206. Reverse Linked List 前后指针](https://leetcode.com/problems/reverse-linked-list/)
 ```python
 # Definition for singly-linked list.
 # class ListNode:
@@ -1279,7 +1279,7 @@ class Solution:
 - 缺失数字 = 0 加到 n+1 的总和 - 数组中所有数字的总和
 - 计算 0 加到 n+1 的总和，可利用等差数列求和公式，此题可理解为`总和 = (元素个数 / 2) * (首尾两数字之和)`
 ## 双指针
-### [344. Reverse String 双指针](https://leetcode.com/problems/reverse-string/)
+### [344. Reverse String 双向指针](https://leetcode.com/problems/reverse-string/)
 ```python
 class Solution:
     def reverseString(self, s: List[str]) -> None:
