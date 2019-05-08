@@ -908,7 +908,6 @@ class Solution:
 	```python
 	class Solution:
 	    def findKthLargest(self, nums: List[int], k: int) -> int:
-		# return sorted(nums)[-k]
 		l, m, r = [x for x in nums if x > nums[0]], [x for x in nums if x == nums[0]], [x for x in nums if x < nums[0]]
 		return self.findKthLargest(l, k) if k <= len(l) else nums[0] if k <= len(l) + len(m) else self.findKthLargest(r, k - len(l) - len(m))
 	```
