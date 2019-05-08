@@ -1293,7 +1293,7 @@ class Solution:
             j -= 1
 ```
 ## 位运算
-### [461. Hamming Distance 1行](https://leetcode.com/problems/hamming-distance/)
+### [461. Hamming Distance 异或](https://leetcode.com/problems/hamming-distance/)
 ```python
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
