@@ -595,6 +595,14 @@ class Solution:
 ```
 - r = (结果，之前遍历过的所有元素中的最小值)
 - [reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        r, m = 0, float('inf')
+        for p in prices:
+            r, m = max(r, p - m), min(m, p)
+        return r
+```
 ## [122. Best Time to Buy and Sell Stock II 2行](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 ```python
 class Solution:
