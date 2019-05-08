@@ -1142,13 +1142,19 @@ class Solution:
 ```
 - 7 or 8 = 7
 - 0 or 8 = 8
-## [414. Third Maximum Number 3行]()
+## [414. Third Maximum Number 3行](https://leetcode.com/problems/third-maximum-number/)
 ```python
 class Solution:
     def thirdMax(self, nums: List[int]) -> int:
         nums = set(nums)
         for _ in range((2, 0)[len(nums) < 3]): nums.remove(max(nums))
         return max(nums)
+```
+## [461. Hamming Distance 1行](https://leetcode.com/problems/hamming-distance/)
+```python
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        return bin(x ^ y).count('1')
 ```
 ## [557. Reverse Words in a String III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
 ```python
@@ -1285,6 +1291,13 @@ class Solution:
             s[i], s[j] = s[j], s[i]
             i += 1
             j -= 1
+```
+## 位运算
+### [461. Hamming Distance 1行](https://leetcode.com/problems/hamming-distance/)
+```python
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        return bin(x ^ y).count('1')
 ```
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
