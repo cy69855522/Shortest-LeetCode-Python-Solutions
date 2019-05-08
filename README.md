@@ -541,6 +541,37 @@ class Solution:
     def grayCode(self, n: int) -> List[int]:
         return [i ^ i >> 1  for i in range(1 << n)]
 ```
+## [94. Binary Tree Inorder Traversal 2行](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        f = self.inorderTraversal
+        return f(root.left) + [root.val] + f(root.right) if root else []
+```
+- 递归
+```python
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        r, stack = [], []
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            if not stack:
+                return r
+            node = stack.pop()
+            r.append(node.val)
+            root = node.right
+        return r
+```
+- 迭代
 ## [104. Maximum Depth of Binary Tree 1行](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 ```python
 # Definition for a binary tree node.
@@ -1210,7 +1241,7 @@ class Solution:
 - 缺失数字 = 0 加到 n+1 的总和 - 数组中所有数字的总和
 - 计算 0 加到 n+1 的总和，可利用等差数列求和公式，此题可理解为`总和 = (元素个数 / 2) * (首尾两数字之和)`
 ## 双指针
-### [344. Reverse String](https://leetcode.com/problems/reverse-string/)
+### [344. Reverse String 双指针](https://leetcode.com/problems/reverse-string/)
 ```python
 class Solution:
     def reverseString(self, s: List[str]) -> None:
