@@ -1140,6 +1140,30 @@ class Solution:
         for _ in range((2, 0)[len(nums) < 3]): nums.remove(max(nums))
         return max(nums)
 ```
+###[448. Find All Numbers Disappeared in an Array 1行](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+```python
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        s = set(nums)
+        return [i for i in range(1, len(nums) + 1) if i not in s]
+```
+- set 的内部实现为 dict，in 操作时间复杂度为 O(1)
+- 应题目进阶要求，以下解为 O(N) 时间效率，无额外空间（除了返回数组和中间变量）
+	```python
+	class Solution:
+	    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+		r = [*range(1, len(nums) + 1)]
+		for n in nums:
+		    r[n - 1] = 0
+		for i in range(len(r) - 1, -1, -1):
+		    if not r[i]:
+			r.pop(i)
+		return r
+	```
+	- 初始化返回列表为数字 1 ~ n，值=索引+1
+	- 遍历nums，并把r中出现在nums中的值全部置0，这里实际上利用r为递增序列的特性，近似为一个哈希表
+	- 删除r中所有0元素
+	- 为什么不在遍历nums到时候直接删除r中的值？直接删除会影响后续索引的定位，因此需要逆遍历数组
 ## [461. Hamming Distance 1行](https://leetcode.com/problems/hamming-distance/)
 ```python
 class Solution:
@@ -1228,6 +1252,23 @@ class Solution:
   2.初始化变量l（left）代表左边的乘积，从左到右遍历数组，每次都让新数组的值乘以它左边数字的乘积l，然后更新l。此时新数组里的所有数字就代表了nums数组中对应位置左边所有数字的乘积
   
   3.再从右往左做一遍同样的操作，最终`res[i] = 1 * nums中i左边所有数字的乘积 * nums中i右边所有数字的乘积`
+###[448. Find All Numbers Disappeared in an Array 逆遍历](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+```python
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        r = [*range(1, len(nums) + 1)]
+        for n in nums:
+            r[n - 1] = 0
+        for i in range(len(r) - 1, -1, -1):
+            if not r[i]:
+                r.pop(i)
+        return r
+```
+- 应题目进阶要求，此解为 O(N) 时间效率，无额外空间（除了返回数组和中间变量）
+- 初始化返回列表为数字 1 ~ n，值=索引+1
+- 遍历nums，并把r中出现在nums中的值全部置0，这里实际上利用r为递增序列的特性，近似为一个哈希表
+- 删除r中所有0元素
+- 为什么不在遍历nums到时候直接删除r中的值？直接删除会影响后续索引的定位，因此需要逆遍历数组
 ## 哈希表
 ### [1. Two Sum 字典](https://leetcode.com/problems/two-sum/)
 ```python
@@ -1282,6 +1323,21 @@ class Solution:
             i += 1
             j -= 1
 ```
+## 字符串
+### [13. Roman to Integer 哈希表](https://leetcode.com/problems/roman-to-integer/)
+```python
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        d = {'I':1, 'IV':3, 'V':5, 'IX':8, 'X':10, 'XL':30, 'L':50, 'XC':80, 'C':100, 'CD':300, 'D':500, 'CM':800, 'M':1000}
+        r = d[s[0]]
+        for i in range(1, len(s)):
+            r += d.get(s[i-1:i+1], d[s[i]])
+        return r
+```
+- 构建一个字典记录所有罗马数字子串，注意长度为2的子串记录的值是（实际值-子串内左边罗马数字代表的数值）
+- dict.get(key, default)：判断字典中键key是否存在，存在返回对应的value否则返回default（预定义的值）
+- 遍历整个s的时候判断当前位置和前一个位置的两个字符组成的字符串是否在字典内，如果在就记录值，不在就说明当前位置不存在小数字在前面的情况，直接记录当前位置字符对应值。整个过程时间复杂度为O(N)
+- 举个例子，遍历经过IV的时候先记录I的对应值1再往前移动一步记录IV的值3，加起来正好是IV的真实值4
 ## 位运算
 ### [461. Hamming Distance 异或](https://leetcode.com/problems/hamming-distance/)
 ```python
