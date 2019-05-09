@@ -1140,7 +1140,7 @@ class Solution:
         for _ in range((2, 0)[len(nums) < 3]): nums.remove(max(nums))
         return max(nums)
 ```
-###[448. Find All Numbers Disappeared in an Array 1行](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+## [448. Find All Numbers Disappeared in an Array 1行](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
 ```python
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
@@ -1252,7 +1252,7 @@ class Solution:
   2.初始化变量l（left）代表左边的乘积，从左到右遍历数组，每次都让新数组的值乘以它左边数字的乘积l，然后更新l。此时新数组里的所有数字就代表了nums数组中对应位置左边所有数字的乘积
   
   3.再从右往左做一遍同样的操作，最终`res[i] = 1 * nums中i左边所有数字的乘积 * nums中i右边所有数字的乘积`
-###[448. Find All Numbers Disappeared in an Array 逆遍历](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+### [448. Find All Numbers Disappeared in an Array 逆遍历](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
 ```python
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
