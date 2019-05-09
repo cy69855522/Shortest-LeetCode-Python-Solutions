@@ -16,7 +16,7 @@
 
 # 解析
 默认已看过题目，🤡 没看过的话点标题可以跳转链接
-## [1. Two Sum 2行](https://leetcode.com/problems/two-sum/)
+## [1. Two Sum 4行](https://leetcode.com/problems/two-sum/)
 
 ```python
 class Solution:
