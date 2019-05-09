@@ -21,22 +21,12 @@
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        d = {target - n: i for i, n in enumerate(nums)}
-        return [[d[n], i] for i, n in enumerate(nums) if n in d and d[n] > i][0]
+	d = {}
+	for i, n in enumerate(nums): 
+	    if n in d: return [d[n], i]
+	    d[target-n] = i
 ```
-- O(N)时间效率的快速解法，用字典记录 需要的值:当前索引
-- 如果字典中存在相同的数字，那么将会记录比较大的那个索引，因此可以用`d[n] > i`来避免一个元素重复选择
-- 改成 for 循环加 break 再加动态修改字典能更快一点
-
-	```python
-	class Solution:
-	    def twoSum(self, nums: List[int], target: int) -> List[int]:
-	        d = {}
-	        for i, n in enumerate(nums): 
-	            if n in d: return [d[n], i]
-	            d[target-n] = i
-	```
-
+- O(N)时间效率的快速解法，用字典记录 ｛需要的值:当前索引｝
 ## [2. Add Two Numbers 5行](https://leetcode.com/problems/add-two-numbers/)
 
 ```python
