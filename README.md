@@ -269,7 +269,20 @@ class Solution:
             if nums[i] == nums[i-1]: nums.pop(i)
         return len(nums)
 ```
-- 时间效率O(N)空间效率O(1)，逆遍历可以防止删除某个元素后影响下一步索引的定位。
+- 时间效率O(N)空间效率O(1)，逆遍历可以防止删除某个元素后影响下一步索引的定位
+- 每次删除数组元素会引发大量的数据迁移操作，使用以下算法解题效率更高
+	```python
+	class Solution:
+	    def removeDuplicates(self, nums: List[int]) -> int:
+		i = 0
+		for j in range(1, len(nums)):
+		    if nums[j] != nums[i]:
+			nums[i + 1] = nums[j]
+			i += 1
+		return i + 1 if nums else 0
+	```
+	- 此解法思路同官方题解
+	- 数组完成排序后，我们可以放置两个指针 i 和 j，其中 i 是慢指针，而 j 是快指针。只要 nums[i] = nums[j]，我们就增加 j 以跳过重复项。当我们遇到 nums[j] != nums[i]时，跳过重复项的运行已经结束，因此我们必须把它（nums[j]）的值复制到 nums[i + 1]。然后递增 i，接着我们将再次重复相同的过程，直到 j 到达数组的末尾为止
 ## [28. Implement strStr() 1行](https://leetcode.com/problems/implement-strstr/)
 
 ```python
@@ -842,6 +855,15 @@ class Solution(object):
 ```
 - 这题不支持 Python3 所以只能用 Python2 做了
 - 把第一条链表的尾部接到第二条链表的开头，第二条接到第一条的开头，就能消除俩条链表的长度差，并在某一时刻在第一个交叉点相遇，或在走完俩条链表长度的时候同时为 None
+### [162. Find Peak Element 2行](https://leetcode.com/problems/find-peak-element/)
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        self.__class__.__getitem__ = lambda self, i: i and nums[i - 1] > nums[i]
+        return bisect.bisect_left(self, True, 0, len(nums)) - 1
+```
+- [二分查找套路](#二分查找)
+- 如果当前位置的左边是更大的数字，则当前位置置为True，继续向左搜索，最后应该插入的位置 = 我们寻找的位置 + 1，因此最后 - 1
 ## [169. Majority Element 1行](https://leetcode.com/problems/majority-element/)
 ```python
 class Solution:
@@ -1152,18 +1174,15 @@ class Solution:
 	```python
 	class Solution:
 	    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
-		r = [*range(1, len(nums) + 1)]
 		for n in nums:
-		    r[n - 1] = 0
-		for i in range(len(r) - 1, -1, -1):
-		    if not r[i]:
-			r.pop(i)
-		return r
+		    nums[abs(n) - 1] = -abs(nums[abs(n) - 1])
+		return [i + 1 for i, n in enumerate(nums) if n > 0]
 	```
-	- 初始化返回列表为数字 1 ~ n，值=索引+1
-	- 遍历nums，并把r中出现在nums中的值全部置0，这里实际上利用r为递增序列的特性，近似为一个哈希表
-	- 删除r中所有0元素
-	- 为什么不在遍历nums到时候直接删除r中的值？直接删除会影响后续索引的定位，因此需要逆遍历数组
+	- 此解实际上是利用索引把数组自身当作哈希表处理
+	- 将 nums 中所有正数作为索引i，置 nums[i] 为负值。那么，仍为正数的位置即为（未出现过）消失的数字
+	    - 原始数组：[4,3,2,7,8,2,3,1]
+	    - 重置后为：[-4,-3,-2,-7,`8`,`2`,-3,-1]
+	    - 结论：[8,2] 分别对应的index为[5,6]（消失的数字）
 ## [461. Hamming Distance 1行](https://leetcode.com/problems/hamming-distance/)
 ```python
 class Solution:
@@ -1338,6 +1357,34 @@ class Solution:
 - dict.get(key, default)：判断字典中键key是否存在，存在返回对应的value否则返回default（预定义的值）
 - 遍历整个s的时候判断当前位置和前一个位置的两个字符组成的字符串是否在字典内，如果在就记录值，不在就说明当前位置不存在小数字在前面的情况，直接记录当前位置字符对应值。整个过程时间复杂度为O(N)
 - 举个例子，遍历经过IV的时候先记录I的对应值1再往前移动一步记录IV的值3，加起来正好是IV的真实值4
+## 二分查找
+- :paperclip:【知识卡片】二分查找利用已排好序的数组，每一次查找都可以将查找范围减半。查找范围内只剩一个数据时查找结束。数据量为 n 的数组，将其长度减半 log2n 次后，其中便只剩一个数据了。也就是说，在二分查找中重复执行“将目标数据和数组中间的数据进行比较后将查找范围减半”的操作 log2n 次后，就能找到目标数据（若没找到则可以得出数据不存在的结论），因此它的时间复杂度为 O(logn)
+- :tophat:【套路】
+	```python
+	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件
+	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums)) - 1
+	```
+	- python 中 bisect 模块针对的是 list, 如果直接构造 list，时间复杂度为 O(N)，因此我们修改当前类的魔法方法伪造 list
+	- bisect.left(用于比较的数组，搜索的值，起始范围(包括)，终止范围(不包括))：返回应该插入的位置
+### [162. Find Peak Element 二分查找](https://leetcode.com/problems/find-peak-element/)
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        l = 0
+        r = len(nums) - 1
+        
+        while l < r:
+            m = (l + r) // 2
+            if m > 0 and nums[m - 1] > nums[m]:
+                r = m - 1
+            elif m < len(nums) and nums[m + 1] > nums[m]:
+                l = m + 1
+            else:
+                return m
+        return l
+```
+- 初始化搜索范围为[0, len(nums)-1]，初始搜索位置为中间位置 m，如果 m 左边存在值比 nums[m] 大，说明[0, m-1]一定存在峰值，我们缩小搜索范围；否则如果 m 右边存在值比 nums[m] 大，说明[m+1, len(nums)-1]一定存在峰值，我们缩小范围；否则 m 就是峰值
+- 自古真情留不住，唯有套路得人心，[2行题解](162-Find-Peak-Element-2行)
 ## 位运算
 ### [461. Hamming Distance 异或](https://leetcode.com/problems/hamming-distance/)
 ```python
