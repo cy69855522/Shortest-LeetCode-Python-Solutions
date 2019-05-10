@@ -855,7 +855,7 @@ class Solution(object):
 ```
 - 这题不支持 Python3 所以只能用 Python2 做了
 - 把第一条链表的尾部接到第二条链表的开头，第二条接到第一条的开头，就能消除俩条链表的长度差，并在某一时刻在第一个交叉点相遇，或在走完俩条链表长度的时候同时为 None
-### [162. Find Peak Element 2行](https://leetcode.com/problems/find-peak-element/)
+## [162. Find Peak Element 2行](https://leetcode.com/problems/find-peak-element/)
 ```python
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
