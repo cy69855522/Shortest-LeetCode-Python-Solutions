@@ -1384,7 +1384,7 @@ class Solution:
         return l
 ```
 - 初始化搜索范围为[0, len(nums)-1]，初始搜索位置为中间位置 m，如果 m 左边存在值比 nums[m] 大，说明[0, m-1]一定存在峰值，我们缩小搜索范围；否则如果 m 右边存在值比 nums[m] 大，说明[m+1, len(nums)-1]一定存在峰值，我们缩小范围；否则 m 就是峰值
-- 自古真情留不住，唯有套路得人心，[2行题解](162-Find-Peak-Element-2行)
+- 自古真情留不住，唯有套路得人心，[2行题解](#162-Find-Peak-Element-2行)
 ## 位运算
 ### [461. Hamming Distance 异或](https://leetcode.com/problems/hamming-distance/)
 ```python
