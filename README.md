@@ -1271,6 +1271,12 @@ class Solution(object):
 		d = {c: i + 1 for i, c in enumerate(order)}
 		return sorted(words, key=lambda x: sum(d[c] * 10**(-2 * i) for i, c in enumerate(x))) == words
 	```
+## [973. K Closest Points to Origin 1行](https://leetcode.com/problems/k-closest-points-to-origin/)
+```python
+class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        return sorted(points, key=lambda x: x[0]**2 + x[1]**2)[:K]
+```
 # 专题
 - 相比于解析部分追求代码的绝对精简，本专题追求以高可读性呈现各大专题的常规思路。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。为降低学习成本，🛫 每个方向会根据[C++篇](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)收录少数优选的经典题目，若觉得不够请转[解析部分](#解析)，若想更改例题，欢迎 issue 提出您的建议或意见。
 
@@ -1415,7 +1421,7 @@ class Solution:
 - 初始化搜索范围为[0, len(nums)-1]，初始搜索位置为中间位置 m，如果 m 左边存在值比 nums[m] 大，说明[0, m-1]一定存在峰值，我们缩小搜索范围；否则如果 m 右边存在值比 nums[m] 大，说明[m+1, len(nums)-1]一定存在峰值，我们缩小范围；否则 m 就是峰值
 - 自古真情留不住，唯有套路得人心，[2行题解](#162-Find-Peak-Element-2行)
 ## 分治算法
-### [973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
+### [973. K Closest Points to Origin 快速选择](https://leetcode.com/problems/k-closest-points-to-origin/)
 ```python
 class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
