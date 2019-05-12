@@ -1300,6 +1300,7 @@ class Solution:
 
 ## 数据结构，说难也不难
 ### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
+- :black_joker:【知识卡片】队列中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
 
 **队列：先入先出的数据结构**
 #### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
@@ -1374,19 +1375,20 @@ class MyCircularQueue:
 # param_6 = obj.isFull()
 ```
 - Python 有内置的高效模块实现优先队列：heapq
-```
-from queue import PriorityQueue as PQueue
-pq = PQueue()
-#向队列中添加元素
-pq.put(item[, block[, timeout]])
-#从队列中获取元素
-pq.get([block[, timeout]])
-#队列判空
-pq.empty()
-#队列大小
-pq.qsize()
-```
-- [Python 的堆与优先队列 简书](https://www.baidu.com/link?url=t-0eA8AGGRWQ_MQpHfqZxBb5459EheTESNPU_rRKy2aVGRM7tPYJzP24ue2DelKz&wd=&eqid=9ff7f6470048c46d000000065cd81bf7)
+	```
+	from queue import PriorityQueue as PQueue
+	pq = PQueue()
+	#向队列中添加元素
+	pq.put(item[, block[, timeout]])
+	#从队列中获取元素
+	pq.get([block[, timeout]])
+	#队列判空
+	pq.empty()
+	#队列大小
+	pq.qsize()
+	```
+	- [Python 的堆与优先队列 简书](https://www.baidu.com/link?url=t-0eA8AGGRWQ_MQpHfqZxBb5459EheTESNPU_rRKy2aVGRM7tPYJzP24ue2DelKz&wd=&eqid=9ff7f6470048c46d000000065cd81bf7)
+
 **队列和广度优先搜索**
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
 ```cpp
