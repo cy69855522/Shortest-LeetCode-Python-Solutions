@@ -13,96 +13,7 @@
 - [:penguin: 腾讯精选练习](https://leetcode-cn.com/problemset/all/?listId=ex0k24j)（50题: 25简单 21中等 4困难） 代码行数 总计：140行 平均：2.8行 [:bookmark_tabs: 题目详情](tencent50.png) :calendar: 2019/05/05
 ## 推荐
 - 与本项目有关联的，🛫 是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
-- 🌟 推荐刷题路线：[专题探索](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
-# 专题探索
-![](思维导图.jpg)
-
-以上是一张互联网公司面试中经常考察的问题类型总结的思维导图，此栏目将根据 LeetCode 中文版探索板块给出的路线制作题解，各专栏将尽力覆盖各大知识要点并总结知识点和套路。相比于[题库解析](#题库解析)部分追求代码的绝对精简，本专题追求以**高可读性**呈现各大专题的**常规思路**，为后续的题库解析部分做铺垫。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。
-
-## 数据结构，说难也不难
-### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
-
-**队列：先入先出的数据结构**
-#### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
-```python
-class MyCircularQueue:
-
-    def __init__(self, k: int):
-        """
-        Initialize your data structure here. Set the size of the queue to be k.
-        """
-        self.size = k
-        self.data = []
-
-    def enQueue(self, value: int) -> bool:
-        """
-        Insert an element into the circular queue. Return true if the operation is successful.
-        """
-        if self.isFull():
-            return False
-        
-        self.data.append(value)
-        return True
-
-    def deQueue(self) -> bool:
-        """
-        Delete an element from the circular queue. Return true if the operation is successful.
-        """
-        if self.isEmpty():
-            return False
-        
-        self.data.pop(0)
-        return True
-
-    def Front(self) -> int:
-        """
-        Get the front item from the queue.
-        """
-        if self.isEmpty():
-            return -1
-        
-        return self.data[0]
-
-    def Rear(self) -> int:
-        """
-        Get the last item from the queue.
-        """
-        if self.isEmpty():
-            return -1
-        
-        return self.data[-1]
-    
-    def isEmpty(self) -> bool:
-        """
-        Checks whether the circular queue is empty or not.
-        """
-        return not self.data
-
-    def isFull(self) -> bool:
-        """
-        Checks whether the circular queue is full or not.
-        """
-        return len(self.data) == self.size
-
-
-# Your MyCircularQueue object will be instantiated and called as such:
-# obj = MyCircularQueue(k)
-# param_1 = obj.enQueue(value)
-# param_2 = obj.deQueue()
-# param_3 = obj.Front()
-# param_4 = obj.Rear()
-# param_5 = obj.isEmpty()
-# param_6 = obj.isFull()
-```
-
-**队列和广度优先搜索**
-#### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
-```cpp
-此处为代码
-```
-- 此处为解析
-
-
+- 🌟 推荐刷题路线：[**专题探索**](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
 # 题库解析
 此专栏追求代码的**精简**和**技巧性**，默认已看过题目，🤡 没看过的话点标题可以跳转链接，咱们一起体验炫酷的 Python
 ## [1. Two Sum 4行](https://leetcode.com/problems/two-sum/)
@@ -1382,6 +1293,106 @@ class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         return sorted(points, key=lambda x: x[0]**2 + x[1]**2)[:K]
 ```
+# 专题探索
+![](思维导图.jpg)
+
+以上是一张互联网公司面试中经常考察的问题类型总结的思维导图，此栏目将根据 LeetCode 中文版探索板块给出的路线制作题解，各专栏将尽力覆盖各大知识要点并总结知识点和套路。相比于[题库解析](#题库解析)部分追求代码的绝对精简，本专题追求以**高可读性**呈现各大专题的**常规思路**，为后续的题库解析部分做铺垫。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。
+
+## 数据结构，说难也不难
+### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
+
+**队列：先入先出的数据结构**
+#### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
+```python
+class MyCircularQueue:
+
+    def __init__(self, k: int):
+        """
+        Initialize your data structure here. Set the size of the queue to be k.
+        """
+        self.size = k
+        self.data = []
+
+    def enQueue(self, value: int) -> bool:
+        """
+        Insert an element into the circular queue. Return true if the operation is successful.
+        """
+        if self.isFull():
+            return False
+        
+        self.data.append(value)
+        return True
+
+    def deQueue(self) -> bool:
+        """
+        Delete an element from the circular queue. Return true if the operation is successful.
+        """
+        if self.isEmpty():
+            return False
+        
+        self.data.pop(0)
+        return True
+
+    def Front(self) -> int:
+        """
+        Get the front item from the queue.
+        """
+        if self.isEmpty():
+            return -1
+        
+        return self.data[0]
+
+    def Rear(self) -> int:
+        """
+        Get the last item from the queue.
+        """
+        if self.isEmpty():
+            return -1
+        
+        return self.data[-1]
+    
+    def isEmpty(self) -> bool:
+        """
+        Checks whether the circular queue is empty or not.
+        """
+        return not self.data
+
+    def isFull(self) -> bool:
+        """
+        Checks whether the circular queue is full or not.
+        """
+        return len(self.data) == self.size
+
+
+# Your MyCircularQueue object will be instantiated and called as such:
+# obj = MyCircularQueue(k)
+# param_1 = obj.enQueue(value)
+# param_2 = obj.deQueue()
+# param_3 = obj.Front()
+# param_4 = obj.Rear()
+# param_5 = obj.isEmpty()
+# param_6 = obj.isFull()
+```
+- Python 有内置的高效模块实现优先队列：heapq
+```
+from queue import PriorityQueue as PQueue
+pq = PQueue()
+#向队列中添加元素
+pq.put(item[, block[, timeout]])
+#从队列中获取元素
+pq.get([block[, timeout]])
+#队列判空
+pq.empty()
+#队列大小
+pq.qsize()
+```
+- [Python 的堆与优先队列 简书](https://www.baidu.com/link?url=t-0eA8AGGRWQ_MQpHfqZxBb5459EheTESNPU_rRKy2aVGRM7tPYJzP24ue2DelKz&wd=&eqid=9ff7f6470048c46d000000065cd81bf7)
+**队列和广度优先搜索**
+#### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
+```cpp
+此处为代码
+```
+- 此处为解析
 
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
