@@ -1375,7 +1375,7 @@ class MyCircularQueue:
 # param_6 = obj.isFull()
 ```
 - Python 有内置的高效模块实现优先队列：heapq
-	```
+	```python
 	from queue import PriorityQueue as PQueue
 	pq = PQueue()
 	#向队列中添加元素
