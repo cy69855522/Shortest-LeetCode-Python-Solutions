@@ -888,6 +888,19 @@ class Solution:
         return now
 ```
 - DP不一定要数组，这里两个变量就够了，空间复杂度为O(1)
+## [200. Number of Islands 7行](https://leetcode.com/problems/number-of-islands/)
+```python
+class Solution(object):
+    def numIslands(self, grid):
+        def sink(i, j):
+            if 0 <= i < len(grid) and 0 <= j < len(grid[i]) and int(grid[i][j]):
+                grid[i][j] = '0'
+                for i, j in zip((i, i+1, i, i-1), (j+1, j, j-1, j)): sink(i, j)
+                return 1
+            return 0
+        return sum(sink(i, j) for i in range(len(grid)) for j in range(len(grid[i])))
+```
+- 根据题意，我们可以把每一个陆地点当作树根，用 BFS 搜索四周的陆地并沉没它，那么这一整块的陆地都被沉没了，下次我们再遇到陆地点的时候就说明发现新大陆了
 ## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
 ```python
 # Definition for singly-linked list.
@@ -1374,27 +1387,49 @@ class MyCircularQueue:
 # param_5 = obj.isEmpty()
 # param_6 = obj.isFull()
 ```
-- Python 有内置的高效模块实现优先队列：heapq
-	```python
-	from queue import PriorityQueue as PQueue
-	pq = PQueue()
-	#向队列中添加元素
-	pq.put(item[, block[, timeout]])
-	#从队列中获取元素
-	pq.get([block[, timeout]])
-	#队列判空
-	pq.empty()
-	#队列大小
-	pq.qsize()
-	```
-	- [Python 的堆与优先队列 简书](https://www.baidu.com/link?url=t-0eA8AGGRWQ_MQpHfqZxBb5459EheTESNPU_rRKy2aVGRM7tPYJzP24ue2DelKz&wd=&eqid=9ff7f6470048c46d000000065cd81bf7)
+- Python 有内置的高效模块实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
 **队列和广度优先搜索**
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
-```cpp
-此处为代码
+```python
+from queue import Queue
+
+class Solution(object):
+    def numIslands(self, grid):
+        try:
+            r = 0; m = len(grid); n = len(grid[0])
+            around = ((0, 1), (1, 0), (0, -1), (-1, 0))
+        except:
+            return 0
+        
+        for i in range(m):
+            for j in range(n):
+                if int(grid[i][j]):
+                    r += 1
+                    
+                    #---------------------------BFS 开始-----------------------------
+                    # 1.把根节点投入队列
+                    q = Queue()
+                    q.put((i, j))
+
+                    # 开始循环
+                    while not q.empty():
+                        # 取出还未沉没的陆地节点并沉没陆地（防止下次遍历到的时候再算一遍）
+                        x, y = q.get()
+                        
+                        if int(grid[x][y]):
+                            grid[x][y] = '0'
+
+                            # 放入周围的陆地节点
+                            for a, b in around:
+                                a += x; b += y;
+                                if 0 <= a < m and 0 <= b < n and int(grid[a][b]):
+                                    q.put((a, b))
+                    #----------------------------------------------------------------
+        return r
 ```
-- 此处为解析
+- BFS解法在这题很慢但是很常规
+- 算法书中的 BFS 一般都是以树为例子介绍的，那么在本题中如何应用 BFS ？ 根据题意，我们可以把每一个陆地点当作树根，用 BFS 搜索四周的陆地并沉没它，那么这一整块的陆地都被沉没了，下次我们再遇到陆地点的时候就说明发现新大陆了 🙊
 
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
