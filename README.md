@@ -1387,7 +1387,7 @@ class MyCircularQueue:
 # param_5 = obj.isEmpty()
 # param_6 = obj.isFull()
 ```
-- Python 有内置的高效模块实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
+- 此处为体现数据结构，直接使用list，list.pop(0)耗时较多，Python 有内置的高效模块实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
 **队列和广度优先搜索**
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
@@ -1408,7 +1408,7 @@ class Solution(object):
                     r += 1
                     
                     #---------------------------BFS 开始-----------------------------
-                    # 1.把根节点投入队列
+                    # 把根节点投入队列
                     q = Queue()
                     q.put((i, j))
 
