@@ -900,7 +900,7 @@ class Solution(object):
             return 0
         return sum(sink(i, j) for i in range(len(grid)) for j in range(len(grid[i])))
 ```
-- 根据题意，我们可以把每一个陆地点当作树根，用 BFS 搜索四周的陆地并沉没它，那么这一整块的陆地都被沉没了，下次我们再遇到陆地点的时候就说明发现新大陆了
+- 根据题意，我们可以把每一个陆地点当作树根，用 DFS 搜索四周的陆地并沉没它，那么这一整块的陆地都被沉没了，下次我们再遇到陆地点的时候就说明发现新大陆了
 ## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
 ```python
 # Definition for singly-linked list.
