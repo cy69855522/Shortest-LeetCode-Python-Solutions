@@ -1117,6 +1117,16 @@ class Solution:
         return int(len(nums) * (len(nums) + 1) / 2 - sum(nums))
 ```
 - 等差数列求和公式
+## [279. Perfect Squares 4行](https://leetcode.com/problems/perfect-squares/)
+```python
+class Solution:
+    def numSquares(self, n: int) -> int:
+        dp = [0]
+        for i in range(1, n+1):
+            dp.append(min(dp[-j*j] for j in range(1, 1 + int(i**0.5))) + 1)
+        return dp[-1]
+```
+- dp方程：总和为 n 的最小完全平方数个数 = min(总和为 (n - 某个完全平方数) 的最小完全平方数个数) + 1
 ## [283. Move Zeroes 1行](https://leetcode.com/problems/move-zeroes/)
 ```python
 class Solution:
