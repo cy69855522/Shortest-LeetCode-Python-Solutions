@@ -1547,6 +1547,39 @@ class Solution:
         return 0
 ```
 - 将当前数字的总和视为节点，加上一个完全平方数后能达到的数字作为一阶邻域，搜索到达 n 的最短路径
+
+**栈：后入先出的数据结构**
+#### [155. 最小栈](https://leetcode-cn.com/problems/min-stack/solution/python-mei-ge-yi-xing-by-knifezhu/)
+```python
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.data = [(None, float('inf'))]
+
+    def push(self, x: int) -> None:
+        self.data.append((x, min(x, self.data[-1][1])))
+
+    def pop(self) -> None:
+        if len(self.data) > 1: self.data.pop()
+
+    def top(self) -> int:
+        return self.data[-1][0]
+
+    def getMin(self) -> int:
+        return self.data[-1][1]
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+```
+- 栈中每个元组记录元素值和最小值
 # 常用技巧总结
 - `i * i` 比 `i**2` 快
 - set 中的 in 操作时间复杂度为 O(1)
