@@ -1581,6 +1581,22 @@ class MinStack:
 # param_4 = obj.getMin()
 ```
 - 栈中每个元组记录元素值和最小值
+#### [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        d = {'(': ')', '[': ']', '{': '}'}
+        
+        for p in s:
+            if p in '{[(':
+                stack.append(p)
+            else:
+                if not stack or d[stack.pop()] != p:
+                    return False
+        return not stack
+```
+
 # 常用技巧总结
 - `i * i` 比 `i**2` 快
 - set 中的 in 操作时间复杂度为 O(1)
