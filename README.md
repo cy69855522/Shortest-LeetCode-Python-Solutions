@@ -901,6 +901,23 @@ class Solution(object):
         return sum(sink(i, j) for i in range(len(grid)) for j in range(len(grid[i])))
 ```
 - 根据题意，我们可以把每一个陆地点当作树根，用 DFS 搜索四周的陆地并沉没它，那么这一整块的陆地都被沉没了，下次我们再遇到陆地点的时候就说明发现新大陆了
+## [202. Happy Number 1行](https://leetcode.com/problems/happy-number/)
+```python
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        return self.isHappy(sum(int(i) ** 2 for i in str(n))) if n > 4 else n == 1
+```
+- 不是快乐数的数称为不快乐数(unhappy number)，所有不快乐数的数位平方和计算，最后都会进入 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 的循环中
+- 这个规律比较难想到的，正常解法是判断n是否会进入循环：
+```python
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        seen = {1}
+        while n not in seen:
+            seen.add(n)
+            n = sum(int(i) ** 2 for i in str(n))
+        return n == 1
+```
 ## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
 ```python
 # Definition for singly-linked list.
