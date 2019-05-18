@@ -1298,6 +1298,18 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split(' ')[::-1])[::-1]
 ```
+## [739. Daily Temperatures 5行](https://leetcode.com/problems/daily-temperatures/)
+```python
+class Solution(object):
+    def dailyTemperatures(self, T):
+        stack, r = [], [0] * len(T)
+        for i, t in enumerate(T):
+            while stack and T[stack[-1]] < t: r[stack.pop()] = i - stack[-1]
+            stack.append(i)
+        return r
+```
+- 入栈条件：当前元素比栈顶元素小，出栈条件：遇到比自己大的温度，出栈时索引距离即天数差
+
 ## [752. Open the Lock 11行](https://leetcode.com/problems/open-the-lock/)
 ```python
 class Solution:
@@ -1378,7 +1390,10 @@ class Solution:
 ### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 - :black_joker:【知识卡片】Python 有内置的高效**模块**实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 - :black_joker:【知识卡片】**队列**中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
-- :black_joker:【知识卡片】**栈**也是一种数据呈线性排列的数据结构，不过在这种结构中，我们只能访问最新添加的数 据。栈就像是一摞书，拿到新书时我们会把它放在书堆的最上面，取书时也只能从最上面的新书开始取。Last In First Out，简称 LIFO
+- :black_joker:【知识卡片】**栈**也是一种数据呈线性排列的数据结构，不过在这种结构中，我们只能访问最新添加的数 据。栈就像是一摞书，拿到新书时我们会把它放在书堆的最上面，取书时也只能从最上面的新书开始取。Last In First Out，简称 LIFO，常常被用于数组中不同位置之间含有 `嵌套关系` 的题目
+- :tophat:【套路】**栈**问题关键点：
+	- 解决栈问题时，主要是需要确定入栈和出栈（从栈顶弹出）的条件
+	- 通常来说栈内储存的元素都是同一类元素，在某个层面上有共同的性质，这是设计栈的关键
 - :black_joker:【知识卡片】**广度优先搜索 BFS** 是一种对图进行搜索的算法。假设我们一开始位于某个顶点（即起点），此 时并不知道图的整体结构，而我们的目的是从起点开始顺着边搜索，直到到达指定顶点（即终 点）。在此过程中每走到一个顶点，就会判断一次它是否为终点。广度优先搜索会优先从离起点近的顶点开始搜索，这样由近及广的搜索方式也使得。根据 BFS 的特性，其常常被用于 `遍历` 和 `搜索最短路径`
 - :tophat:【套路】**BFS**一般流程：
 	```python
@@ -1393,7 +1408,8 @@ class Solution:
 		#   5.放入这个节点周围的节点
 		# }
 	```
-	
+	- 使用 BFS 时，需要抓住 3 个关键点：根节点是什么？根节点的一阶邻域节点是哪些？什么时候停止搜索？
+
 
 **队列：先入先出的数据结构**
 #### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
@@ -1634,7 +1650,8 @@ class Solution:
                     return False
         return not stack
 ```
-- 栈的问题主要
+- 此题入栈条件为：元素是左括号，出栈条件为：匹配到右括号
+- 栈中的元素全部为左括号
 #### [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/submissions/)
 ```python
 class Solution(object):
@@ -1649,7 +1666,9 @@ class Solution(object):
             stack.append(i)
         return r
 ```
-- 
+- 入栈条件：当前元素比栈顶元素小，出栈条件：遇到比自己大的温度
+- 栈内元素为降序排列的温度的索引
+- 出栈时索引距离即天数差
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
