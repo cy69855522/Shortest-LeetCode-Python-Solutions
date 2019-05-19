@@ -808,8 +808,18 @@ class Solution:
 		quicksort(newHead, None)
 		return newHead.next
 	```
-## [150. Evaluate Reverse Polish Notation 2行](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
-
+## [150. Evaluate Reverse Polish Notation 5行](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
+```python
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        t, f = tokens.pop(), self.evalRPN
+        if t in '+-*/':
+            b, a = f(tokens), f(tokens)
+            t = eval('a' + t + 'b')
+        return int(t)
+```
+- 递归地返回左右表达式操作后结果
+- eval 函数将字符串看作代码得到输出值
 ## [155. Min Stack 每个1行](https://leetcode.com/problems/min-stack/)
 ```python
 class MinStack:
