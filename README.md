@@ -876,6 +876,12 @@ class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         return sorted(nums)[len(nums) // 2]
 ```
+## [171. Excel Sheet Column Number 1行](https://leetcode.com/problems/excel-sheet-column-number/)
+```python
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        return sum((ord(c) - 64) * 26**i for i, c in enumerate(s[::-1]))
+```
 ## [198. House Robber 2行](https://leetcode.com/problems/house-robber/)
 ```python
 class Solution:
