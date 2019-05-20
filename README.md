@@ -894,6 +894,16 @@ class Solution:
     def titleToNumber(self, s: str) -> int:
         return sum((ord(c) - 64) * 26**i for i, c in enumerate(s[::-1]))
 ```
+## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
+```python
+class Solution(object):
+    def hammingWeight(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return bin(n).count('1')
+```
 ## [198. House Robber 2行](https://leetcode.com/problems/house-robber/)
 ```python
 class Solution:
@@ -1329,6 +1339,21 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split(' ')[::-1])[::-1]
 ```
+## [575. Distribute Candies 1行](https://leetcode.com/problems/distribute-candies/)
+```python
+class Solution:
+    def distributeCandies(self, candies: List[int]) -> int:
+        return min(len(set(candies)), len(candies) // 2)
+```
+- 姐姐优先拿不同种类的糖果
+## [581. Shortest Unsorted Continuous Subarray 2行](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/)
+```python
+class Solution:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        diff = [i for i, (a, b) in enumerate(zip(nums, sorted(nums))) if a != b]
+        return len(diff) and max(diff) - min(diff) + 1
+```
+- 获取所有当前数组与排序后数组具有不同数值的索引，最右边的索引 - 最左边的 + 1 就是结果
 ## [739. Daily Temperatures 5行](https://leetcode.com/problems/daily-temperatures/)
 ```python
 class Solution(object):
