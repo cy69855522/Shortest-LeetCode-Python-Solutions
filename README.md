@@ -882,6 +882,16 @@ class Solution:
 ```
 - [二分查找套路](#二分查找)
 - 如果当前位置的左边是更大的数字，则当前位置置为True，继续向左搜索，最后应该插入的位置 = 我们寻找的位置 + 1，因此最后 - 1
+## [165. Compare Version Numbers 4行](https://leetcode.com/problems/compare-version-numbers/)
+```python
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+        v1, v2 = [*map(int, version1.split('.'))], [*map(int, version2.split('.'))]
+        d = len(v2) - len(v1)
+        v1, v2 = v1 + [0] * d, v2 + [0] * -d
+        return (v1 > v2) - (v1 < v2)
+```
+- 利用 python 序列比较的性质
 ## [169. Majority Element 1行](https://leetcode.com/problems/majority-element/)
 ```python
 class Solution:
