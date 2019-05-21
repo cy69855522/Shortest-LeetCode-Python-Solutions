@@ -1456,7 +1456,7 @@ class Solution:
 ### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 - :black_joker:【知识卡片】Python 有内置的高效**模块**实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
-**队列：先入先出的数据结构**
+🔮 **队列：先入先出的数据结构**
 - :black_joker:【知识卡片】**队列**中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
 #### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
 ```python
@@ -1531,7 +1531,7 @@ class MyCircularQueue:
 ```
 - 此处为体现数据结构，直接使用list，list.pop(0)耗时较多，Python 有内置的高效模块实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
-**队列和广度优先搜索**
+🔮 **队列和广度优先搜索**
 - :black_joker:【知识卡片】**广度优先搜索 BFS** 是一种对图进行搜索的算法。假设我们一开始位于某个顶点（即起点），此 时并不知道图的整体结构，而我们的目的是从起点开始顺着边搜索，直到到达指定顶点（即终 点）。在此过程中每走到一个顶点，就会判断一次它是否为终点。广度优先搜索会优先从离起点近的顶点开始搜索，这样由近及广的搜索方式也使得。根据 BFS 的特性，其常常被用于 `遍历` 和 `搜索最短路径`
 - :tophat:【套路】**BFS**一般流程：
 	```python
@@ -1664,7 +1664,7 @@ class Solution:
 ```
 - 将当前数字的总和视为节点，加上一个完全平方数后能达到的数字作为一阶邻域，搜索到达 n 的最短路径
 
-**栈：后入先出的数据结构**
+🔮 **栈：后入先出的数据结构**
 - :black_joker:【知识卡片】**栈**也是一种数据呈线性排列的数据结构，不过在这种结构中，我们只能访问最新添加的数 据。栈就像是一摞书，拿到新书时我们会把它放在书堆的最上面，取书时也只能从最上面的新书开始取。Last In First Out，简称 LIFO，常常被用于数组中不同位置之间含有 `嵌套关系` 的题目
 - :tophat:【套路】**栈**问题关键点：
 	- 解决栈问题时，主要是需要确定入栈和出栈（从栈顶弹出）的条件
@@ -1756,7 +1756,7 @@ class Solution:
 - 使用栈储存所有未处理的数字
 - 出栈时，我们总是将出栈元素与新的栈顶做运算，然后用结果更新新栈顶元素
 
-**栈和深度优先搜索**
+🔮 **栈和深度优先搜索**
 - :black_joker:【知识卡片】**深度优先搜索 DFS** 和广度优先搜索一样，都是对图进行搜索的算法，目的也都是从起点开始搜索直到到达指定顶点（终点）。深度优先搜索会沿着一条路径不断往下搜索直到不能再继续为止，然后再折返，开始搜索下一条候补路径。
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
 ```python
