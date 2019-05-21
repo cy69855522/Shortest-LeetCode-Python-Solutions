@@ -1453,7 +1453,7 @@ class Solution:
 以上是一张互联网公司面试中经常考察的问题类型总结的思维导图，此栏目将根据 LeetCode 中文版探索板块给出的路线制作题解，各专栏将尽力覆盖各大知识要点并总结知识点和套路。相比于[题库解析](#题库解析)部分追求代码的绝对精简，本专题追求以**高可读性**呈现各大专题的**常规思路**，为后续的题库解析部分做铺垫。俩部分题目可能重复，但专题部分会有更详细的解析，且可能运用不同解法。
 
 ## 数据结构，说难也不难
-### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
+### [🌠 队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 - :black_joker:【知识卡片】Python 有内置的高效**模块**实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
 ☄ **队列：先入先出的数据结构**
