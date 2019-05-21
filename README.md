@@ -1455,30 +1455,9 @@ class Solution:
 ## 数据结构，说难也不难
 ### [队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 - :black_joker:【知识卡片】Python 有内置的高效**模块**实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
-- :black_joker:【知识卡片】**队列**中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
-- :black_joker:【知识卡片】**栈**也是一种数据呈线性排列的数据结构，不过在这种结构中，我们只能访问最新添加的数 据。栈就像是一摞书，拿到新书时我们会把它放在书堆的最上面，取书时也只能从最上面的新书开始取。Last In First Out，简称 LIFO，常常被用于数组中不同位置之间含有 `嵌套关系` 的题目
-- :tophat:【套路】**栈**问题关键点：
-	- 解决栈问题时，主要是需要确定入栈和出栈（从栈顶弹出）的条件
-	- 通常来说栈内储存的元素都是同一类元素，在某个层面上有共同的性质
-	- 嵌套关系是指出栈时得到的栈顶元素与当前判断是否入栈元素的关系，以此作为切入点套入计算题目结果所需的俩个元素是涉及栈的关键
-- :black_joker:【知识卡片】**广度优先搜索 BFS** 是一种对图进行搜索的算法。假设我们一开始位于某个顶点（即起点），此 时并不知道图的整体结构，而我们的目的是从起点开始顺着边搜索，直到到达指定顶点（即终 点）。在此过程中每走到一个顶点，就会判断一次它是否为终点。广度优先搜索会优先从离起点近的顶点开始搜索，这样由近及广的搜索方式也使得。根据 BFS 的特性，其常常被用于 `遍历` 和 `搜索最短路径`
-- :tophat:【套路】**BFS**一般流程：
-	```python
-	class Solution(object):
-	    def BFS(self):
-		# 1.使用 queue.Queue 初始化队列
-		# 2.选择合适的根节点压入队列
-
-		# 3.使用 wile 进入队列循环，直到搜索完毕
-		# {
-		#   4.取出一个节点
-		#   5.放入这个节点周围的节点
-		# }
-	```
-	- 使用 BFS 时，需要抓住 3 个关键点：根节点是什么？根节点的一阶邻域节点是哪些？什么时候停止搜索？
-
 
 **队列：先入先出的数据结构**
+- :black_joker:【知识卡片】**队列**中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
 #### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
 ```python
 class MyCircularQueue:
@@ -1553,6 +1532,21 @@ class MyCircularQueue:
 - 此处为体现数据结构，直接使用list，list.pop(0)耗时较多，Python 有内置的高效模块实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
 **队列和广度优先搜索**
+- :black_joker:【知识卡片】**广度优先搜索 BFS** 是一种对图进行搜索的算法。假设我们一开始位于某个顶点（即起点），此 时并不知道图的整体结构，而我们的目的是从起点开始顺着边搜索，直到到达指定顶点（即终 点）。在此过程中每走到一个顶点，就会判断一次它是否为终点。广度优先搜索会优先从离起点近的顶点开始搜索，这样由近及广的搜索方式也使得。根据 BFS 的特性，其常常被用于 `遍历` 和 `搜索最短路径`
+- :tophat:【套路】**BFS**一般流程：
+	```python
+	class Solution(object):
+	    def BFS(self):
+		# 1.使用 queue.Queue 初始化队列
+		# 2.选择合适的根节点压入队列
+
+		# 3.使用 wile 进入队列循环，直到搜索完毕
+		# {
+		#   4.取出一个节点
+		#   5.放入这个节点周围的节点
+		# }
+	```
+	- 使用 BFS 时，需要抓住 3 个关键点：根节点是什么？根节点的一阶邻域节点是哪些？什么时候停止搜索？
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
 ```python
 from queue import Queue
@@ -1671,6 +1665,11 @@ class Solution:
 - 将当前数字的总和视为节点，加上一个完全平方数后能达到的数字作为一阶邻域，搜索到达 n 的最短路径
 
 **栈：后入先出的数据结构**
+- :black_joker:【知识卡片】**栈**也是一种数据呈线性排列的数据结构，不过在这种结构中，我们只能访问最新添加的数 据。栈就像是一摞书，拿到新书时我们会把它放在书堆的最上面，取书时也只能从最上面的新书开始取。Last In First Out，简称 LIFO，常常被用于数组中不同位置之间含有 `嵌套关系` 的题目
+- :tophat:【套路】**栈**问题关键点：
+	- 解决栈问题时，主要是需要确定入栈和出栈（从栈顶弹出）的条件
+	- 通常来说栈内储存的元素都是同一类元素，在某个层面上有共同的性质
+	- 嵌套关系是指出栈时得到的栈顶元素与当前判断是否入栈元素的关系，以此作为切入点套入计算题目结果所需的俩个元素是涉及栈的关键
 #### [155. 最小栈](https://leetcode-cn.com/problems/min-stack/solution/python-mei-ge-yi-xing-by-knifezhu/)
 ```python
 class MinStack:
@@ -1756,6 +1755,37 @@ class Solution:
 ```
 - 使用栈储存所有未处理的数字
 - 出栈时，我们总是将出栈元素与新的栈顶做运算，然后用结果更新新栈顶元素
+
+**栈和深度优先搜索**
+- :black_joker:【知识卡片】**深度优先搜索 DFS** 和广度优先搜索一样，都是对图进行搜索的算法，目的也都是从起点开始搜索直到到达指定顶点（终点）。深度优先搜索会沿着一条路径不断往下搜索直到不能再继续为止，然后再折返，开始搜索下一条候补路径。
+#### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
+```python
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        try:
+            m = len(grid)
+            n = len(grid[0])
+        except:
+            return 0
+        
+        # -------------------------DFS 开始------------------------
+        # 定义dfs递归方程
+        def dfs(i, j):
+            if 0 <= i < m and 0 <= j < n and int(grid[i][j]):
+                grid[i][j] = '0'
+                for a, b in ((1, 0), (0, -1), (-1, 0), (0, 1)):
+                    dfs(i + a, j + b)
+        # ---------------------------------------------------------
+        
+        r = 0
+        for i in range(m):
+            for j in range(n):
+                r += int(grid[i][j])
+                dfs(i, j) # 调用dfs沉没一整块陆地
+        return r
+```
+- 遍历所有格点，每当发现陆地就用dfs递归沉没它周围的陆地，那么我们发现陆地的次数就是岛屿数
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
