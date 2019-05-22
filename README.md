@@ -632,6 +632,20 @@ class Solution:
 - 使用 self.max 记录全局最大值，getattr 返回自身 max 属性的值或预定义的负无穷
 - 本题思路是：递归每一个节点，返回`max(以当前节点为结尾的最大路径和,0)`。并更新最大值`全局最大路径和=max(全局最大路径和，当前节点值+左子树返回结果+右子树返回结果)`
 - 用ok判断是不是第一次递归，是就返回全局最大值，否则照常
+## [133. Clone Graph](https://leetcode.com/problems/clone-graph/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, neighbors):
+        self.val = val
+        self.neighbors = neighbors
+"""
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        return copy.deepcopy(node)
+```
+- dfs解法请参考 [133. 克隆图](#133. 克隆图)
 ## [136. Single Number 2行](https://leetcode.com/problems/single-number/)
 ```python
 class Solution:
@@ -1785,7 +1799,30 @@ class Solution:
         return r
 ```
 - 遍历所有格点，每当发现陆地就用dfs递归沉没它周围的陆地，那么我们发现陆地的次数就是岛屿数
-
+#### [133. 克隆图](https://leetcode-cn.com/problems/clone-graph/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, neighbors):
+        self.val = val
+        self.neighbors = neighbors
+"""
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        d = {}
+        
+        def dfs(old):
+            if old not in d:
+                # 每遍历一个节点就创建一个它的副本到哈希表
+                d[old] = new = Node(old.val, None)
+                # 当所有节点进入哈希表之时开始回溯，修改邻居
+                new.neighbors = [*map(dfs, old.neighbors)]
+            return d[old]
+        
+        return dfs(node)
+```
+- 此题为无向连通图的搜索，用dfs遍历整个图，并为每个节点创建副本到哈希表，当回溯之时，所有节点已经在表中，修改邻居即可
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
