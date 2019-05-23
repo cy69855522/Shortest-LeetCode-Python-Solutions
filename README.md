@@ -665,7 +665,23 @@ class Solution:
         from functools import reduce
         return reduce(int.__xor__, nums)
 ```
-- 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了。
+- 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了
+## [139. Word Break 8行](https://leetcode.com/problems/word-break/)
+```python
+class Solution:
+    def wordBreak(self, s, wordDict):
+        
+        def f(s, d={}):
+            if not s in d:
+                for i in range(1, 1 + len(s)):
+                    d[s[:i]] = s[:i] in wordDict and (i == len(s) or f(s[i:]))
+                    if d[s[:i]]: return True
+                return False
+            return d[s]
+        
+        return f(s)
+```
+- brute force + memory
 ## [141. Linked List Cycle 2行](https://leetcode.com/problems/linked-list-cycle/)
 ```python
 # Definition for singly-linked list.
