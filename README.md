@@ -1369,6 +1369,21 @@ class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
         return bin(x ^ y).count('1')
 ```
+#### [494. Target Sum 5行](https://leetcode.com/problems/target-sum/)
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        
+        def dfs(cur, i, d = {}):
+            if i < len(nums) and (i, cur) not in d: # 搜索周围节点
+                d[(i, cur)] = dfs(cur + nums[i], i + 1) + dfs(cur - nums[i], i + 1)
+            return d.get((i, cur), int(cur == S))
+        
+        return dfs(0, 0)
+```
+- dfs遍历所有可能结果，以当前位置 i 和当前总和 cur 为根节点，以下一位数字的加减为邻域扩散搜索
+- 利用 d 构造记忆，以便剪枝（搜索过程中遇到相同位置和相同cur值时返回值应该相同）
+- dfs中 d 参数传的是引用，所以只有第一次会采用默认值 {}
 ## [557. Reverse Words in a String III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
 ```python
 class Solution:
@@ -1835,6 +1850,22 @@ class Solution:
         return dfs(node)
 ```
 - 此题为无向连通图的搜索，用dfs遍历整个图，并为每个节点创建副本到哈希表，当回溯之时，所有节点已经在表中，修改邻居即可
+#### [494. Target Sum 5行](https://leetcode.com/problems/target-sum/)
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        
+        def dfs(cur, i, d = {}):
+            if i < len(nums) and (i, cur) not in d: # 搜索周围节点
+                d[(i, cur)] = dfs(cur + nums[i], i + 1) + dfs(cur - nums[i], i + 1)
+            return d.get((i, cur), int(cur == S))
+        
+        return dfs(0, 0)
+```
+- dfs遍历所有可能结果，以当前位置 i 和当前总和 cur 为根节点，以下一位数字的加减为邻域扩散搜索
+- 利用 d 构造记忆，以便剪枝（搜索过程中遇到相同位置和相同cur值时返回值应该相同）
+- dfs中 d 参数传的是引用，所以只有第一次会采用默认值 `{}`
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
