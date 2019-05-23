@@ -1850,7 +1850,7 @@ class Solution:
         return dfs(node)
 ```
 - 此题为无向连通图的搜索，用dfs遍历整个图，并为每个节点创建副本到哈希表，当回溯之时，所有节点已经在表中，修改邻居即可
-#### [494. Target Sum 5行](https://leetcode.com/problems/target-sum/)
+#### [494. 目标和](https://leetcode-cn.com/problems/target-sum/)
 ```python
 class Solution:
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
