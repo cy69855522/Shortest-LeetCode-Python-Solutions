@@ -657,7 +657,7 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         return copy.deepcopy(node)
 ```
-- dfs解法请参考 [133克隆图](# 133. 克隆图)
+- dfs解法请参考 [133克隆图](#133-克隆图)
 ## [136. Single Number 2行](https://leetcode.com/problems/single-number/)
 ```python
 class Solution:
