@@ -1385,7 +1385,7 @@ class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
         return bin(x ^ y).count('1')
 ```
-#### [494. Target Sum 5行](https://leetcode.com/problems/target-sum/)
+## [494. Target Sum 5行](https://leetcode.com/problems/target-sum/)
 ```python
 class Solution:
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
