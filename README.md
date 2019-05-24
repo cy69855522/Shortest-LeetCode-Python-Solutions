@@ -1130,6 +1130,57 @@ class Solution:
 	    def isPowerOfTwo(self, n):
 		return n > 0 and 2**int(math.log2(n)) == n
 	```
+## [232. Implement Queue using Stacks 13行](https://leetcode.com/problems/implement-queue-using-stacks/)
+```python
+class MyQueue:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.stack = []
+
+    def push(self, x: int) -> None:
+        """
+        Push element x to the back of queue.
+        """
+        self.stack.append(x)
+
+    def pop(self) -> int:
+        """
+        Removes the element from in front of queue and returns that element.
+        """
+        temp = []
+        while self.stack: temp.append(self.stack.pop())
+        r = temp.pop()
+        while temp: self.stack.append(temp.pop())
+        return r
+
+    def peek(self) -> int:
+        """
+        Get the front element.
+        """
+        temp = []
+        while self.stack: temp.append(self.stack.pop())
+        r = temp[-1]
+        while temp: self.stack.append(temp.pop())
+        return r
+
+    def empty(self) -> bool:
+        """
+        Returns whether the queue is empty.
+        """
+        return not self.stack
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+```
+- 使用俩个栈来模拟队列，当需要取第一个元素的时候创建一个临时的栈temp，把栈里面的东西全部抽出来放进temp，完成操作后放回去
 ## [235. Lowest Common Ancestor of a Binary Search Tree 2行](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 ```python
 # Definition for a binary tree node.
@@ -1909,6 +1960,69 @@ class Solution:
         
         return r
 ```
+
+**小结**
+#### [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
+```python
+class MyQueue:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.stack = []
+
+    def push(self, x: int) -> None:
+        """
+        Push element x to the back of queue.
+        """
+        self.stack.append(x)
+
+    def pop(self) -> int:
+        """
+        Removes the element from in front of queue and returns that element.
+        """
+        temp = []
+        while self.stack:
+            temp.append(self.stack.pop())
+        
+        r = temp.pop()
+        
+        while temp:
+            self.stack.append(temp.pop())
+            
+        return r
+
+    def peek(self) -> int:
+        """
+        Get the front element.
+        """
+        temp = []
+        while self.stack:
+            temp.append(self.stack.pop())
+        
+        r = temp[-1]
+        
+        while temp:
+            self.stack.append(temp.pop())
+        
+        return r
+
+    def empty(self) -> bool:
+        """
+        Returns whether the queue is empty.
+        """
+        return not self.stack
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+```
+- 使用俩个栈来模拟队列，当需要取第一个元素的时候创建一个临时的栈temp，把栈里面的东西全部抽出来放进temp，完成操作后放回去
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
