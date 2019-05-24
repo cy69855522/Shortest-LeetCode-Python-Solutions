@@ -1881,6 +1881,34 @@ class Solution:
 - dfs遍历所有可能结果，以当前位置 i 和当前总和 cur 为根节点，以下一位数字的加减为邻域扩散搜索
 - 利用 d 构造记忆，以便剪枝（搜索过程中遇到相同位置和相同cur值时返回值应该相同）
 - dfs中 d 参数传的是引用，所以只有第一次会采用默认值 `{}`
+#### [94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        r = []
+        
+        # 初始化栈
+        stack = []
+        
+        # 进入堆栈循环
+        while stack or root:
+            if root: # 入栈条件
+                stack.append(root)
+                root = root.left
+            else: # 出栈条件
+                root = stack.pop()
+                r.append(root.val)
+                root = root.right
+        
+        return r
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
