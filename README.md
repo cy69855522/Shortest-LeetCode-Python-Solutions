@@ -156,6 +156,12 @@ class Solution:
         return strs[0][:r.index(0)] if strs else ''
 ```
 - 利用好zip和set
+- os 模块有提供一样的函数
+	```python
+	class Solution:
+	    def longestCommonPrefix(self, strs: List[str]) -> str:
+		return os.path.commonprefix(strs)
+	```
 ## [15. 3Sum 5行](https://leetcode.com/problems/3sum/)
 ```python
 class Solution:
