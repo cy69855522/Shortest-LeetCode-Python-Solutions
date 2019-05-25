@@ -1082,6 +1082,27 @@ class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         return len(nums) != len(set(nums))
 ```
+## [225. Implement Stack using Queues 6行](https://leetcode-cn.com/problems/implement-stack-using-queues/submissions/)
+```python
+class MyStack:
+
+    def __init__(self):
+        self.q = collections.deque()
+
+    def push(self, x):
+        self.q.append(x)
+        for _ in range(len(self.q) - 1): self.q.append(self.q.popleft())
+        
+    def pop(self):
+        return self.q.popleft()
+
+    def top(self):
+        return self.q[0]
+    
+    def empty(self):
+        return not len(self.q)
+```
+- push 的时候把 x 放入队尾，然后遍历一遍原始队列元素，每次弹出之后加入队尾
 ## [230. Kth Smallest Element in a BST 3行](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 ```python
 # Definition for a binary tree node.
@@ -2037,6 +2058,57 @@ class MyQueue:
 # param_4 = obj.empty()
 ```
 - 使用俩个栈来模拟队列，当需要取第一个元素的时候创建一个临时的栈temp，把栈里面的东西全部抽出来放进temp，完成操作后放回去
+#### [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/submissions/)
+```python
+from queue import Queue
+
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.q = Queue()
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.q.put(x)
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        for _ in range(self.q.qsize() - 1):
+            self.q.put(self.q.get())
+        return self.q.get()
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        for _ in range(self.q.qsize() - 1):
+            self.q.put(self.q.get())
+        r = self.q.get()
+        self.q.put(r)
+        return r
+        
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return self.q.empty()
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+- 弹栈顶的时候把队列遍历一遍，每次弹出之后加入队尾，除了最后一个
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
