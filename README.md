@@ -1598,6 +1598,8 @@ class Solution:
 ## 数据结构，说难也不难
 ### [🌠 队列 & 栈](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 - :black_joker:【知识卡片】Python 有内置的高效**模块**实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
+- 栈一般使用 list 直接实现
+- Python 的 collections 模块提供的[ 双向队列 collections.deque ](https://www.baidu.com/link?url=-qZCpylhJB1LQ_DMC_6eJil4g9xLaHI8IbSsHpfxG1ZEPKH_AFN8sptkOXkKqjDr0E5atG6QSLELpTSww6Z3UKnLEf0eSppKGfssCw7fq3m&wd=&eqid=821793550017be6e000000065ce99df2)同时具有 栈 和 队列 的性质，也是一个不错的选择
 
 ☄ **队列：先入先出的数据结构**
 - :black_joker:【知识卡片】**队列**中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
