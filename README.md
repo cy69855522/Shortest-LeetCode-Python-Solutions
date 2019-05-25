@@ -1998,7 +1998,7 @@ class Solution:
         return r
 ```
 
-**小结**
+🌈 **小结**
 #### [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
 ```python
 class MyQueue:
