@@ -1433,6 +1433,27 @@ class Solution:
 ```
 - 基本不等式(a+b)/2 >=√ab 推导自 (a-b)^2 >= 0 → a^2 + b^2 >= 2ab → (a+b)/2 >=√ab（换元），注意 a>0 且 b>0
 - `(r + num / r) / 2` >= √num 而 r > num / r 保证每次迭代 r 在不断减小,而`//`的存在保证最接近的时候能够逃离循环体
+## [394. Decode String 14行](https://leetcode.com/problems/decode-string/)
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = [['', 1, '']]
+        a = n = ''
+        for c in s:
+            if c.isalpha():
+                a += c
+            elif c.isdigit():
+                n += c
+            elif c == '[':
+                stack.append([a, int(n), ''])
+                a = n = ''
+            else:
+                p, t, b = stack.pop()
+                stack[-1][-1] += p + t * (b + a)
+                a = ''
+        return stack.pop()[-1] + a
+```
+- 用 stack 记录（[]之前的字母，翻倍次数，翻倍内容）
 ## [412. Fizz Buzz 1行](https://leetcode.com/problems/fizz-buzz/)
 
 ```python
@@ -2117,7 +2138,27 @@ class MyStack:
 # param_4 = obj.empty()
 ```
 - 弹栈顶的时候把队列遍历一遍，每次弹出之后加入队尾，除了最后一个
-
+#### [394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = [['', 1, '']]
+        a = n = ''
+        for c in s:
+            if c.isalpha():
+                a += c
+            elif c.isdigit():
+                n += c
+            elif c == '[':
+                stack.append([a, int(n), ''])
+                a = n = ''
+            else:
+                p, t, b = stack.pop()
+                stack[-1][-1] += p + t * (b + a)
+                a = ''
+        return stack.pop()[-1] + a
+```
+- 用 stack 记录（[]之前的字母，翻倍次数，翻倍内容）
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
