@@ -2159,6 +2159,31 @@ class Solution:
         return stack.pop()[-1] + a
 ```
 - 用 stack 记录（[]之前的字母，翻倍次数，翻倍内容）
+#### [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/)
+```python
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        m, n = map(len, (image, image[0]))
+        around = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        oldColor = image[sr][sc]
+        
+        # 创建栈放入根节点
+        stack = [(sr, sc)]
+        
+        # 进入循环放入邻居
+        while stack:
+            r, c = stack.pop()
+            if oldColor != newColor: # 根剪枝
+                image[r][c] = newColor
+
+                for x, y in around:
+                    x, y = x + r, y + c
+                    if 0 <= x < m and 0 <= y < n and image[x][y] == oldColor: # 邻剪枝
+                        image[x][y] = newColor
+                        stack.append((x, y))
+        return image
+```
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
