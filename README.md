@@ -1534,7 +1534,7 @@ class Solution:
         return len(diff) and max(diff) - min(diff) + 1
 ```
 - 获取所有当前数组与排序后数组具有不同数值的索引，最右边的索引 - 最左边的 + 1 就是结果
-## [733. Flood Fill](https://leetcode.com/problems/flood-fill/)
+## [733. Flood Fill 6行](https://leetcode.com/problems/flood-fill/)
 ```python
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
