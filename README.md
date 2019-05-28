@@ -1534,6 +1534,17 @@ class Solution:
         return len(diff) and max(diff) - min(diff) + 1
 ```
 - 获取所有当前数组与排序后数组具有不同数值的索引，最右边的索引 - 最左边的 + 1 就是结果
+## [733. Flood Fill](https://leetcode.com/problems/flood-fill/)
+```python
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        if image[sr][sc] != newColor: # 根剪枝
+            old, image[sr][sc], m, n = image[sr][sc], newColor, len(image), len(image[0])
+            for i, j in zip((sr, sr+1, sr, sr-1), (sc+1, sc, sc-1, sc)): # 放入周围节点
+                if 0 <= i < m and 0 <= j < n and image[i][j] == old: # 邻剪枝
+                    self.floodFill(image, i, j, newColor)
+        return image
+```
 ## [739. Daily Temperatures 5行](https://leetcode.com/problems/daily-temperatures/)
 ```python
 class Solution(object):
@@ -2026,6 +2037,30 @@ class Solution:
 ```
 
 ☄ **小结**
+- :tophat:【套路】**迭代形 BFS/DFS**
+	```python
+	class Solution(object):
+	    def BFS(self):
+		# 1.BFS 使用 queue.Queue, DFS 使用 queue.LifoQueue
+		# 2.选择合适的根节点压入队列
+
+		# 3.使用 wile 进入循环，直到搜索完毕
+		# {
+		#   4.取出一个节点
+		#   5.放入这个节点周围的节点
+		# }
+	```
+- :tophat:【套路】**递归形 DFS**
+	```python
+	class Solution:
+	    def dfs(self, root):
+		if ...: # 根剪枝
+		    root = ... # 根处理
+		    for node in around: # 放入周围节点
+			if node == ...: # 邻剪枝
+			    self.dfs(node) # 递归
+		return image # 终止返回
+	```
 #### [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
 ```python
 class MyQueue:
