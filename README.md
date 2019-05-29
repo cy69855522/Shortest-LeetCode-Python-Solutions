@@ -2218,6 +2218,38 @@ class Solution:
                         stack.append((x, y))
         return image
 ```
+#### [542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/submissions/)
+```python
+class Solution:
+    def updateMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
+        m, n = len(matrix), len(matrix[0])
+        r = [[0] * n for _ in range(m)]
+        around = ((0, 1), (1, 0), (0, -1), (-1, 0))
+        
+        for i in range(m):
+            for j in range(n):
+                # -------------------------BFS 开始--------------------------
+                # 放入根节点
+                q = collections.deque([(i, j, 0)])
+                seen = {(i, j)}
+                
+                # 循环取节点
+                while q:
+                    a, b, t = q.popleft()
+                    if not matrix[a][b]:
+                        r[i][j] = t
+                        break
+                    
+                    # 放入邻节点
+                    for x, y in around:
+                        x, y = x + a, y + b
+                        if 0 <= x < m and 0 <= y < n and (x, y) not in seen:
+                            seen.add((x, y))
+                            q.append((x, y, t + 1))
+                # ----------------------------------------------------------
+        return r
+```
+- 以当前位置为根，四周为邻，bfs求最短路径，t记录路径长度
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
