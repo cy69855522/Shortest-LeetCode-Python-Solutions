@@ -2250,6 +2250,26 @@ class Solution:
         return r
 ```
 - 以当前位置为根，四周为邻，bfs求最短路径，t记录路径长度
+#### [841. 钥匙和房间](https://leetcode-cn.com/problems/keys-and-rooms/submissions/)
+```python
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        seen = {0}
+        
+        # 创建队列放入根节点
+        q = [0]
+        
+        # 循环取节点
+        while q:
+            cur = q.pop(0)
+            
+            # 放入周围节点
+            for i in set(rooms[cur]):
+                if i not in seen: # 剪枝
+                    seen.add(i)
+                    q.append(i)
+        return len(seen) == len(rooms)
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
