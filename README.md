@@ -1534,6 +1534,18 @@ class Solution:
         return len(diff) and max(diff) - min(diff) + 1
 ```
 - 获取所有当前数组与排序后数组具有不同数值的索引，最右边的索引 - 最左边的 + 1 就是结果
+## [724. Find Pivot Index 4行](https://leetcode.com/problems/find-pivot-index/)
+```python
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        l, r, diff = 0, 0, [0] * len(nums)
+        for i, j in zip(range(len(nums)), range(len(nums) - 1, -1, -1)):
+            diff[i] += l; l += nums[i]; diff[j] -= r; r += nums[j]
+        return diff.index(0) if 0 in diff else -1
+```
+- 本题利用双指针，利用 i，j 双向遍历数组。
+- l 记录当前索引左边所有数字之和，r 记录右边的和
+- diff 记录当前索引左边所有数字之和 - 右边所有数字之和，中心索引左右和相等，diff[中心索引] 为 0
 ## [733. Flood Fill 6行](https://leetcode.com/problems/flood-fill/)
 ```python
 class Solution:
@@ -2270,6 +2282,26 @@ class Solution:
                     q.append(i)
         return len(seen) == len(rooms)
 ```
+
+### [🌠 数组和字符串](https://leetcode-cn.com/explore/learn/card/array-and-string/)
+
+☄ **数组简介**
+#### [724. 寻找数组的中心索引](https://leetcode-cn.com/problems/find-pivot-index/submissions/)
+```python
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        l, r, diff = 0, 0, [0] * len(nums)
+        for i, j in zip(range(len(nums)), range(len(nums) - 1, -1, -1)):
+            diff[i] += l
+	    l += nums[i]
+	    diff[j] -= r
+	    r += nums[j]
+        return diff.index(0) if 0 in diff else -1
+```
+- 本题利用双指针，利用 i，j 双向遍历数组。
+- l 记录当前索引左边所有数字之和，r 记录右边的和
+- diff 记录当前索引左边所有数字之和 - 右边所有数字之和，中心索引左右和相等，diff[中心索引] 为 0
+
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
