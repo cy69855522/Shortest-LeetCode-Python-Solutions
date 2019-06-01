@@ -2295,6 +2295,9 @@ class Solution:
 ### [🌠 数组和字符串](https://leetcode-cn.com/explore/learn/card/array-and-string/)
 
 ☄ **数组简介**
+- :tophat:【套路】**数组**问题必备锦囊：
+	- 有些题目在做题之前对数组排序往往可以简化解法
+	- 数组与字符串大体相似但在细节上会有不同，有时候相互转化可以简化问题
 #### [724. 寻找数组的中心索引](https://leetcode-cn.com/problems/find-pivot-index/submissions/)
 ```python
 class Solution:
@@ -2320,7 +2323,7 @@ class Solution:
         return (-1, r)[not nums or m >= 2 * max(nums)]
 ```
 - 只要数组中第一大的数字不小于第二大数字的两倍即满足条件
-- 2行排序解法 → [戳这里](#[747-Largest-Number-At-Least-Twice-of-Others-2行](https://leetcode.com/problems/largest-number-at-least-twice-of-others/))
+- 2行排序解法 → [戳这里](#747-Largest-Number-At-Least-Twice-of-Others-2行)
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
