@@ -2324,6 +2324,13 @@ class Solution:
 ```
 - 只要数组中第一大的数字不小于第二大数字的两倍即满足条件
 - 2行排序解法 → [戳这里](#747-Largest-Number-At-Least-Twice-of-Others-2行)
+#### [66. 加一](https://leetcode-cn.com/problems/plus-one/submissions/)
+```python
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        return list(map(int, str(int(''.join(map(str, digits))) + 1)))
+```
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
