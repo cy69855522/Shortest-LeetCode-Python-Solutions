@@ -1569,7 +1569,15 @@ class Solution(object):
         return r
 ```
 - 入栈条件：当前元素比栈顶元素小，出栈条件：遇到比自己大的温度，出栈时索引距离即天数差
-
+## [747. Largest Number At Least Twice of Others 2行](https://leetcode.com/problems/largest-number-at-least-twice-of-others/)
+```python
+class Solution:
+    def dominantIndex(self, nums: List[int]) -> int:
+        a, b = ([0] + sorted(nums))[-2:]
+        return (-1, nums.index(b))[b >= 2 * a]
+```
+- 前面加个[0]防止数组长度不够
+- 只要数组中第一大的数字不小于第二大数字的两倍即满足条件
 ## [752. Open the Lock 11行](https://leetcode.com/problems/open-the-lock/)
 ```python
 class Solution:
@@ -2302,7 +2310,16 @@ class Solution:
 - 本题利用双指针，利用 i，j 双向遍历数组。
 - l 记录当前索引左边所有数字之和，r 记录右边的和
 - diff 记录当前索引左边所有数字之和 - 右边所有数字之和，中心索引左右和相等，diff[中心索引] 为 0
-
+#### [747. 至少是其他数字两倍的最大数](https://leetcode-cn.com/problems/largest-number-at-least-twice-of-others/submissions/)
+```python
+class Solution:
+    def dominantIndex(self, nums: List[int]) -> int:
+        m = max(nums)
+        r = nums.index(m)
+        nums.remove(m)
+        return (-1, r)[not nums or m >= 2 * max(nums)]
+```
+- 只要数组中第一大的数字不小于第二大数字的两倍即满足条件
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
