@@ -1514,6 +1514,20 @@ class Solution:
 - dfs遍历所有可能结果，以当前位置 i 和当前总和 cur 为根节点，以下一位数字的加减为邻域扩散搜索
 - 利用 d 构造记忆，以便剪枝（搜索过程中遇到相同位置和相同cur值时返回值应该相同）
 - dfs中 d 参数传的是引用，所以只有第一次会采用默认值 {}
+## [498. Diagonal Traverse 5行](https://leetcode.com/problems/diagonal-traverse/)
+```python
+class Solution:
+    def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
+        m, n, r = len(matrix), len(matrix) and len(matrix[0]), []
+        for l in range(m + n - 1):
+            temp = [matrix[i][l - i] for i in range(max(0, l+1 - n), min(l+1, m))]
+            r += temp if l % 2 else temp[::-1]
+        return r
+```
+- 0 and 0 答案是 0，此处避免 matrix 为 [] 时导致报错
+- 按照从右上角到左下角的顺序遍历 matrix 的所有对角线并放入列表 temp
+- 如果 对角线元素个数 是偶数则应该把 temp 反转
+- 把 temp 加入结果 r
 ## [557. Reverse Words in a String III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
 ```python
 class Solution:
@@ -2330,6 +2344,20 @@ class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         return list(map(int, str(int(''.join(map(str, digits))) + 1)))
 ```
+#### [498. 对角线遍历](https://leetcode-cn.com/problems/diagonal-traverse/submissions/)
+```python
+class Solution:
+    def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
+        m, n, r = len(matrix), len(matrix) and len(matrix[0]), []
+        for l in range(m + n - 1):
+            temp = [matrix[i][l - i] for i in range(max(0, l+1 - n), min(l+1, m))]
+            r += temp if l % 2 else temp[::-1]
+        return r
+```
+- 0 and 0 答案是 0，此处避免 matrix 为 [] 时导致报错
+- 按照从右上角到左下角的顺序遍历 matrix 的所有对角线并放入列表 temp
+- 如果 对角线元素个数 是偶数则应该把 temp 反转
+- 把 temp 加入结果 r
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
