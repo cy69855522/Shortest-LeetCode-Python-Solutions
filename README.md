@@ -622,6 +622,22 @@ class Solution:
         return max(map(self.maxDepth,(root.left, root.right))) + 1 if root else 0
 ```
 - 利用map函数递归左右节点获取最大值，map函数会将参数一所指向的函数应用于参数二里的所有对象并返回所有结果构成的迭代器
+## [118. Pascal's Triangle 1行](https://leetcode.com/problems/pascals-triangle/)
+```python
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        return [[math.factorial(i)//math.factorial(i-j)//math.factorial(j) for j in range(i+1)] for i in range(numRows)]
+```
+- 参考了杨辉三角的数学性质，[维基百科](https://en.wikipedia.org/wiki/Pascal%27s_triangle)
+- 正常迭代方法：
+	```python
+	class Solution:
+	    def generate(self, numRows: int) -> List[List[int]]:
+		r = [[1]]
+		for i in range(1, numRows):
+		    r.append([1] + [sum(r[-1][j:j+2]) for j in range(i)])
+		return numRows and r or []
+	```
 ## [121. Best Time to Buy and Sell Stock 2行](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 ```python
 class Solution:
@@ -2366,11 +2382,20 @@ class Solution:
 ```
 - 流程图：
 	```python
-	    |1 2 3|      |6 9|      |8 7|      |4|  =>  |5|  =>  ||
+	    |1 2 3|      |6 9|      |8 7|      |4|  =>  |5|  =>  | |
 	    |4 5 6|  =>  |5 8|  =>  |5 4|  =>  |5|
 	    |7 8 9|      |4 7|
 	```
 - 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为对于后面的递归，传进来的列表中元素是tuple
+#### [118. 杨辉三角](https://leetcode-cn.com/problems/pascals-triangle/submissions/)
+```python
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        r = [[1]]
+        for i in range(1, numRows):
+            r.append([1] + [sum(r[-1][j:j+2]) for j in range(i)])
+        return numRows and r or []
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
