@@ -2358,6 +2358,19 @@ class Solution:
 - 按照从右上角到左下角的顺序遍历 matrix 的所有对角线并放入列表 temp
 - 如果 对角线元素个数 是偶数则应该把 temp 反转
 - 把 temp 加入结果 r
+#### [54. 螺旋矩阵](https://leetcode-cn.com/problems/spiral-matrix/submissions/)
+```python
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        return matrix and [*matrix.pop(0)] + self.spiralOrder([*zip(*matrix)][::-1])
+```
+- 流程图：
+	```python
+	    |1 2 3|      |6 9|      |8 7|      |4|  =>  |5|  =>  ||
+	    |4 5 6|  =>  |5 8|  =>  |5 4|  =>  |5|
+	    |7 8 9|      |4 7|
+	```
+- 为什么是`[*matrix.pop(0)]`而不是`matrix.pop(0)`？因为对于后面的递归，传进来的列表中元素是tuple
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
