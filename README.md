@@ -486,6 +486,26 @@ class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         return list(map(int, str(int(''.join(map(str, digits))) + 1)))
 ```
+## [67. Add Binary 1行](https://leetcode.com/problems/add-binary/)
+```python
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        return bin(int(a, 2) + int(b, 2))[2:]
+```
+- 非内置函数解法：
+```python
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        r, p = '', 0
+        d = len(b) - len(a)
+        a = '0' * d + a
+        b = '0' * -d + b
+        for i, j in zip(a[::-1], b[::-1]):
+            s = int(i) + int(j) + p
+            r = str(s % 2) + r
+            p = s // 2
+        return '1' + r if p else r
+```
 ## [69. Sqrt(x) 1行](https://leetcode.com/problems/sqrtx/)
 ```python
 class Solution:
@@ -2360,6 +2380,8 @@ class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         return list(map(int, str(int(''.join(map(str, digits))) + 1)))
 ```
+
+☄ **二维数组简介**
 #### [498. 对角线遍历](https://leetcode-cn.com/problems/diagonal-traverse/submissions/)
 ```python
 class Solution:
@@ -2396,6 +2418,23 @@ class Solution:
             r.append([1] + [sum(r[-1][j:j+2]) for j in range(i)])
         return numRows and r or []
 ```
+
+☄ **字符串简介**
+#### [67. 二进制求和](https://leetcode-cn.com/problems/add-binary/submissions/)
+```python
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        r, p = '', 0
+        d = len(b) - len(a)
+        a = '0' * d + a
+        b = '0' * -d + b
+        for i, j in zip(a[::-1], b[::-1]):
+            s = int(i) + int(j) + p
+            r = str(s % 2) + r
+            p = s // 2
+        return '1' + r if p else r
+```
+- 此处利用了 python 的字符串乘法
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
