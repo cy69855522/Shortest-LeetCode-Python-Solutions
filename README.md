@@ -2451,7 +2451,7 @@ class Solution:
 		            return i
 	    	return -1
 	```
-## [14. 最长公共前缀](https://leetcode-cn.com/problems/longest-common-prefix/)
+#### [14. 最长公共前缀](https://leetcode-cn.com/problems/longest-common-prefix/)
 
 ```python
 class Solution:
