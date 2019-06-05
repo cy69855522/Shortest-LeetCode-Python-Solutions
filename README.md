@@ -2435,6 +2435,37 @@ class Solution:
         return '1' + r if p else r
 ```
 - 此处利用了 python 的字符串乘法
+#### [28. 实现strStr()](https://leetcode-cn.com/problems/implement-strstr/)
+```python
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+		return haystack.find(needle)
+```
+- 不用内置函数也可以
+
+	```python
+	class Solution:
+		def strStr(self, haystack: 'str', needle: 'str') -> 'int':
+		    for i in range(0, len(haystack) - len(needle) + 1):
+		        if haystack[i:i+len(needle)] == needle:
+		            return i
+	    	return -1
+	```
+## [14. 最长公共前缀](https://leetcode-cn.com/problems/longest-common-prefix/)
+
+```python
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        r = [len(set(c)) == 1 for c in zip(*strs)] + [0]
+        return strs[0][:r.index(0)] if strs else ''
+```
+- 利用好zip和set
+- os 模块有提供一样的函数
+	```python
+	class Solution:
+	    def longestCommonPrefix(self, strs: List[str]) -> str:
+		return os.path.commonprefix(strs)
+	```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
