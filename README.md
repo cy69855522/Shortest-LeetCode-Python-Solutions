@@ -1577,6 +1577,12 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split(' ')[::-1])[::-1]
 ```
+## [561. Array Partition I 1行](https://leetcode.com/problems/array-partition-i/)
+```python
+class Solution:
+    def arrayPairSum(self, nums: List[int]) -> int:
+        return sum(sorted(nums)[::2])
+```
 ## [575. Distribute Candies 1行](https://leetcode.com/problems/distribute-candies/)
 ```python
 class Solution:
@@ -2473,6 +2479,9 @@ class Solution:
 	    def longestCommonPrefix(self, strs: List[str]) -> str:
 		return os.path.commonprefix(strs)
 	```
+
+☄ **双指针技巧**
+- :black_joker:【知识卡片】**双指针** 通常，我们只使用从第一个元素开始并在最后一个元素结束的一个指针来进行迭代。 但是，有时候，我们可能需要同时使用两个指针来进行迭代。
 #### [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/solution/python-1xing-shuang-zhi-zhen-by-knifezhu/)
 ```python
 class Solution:
@@ -2486,7 +2495,12 @@ class Solution:
             i += 1
             j -= 1
 ```
-
+#### [561. 数组拆分 I](https://leetcode-cn.com/problems/array-partition-i/submissions/)
+```python
+class Solution:
+    def arrayPairSum(self, nums: List[int]) -> int:
+        return sum(sorted(nums)[::2])
+```
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
