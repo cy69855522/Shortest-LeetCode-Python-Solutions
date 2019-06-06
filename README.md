@@ -1550,6 +1550,13 @@ class Solution:
 - dfs遍历所有可能结果，以当前位置 i 和当前总和 cur 为根节点，以下一位数字的加减为邻域扩散搜索
 - 利用 d 构造记忆，以便剪枝（搜索过程中遇到相同位置和相同cur值时返回值应该相同）
 - dfs中 d 参数传的是引用，所以只有第一次会采用默认值 {}
+## [495. Teemo Attacking](https://leetcode.com/problems/teemo-attacking/)
+```python
+class Solution:
+    def findPoisonedDuration(self, t: List[int], d: int) -> int:
+        return len(t) and sum(min(t[i] - t[i-1], d) for i in range(1, len(t))) + d
+```
+- 总时间 = 所有间隔时间的总和，每一次的间隔时间 = min(下次发射时间 - 这次发射时间，duration)
 ## [498. Diagonal Traverse 5行](https://leetcode.com/problems/diagonal-traverse/)
 ```python
 class Solution:
