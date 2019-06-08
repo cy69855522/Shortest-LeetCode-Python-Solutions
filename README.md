@@ -2524,6 +2524,17 @@ class Solution:
                 i += 1
         return [i+1, j+1]
 ```
+#### [27. 移除元素](https://leetcode-cn.com/problems/remove-element/submissions/)
+```python
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        j = 0
+        for i in range(len(nums)):
+            if val != nums[i]:
+                nums[j] = nums[i]
+                j += 1
+        return j
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
