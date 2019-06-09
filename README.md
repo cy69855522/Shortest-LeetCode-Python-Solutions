@@ -1546,6 +1546,13 @@ class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
         return bin(x ^ y).count('1')
 ```
+## [485. Max Consecutive Ones 1行](https://leetcode.com/problems/max-consecutive-ones/)
+```python
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        return len(max(''.join(map(str, nums)).split('0')))
+```
+- 变成字符串然后用"0"去切分然后比子串长度
 ## [494. Target Sum 5行](https://leetcode.com/problems/target-sum/)
 ```python
 class Solution:
@@ -2534,6 +2541,19 @@ class Solution:
                 nums[j] = nums[i]
                 j += 1
         return j
+```
+#### [485. 最大连续1的个数](https://leetcode-cn.com/problems/max-consecutive-ones/)
+```python
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        r = c = 0
+        for n in nums:
+            if n:
+                c += 1
+            else:
+                r = max(r, c)
+                c = 0
+        return max(r, c)
 ```
 
 # 常用技巧总结
