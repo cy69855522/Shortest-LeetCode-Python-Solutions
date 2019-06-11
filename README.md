@@ -1014,6 +1014,16 @@ class Solution:
     def titleToNumber(self, s: str) -> int:
         return sum((ord(c) - 64) * 26**i for i, c in enumerate(s[::-1]))
 ```
+## [189. Rotate Array 1行](https://leetcode.com/problems/rotate-array/)
+```python
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
+```
+- 空间复杂度 = O(k) = O(1)，因为 k 为常数
 ## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
 ```python
 class Solution(object):
@@ -2570,6 +2580,18 @@ class Solution:
 ```
 - i, j 双指针滑窗，O(N)时间复杂度，O(1)空间复杂度
 - a 代表 i 到 j 的总和
+
+☄ **小结**
+#### [189. 旋转数组](https://leetcode-cn.com/problems/rotate-array/)
+```python
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
+```
+- 空间复杂度 = O(k) = O(1)，因为 k 为常数
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
