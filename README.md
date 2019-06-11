@@ -1023,7 +1023,7 @@ class Solution:
         """
         nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
 ```
-- 空间复杂度 = O(k % len(nums)) = O(1)，因为 k 为常数
+- 空间复杂度 = O(k % len(nums)) <= O(k) = O(1)，因为 k 为常数
 ## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
 ```python
 class Solution(object):
@@ -2591,7 +2591,7 @@ class Solution:
         """
         nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
 ```
-- 空间复杂度 = O(k % len(nums)) = O(1)，因为 k 为常数
+- 空间复杂度 = O(k % len(nums)) <= O(k) = O(1)，因为 k 为常数
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
