@@ -2592,6 +2592,16 @@ class Solution:
         nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
 ```
 - 空间复杂度 = O(k % len(nums)) <= O(k) = O(1)，因为 k 为常数
+#### [119. 杨辉三角 II](https://leetcode-cn.com/problems/pascals-triangle-ii/)
+```python
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        r = [1]
+        for i in range(1, rowIndex + 1):
+            r = [1] + [sum(r[j:j+2]) for j in range(i)]
+        return r
+```
+- 跟 杨辉三角 I 没什么差别
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
