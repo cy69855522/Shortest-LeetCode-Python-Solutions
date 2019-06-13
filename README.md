@@ -2602,6 +2602,12 @@ class Solution:
         return r
 ```
 - 跟 杨辉三角 I 没什么差别
+#### [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/)
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        return ' '.join([w for w in s.split(' ') if w][::-1])
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
