@@ -2606,7 +2606,14 @@ class Solution:
 ```python
 class Solution:
     def reverseWords(self, s: str) -> str:
-        return ' '.join([w for w in s.split(' ') if w][::-1])
+        return " ".join(s.split()[::-1])
+```
+- python 的 split 中的分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等
+#### [557. 反转字符串中的单词 III 1行](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/)
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        return ' '.join(s.split()[::-1])[::-1]
 ```
 
 # 常用技巧总结
