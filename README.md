@@ -2609,12 +2609,119 @@ class Solution:
         return " ".join(s.split()[::-1])
 ```
 - python 的 split 中的分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等
-#### [557. 反转字符串中的单词 III 1行](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/)
+#### [557. 反转字符串中的单词 III](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/)
 ```python
 class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split()[::-1])[::-1]
 ```
+#### [26. 删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
+```python
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i = 0
+        for j in range(1, len(nums)):
+            if nums[j] != nums[i]:
+                i += 1
+                nums[i] = nums[j]
+        return len(nums) and i + 1
+```
+- 数组完成排序后，我们可以放置两个指针 i 和 j，其中 i 是慢指针，而 j 是快指针。只要 nums[i] = nums[j]，我们就增加 j 以跳过重复项。当我们遇到 nums[j] != nums[i]时，跳过重复项的运行已经结束，因此我们必须把它（nums[j]）的值复制到 nums[i + 1]。然后递增 i，接着我们将再次重复相同的过程，直到 j 到达数组的末尾为止
+#### [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/submissions/)
+```python
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        i = 0
+        for j in range(len(nums)):
+            if nums[j]:
+                nums[i] = nums[j]
+                i += 1
+        while i < len(nums):
+            nums[i] = 0
+            i += 1
+```
+### [🌠 链表](https://leetcode-cn.com/explore/learn/card/linked-list/)
+- :black_joker:【知识卡片】链表是数据结构之一，其中的数据呈线性排列。在链表中，数据的添加和删除都较为方便， 就是访问比较耗费时间。实际上，相比较数组来说，并不存在链表这样一个对象，链表是由多个节点组成的，因此，我们能接触到的数据对象只有节点。我们可以根据节点来寻找周围节点，许多节点之间的关系抽象地构成了一个链表。
+
+☄ **单链表**
+#### [707. 设计链表](https://leetcode-cn.com/problems/design-linked-list/solution/python-by-nidadianlongge/)
+```python
+class Node:
+    def __init__(self, v, p=None, n=None):
+        self.val = v
+        self.prev = p
+        self.next = n
+
+class MyLinkedList:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.key = Node(-1)
+        self.key.prev = self.key.next = self.key
+
+    def get(self, index: int) -> int:
+        """
+        Get the value of the index-th node in the linked list. If the index is invalid, return -1.
+        """
+        i, node = 0, self.key.next
+        while i < index and node != self.key:
+            node = node.next
+            i += 1
+        return node.val if index >= 0 else -1
+
+    def addAtHead(self, val: int) -> None:
+        """
+        Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
+        """
+        self.key.next.prev = self.key.next = Node(val, p=self.key, n=self.key.next)
+
+    def addAtTail(self, val: int) -> None:
+        """
+        Append a node of value val to the last element of the linked list.
+        """
+        self.key.prev.next = self.key.prev = Node(val, p=self.key.prev, n=self.key)
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        """
+        Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
+        """
+        index = max(0, index)
+        i, node = 0, self.key.next
+        while i < index and node != self.key:
+            node = node.next
+            i += 1
+        if node != self.key or i == index:
+            node.prev.next = node.prev = Node(val, p=node.prev, n=node)
+
+    def deleteAtIndex(self, index: int) -> None:
+        """
+        Delete the index-th node in the linked list, if the index is valid.
+        """
+        if index < 0: return
+        i, node = 0, self.key.next
+        while i < index and node != self.key:
+            node = node.next
+            i += 1
+        if node != self.key:
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            del node
+
+
+# Your MyLinkedList object will be instantiated and called as such:
+# obj = MyLinkedList()
+# param_1 = obj.get(index)
+# obj.addAtHead(val)
+# obj.addAtTail(val)
+# obj.addAtIndex(index,val)
+# obj.deleteAtIndex(index)
+```
+- 本题构建了一个双向的环形链表，记录 key 节点，key.next 指向链表的 head，key.prev 指向链表的 tail
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
