@@ -2724,7 +2724,28 @@ class MyLinkedList:
 # obj.deleteAtIndex(index)
 ```
 - 本题构建了一个双向的环形链表，记录 key 节点，key.next 指向链表的 head，key.prev 指向链表的 tail
+#### [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/solution/2xing-python-by-knifezhu/)
+```python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
+class Solution(object):
+    def hasCycle(self, head):
+        slow = fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                return True
+        return False
+```
+- 想象一下，有两个速度不同的跑步者。如果他们在直路上行驶，快跑者将首先到达目的地。但是，如果它们在圆形跑道上跑步，那么快跑者如果继续跑步就会追上慢跑者。这正是我们在链表中使用两个速度不同的指针时会遇到的情况：
+	- 如果没有环，快指针将停在链表的末尾。
+	- 如果有环，快指针最终将与慢指针相遇。
+- 所以剩下的问题是：这两个指针的适当速度应该是多少？一个安全的选择是每次移动慢指针一步，而移动快指针两步。每一次迭代，快速指针将额外移动一步。如果环的长度为 M，经过 M 次迭代后，快指针肯定会多绕环一周，并赶上慢指针。
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
