@@ -2512,6 +2512,12 @@ class Solution:
 
 ☄ **双指针技巧**
 - :black_joker:【知识卡片】**双指针** 通常，我们只使用从第一个元素开始并在最后一个元素结束的一个指针来进行迭代。 但是，有时候，我们可能需要同时使用两个指针来进行迭代。
+	- 两个指针从 `不同位置` 出发：一个从始端开始，另一个从末端开始
+		- 双向内缩
+		- 二分夹逼
+	- 两个指针以 `不同速度` 移动：一个指针快一些，另一个指针慢一些
+		- 快慢指针
+		- 滑动窗口
 #### [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/solution/python-1xing-shuang-zhi-zhen-by-knifezhu/)
 ```python
 class Solution:
