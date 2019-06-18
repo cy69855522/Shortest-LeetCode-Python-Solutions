@@ -195,6 +195,23 @@ class Solution:
 - 排序，遍历，双指针，O(N^2) 时间复杂度，二分法初始化
 - 排序是为了使用双指针，首先遍历得到索引 c，然后计算 c，左指针 i，右指针 j 对应数字之和，如果大于 target，j 向内移动，否则 i 向内移动
 - i 的初始值不是 c + 1，是为了减少计算量，用二分法得到一个合理的初始值
+## [19. Remove Nth Node From End of List 5行](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        l = []
+        while head: l, head = l + [head], head.next
+        if n != len(l): l[-n-1].next = l[-n].next
+        del l[-n]
+        return l and l[0]
+```
+- 列表记录整个链表，换成队列记录最后几个可以把空间复杂度压到 O(1)
 ## [20. Valid Parentheses 2行](https://leetcode.com/problems/valid-parentheses/)
 
 ```python
@@ -2824,7 +2841,7 @@ class Solution:
         
         return link and link[0]
 ```
-- 哈希表记录整个链表，换成队列也可以
+- 列表记录整个链表，换成队列记录最后几个可以把空间复杂度压到 O(1)
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
