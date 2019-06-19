@@ -2747,6 +2747,8 @@ class MyLinkedList:
 # obj.deleteAtIndex(index)
 ```
 - 本题构建了一个双向的环形链表，记录 key 节点，key.next 指向链表的 head，key.prev 指向链表的 tail
+
+☄ **双指针技巧**
 #### [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/solution/2xing-python-by-knifezhu/)
 ```python
 # Definition for singly-linked list.
@@ -2842,6 +2844,24 @@ class Solution:
         return link and link[0]
 ```
 - 列表记录整个链表，换成队列记录最后几个可以把空间复杂度压到 O(1)
+
+☄ **经典问题**
+#### [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        p = None
+        while head:
+            head.next, head, p = p, head.next, head
+        return p
+```
+- 遍历一遍链表，每次都把相邻节点的指向反转（A→B 变成 A←B）
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
