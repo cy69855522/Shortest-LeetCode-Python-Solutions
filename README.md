@@ -1110,6 +1110,20 @@ class Solution:
             n = sum(int(i) ** 2 for i in str(n))
         return n == 1
 ```
+## [203. Remove Linked List Elements 2行]()
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        if head: head.next = self.removeElements(head.next, val)
+        return head.next if head and head.val == val else head
+```
+- 递归：每次都返回从当前位置算起第一个有效的节点或None
 ## [205. Isomorphic Strings 1行](https://leetcode.com/problems/isomorphic-strings/)
 ```python
 class Solution:
@@ -2871,6 +2885,28 @@ class Solution:
         return p
 ```
 - 遍历一遍链表，每次都把相邻节点的指向反转（A→B 变成 A←B）
+#### [203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/submissions/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        while head and head.val == val:
+            head = head.next
+        pre, cur = head, head and head.next
+        while cur:
+            if cur.val == val:
+                pre.next = cur = cur.next
+            else:
+                pre, cur = cur, cur.next
+        return head
+```
+- 第一个 while 用于找到应该返回的链表头（应该跳过所有特殊 val 的节点）
+- 第二个 while 用于把前一个节点指针接到下一个节点（如果当前节点值为 val）
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
