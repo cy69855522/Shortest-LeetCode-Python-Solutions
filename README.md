@@ -2907,6 +2907,25 @@ class Solution:
 ```
 - 第一个 while 用于找到应该返回的链表头（应该跳过所有特殊 val 的节点）
 - 第二个 while 用于把前一个节点指针接到下一个节点（如果当前节点值为 val）
+#### [328. 奇偶链表](https://leetcode-cn.com/problems/odd-even-linked-list/solution/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        if not head or not head.next: return head
+        r, odd, p, head = head, head, head.next, head.next.next
+        while head:
+            odd.next, head.next, p.next = head, odd.next, head.next
+            p, odd, head = p.next, head, p.next and p.next.next
+        return r
+```
+- odd 记录上一个奇数位节点，p 记录前一个节点
+- 从第3个位置开始循环，每次都把当前节点接到 odd 后面，然后跳到下一个奇数位节点继续循环
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
