@@ -1322,6 +1322,20 @@ class MyQueue:
 # param_4 = obj.empty()
 ```
 - 使用俩个栈来模拟队列，当需要取第一个元素的时候创建一个临时的栈temp，把栈里面的东西全部抽出来放进temp，完成操作后放回去
+## [234. Palindrome Linked List 3行](https://leetcode.com/problems/palindrome-linked-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        def gen(n):
+            while n: yield n.val; n = n.next
+        return [*gen(head)] == [*gen(head)][::-1]
+```
 ## [235. Lowest Common Ancestor of a Binary Search Tree 2行](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 ```python
 # Definition for a binary tree node.
