@@ -31,7 +31,6 @@ class Solution:
 ```
 - O(N)时间效率的快速解法，用字典记录 ｛需要的值:当前索引｝
 ## [2. Add Two Numbers 5行](https://leetcode.com/problems/add-two-numbers/)
-
 ```python
 # Definition for singly-linked list.
 # class ListNode:
@@ -2966,7 +2965,7 @@ class Solution:
 - 【设计链表】 同上
 
 ☄ **小结**
-## [21. 合并两个有序链表](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/762/)
+#### [21. 合并两个有序链表](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/762/)
 
 ```python
 # Definition for singly-linked list.
@@ -2990,6 +2989,25 @@ class Solution:
 - 修改 l1 的 next 属性为递归函数返回值
 - 返回 l1，注意：如果 l1 和 l2 同时为 None，此时递归停止返回 None
 - 时间复杂度：$O(n)$ 空间复杂度：【考虑递归开栈】$O(n)$【不考虑】$O(1)$
+#### [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry=0) -> ListNode:
+        if not (l1 or l2): return ListNode(1) if carry else None
+        l1, l2 = l1 or ListNode(0), l2 or ListNode(0)
+        val = l1.val + l2.val + carry
+        l1.val, l1.next = val % 10, self.addTwoNumbers(l1.next, l2.next, val > 9)
+        return l1
+```
+- int(True) 等于 1
+- None or 7 等于 7
+- 用 carry 记录是否应该进位
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
