@@ -1584,6 +1584,27 @@ class Solution:
         for _ in range((2, 0)[len(nums) < 3]): nums.remove(max(nums))
         return max(nums)
 ```
+## [430. Flatten a Multilevel Doubly Linked List 5行](https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, prev, next, child):
+        self.val = val
+        self.prev = prev
+        self.next = next
+        self.child = child
+"""
+from itertools import chain
+
+class Solution:
+    def flatten(self, head: 'Node') -> 'Node':
+        def gen(n): yield from chain([n], gen(n.child), gen(n.next)) if n else ()
+        iters = gen(head); p = head and next(iters)
+        for n in iters: p.next, n.prev, p.child, n.child, p = n, p, None, None, n
+        return head
+```
+- 使用迭代器按顺序输出所有节点，然后连接
 ## [448. Find All Numbers Disappeared in an Array 1行](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
 ```python
 class Solution:
@@ -3008,6 +3029,38 @@ class Solution:
 - int(True) 等于 1
 - None or 7 等于 7
 - 用 carry 记录是否应该进位
+#### [430. 扁平化多级双向链表](https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/submissions/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, prev, next, child):
+        self.val = val
+        self.prev = prev
+        self.next = next
+        self.child = child
+"""
+class Solution:
+    def flatten(self, head: 'Node') -> 'Node':
+        stack = [head] if head else []
+        
+        p = None
+        while stack:
+            node = stack.pop()
+            if node.next:
+                stack.append(node.next)
+            if node.child:
+                stack.append(node.child)
+            if p:
+                p.next = node
+                node.prev = p
+                p.child = node.child = None
+            p = node
+        
+        return head
+```
+- 常规 DFS 遍历
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
