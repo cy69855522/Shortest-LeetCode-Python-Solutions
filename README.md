@@ -761,6 +761,21 @@ class Solution:
         return reduce(int.__xor__, nums)
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了
+## [138. Copy List with Random Pointer 1行](https://leetcode.com/problems/copy-list-with-random-pointer/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, next, random):
+        self.val = val
+        self.next = next
+        self.random = random
+"""
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        return copy.deepcopy(head)
+```
+- 内置函数
 ## [139. Word Break 8行](https://leetcode.com/problems/word-break/)
 ```python
 class Solution:
@@ -3060,6 +3075,35 @@ class Solution:
         return head
 ```
 - 常规 DFS 遍历
+#### [138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/submissions/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, next, random):
+        self.val = val
+        self.next = next
+        self.random = random
+"""
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        d, node = {None: None}, head
+        
+        while node:
+            d[node] = Node(node.val, None, None)
+            node = node.next
+        
+        node = head
+        while node:
+            d[node].next = d[node.next]
+            d[node].random = d[node.random]
+            node = node.next
+        
+        return d[head]
+```
+- 难点在于创建节点的时候需要指向未创建的节点
+- 遍历俩遍可有效解决，用字典记录对应的节点，然后依靠原来的链表来遍历新链表，第一次遍历未知的节点置 None，第二次再把已经创建的节点改上去
+- 链表也是图，133题的dfs解法同样可行
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
