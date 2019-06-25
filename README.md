@@ -3104,6 +3104,28 @@ class Solution:
 - 难点在于创建节点的时候需要指向未创建的节点
 - 遍历俩遍可有效解决，用字典记录对应的节点，然后依靠原来的链表来遍历新链表，第一次遍历未知的节点置 None，第二次再把已经创建的节点改上去
 - 链表也是图，133题的dfs解法同样可行
+#### [61. 旋转链表](https://leetcode-cn.com/problems/rotate-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        l = []
+        while head:
+            l.append(head)
+            head = head.next
+        
+        if l:
+            l[-1].next, l[-1 - k % len(l)].next = l[0], None
+            return l[- k % len(l)]
+        
+        return None
+```
+- 用 list 记录链表，把链表当作环，修补原来的切断口，创造新的缺口（k）
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
