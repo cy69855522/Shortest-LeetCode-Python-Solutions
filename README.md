@@ -14,7 +14,7 @@
 - 🧬 数据结构
 	- [🐤 队列 & 栈](#-%E9%98%9F%E5%88%97--%E6%A0%88)（5 章节 32 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/queue-stack/) :calendar: 2019/05/31
 	- [🐑 数组和字符串](#-%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2)（5 章节 29 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/queue-stack/) :calendar: 2019/06/15
-	- [🦜 链表](#-%E9%93%BE%E8%A1%A8)（5 章节 29 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/) :calendar: 2019/06/25
+	- [🦌 链表](#-%E9%93%BE%E8%A1%A8)（5 章节 26 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/) :calendar: 2019/06/25
 ## 推荐
 - 与本项目有关联的，🛫 是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，并根据官方推荐的路线总结一套专题探索，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
 - 🌟 推荐刷题路线：[**专题探索**](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
