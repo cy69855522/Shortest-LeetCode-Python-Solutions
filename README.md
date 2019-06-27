@@ -1064,9 +1064,9 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
+        for _ in range(k % len(nums)): nums[-1:], nums[:0] = [], nums[-1:]
 ```
-- 空间复杂度 = O(k % len(nums)) <= O(k) = O(1)，因为 k 为常数
+- 时间复杂度 = O(k % len(nums))，空间复杂度 = O(1)
 ## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
 ```python
 class Solution(object):
@@ -2687,9 +2687,9 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        nums[-(k % len(nums)):], nums[:0] = [], nums[-(k % len(nums)):]
+        for _ in range(k % len(nums)): nums[-1:], nums[:0] = [], nums[-1:]
 ```
-- 空间复杂度 = O(k % len(nums)) <= O(k) = O(1)，因为 k 为常数
+- 时间复杂度 = O(k % len(nums))，空间复杂度 = O(1)
 #### [119. 杨辉三角 II](https://leetcode-cn.com/problems/pascals-triangle-ii/)
 ```python
 class Solution:
