@@ -1551,6 +1551,14 @@ class Solution:
             d[n] = d.get(n, 0) + 1
         return sorted(d.keys(), key=d.get)[-k:]
 ```
+## [349. Intersection of Two Arrays 1行](https://leetcode.com/problems/intersection-of-two-arrays/)
+```python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return [*set(nums1) & set(nums2)]
+```
+- 经过 set 之后，重复的元素被删除
+- 与运算对于集合来说就是求交集
 ## [367. Valid Perfect Square 4行](https://leetcode.com/problems/valid-perfect-square/)
 ```python
 class Solution:
@@ -3251,6 +3259,36 @@ class MyHashMap:
 # obj.put(key,value)
 # param_2 = obj.get(key)
 # obj.remove(key)
+```
+
+☄ **实际应用 - 哈希集合**
+#### [217. 存在重复元素](https://leetcode-cn.com/problems/contains-duplicate/)
+```python
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return len(set(nums)) != len(nums)
+```
+#### [136. 只出现一次的数字](https://leetcode-cn.com/problems/single-number/)
+```python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        from functools import reduce
+        return reduce(int.__xor__, nums)
+```
+- 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了。
+#### [349. 两个数组的交集](https://leetcode-cn.com/problems/intersection-of-two-arrays/submissions/)
+```python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return [*set(nums1) & set(nums2)]
+```
+- 经过 set 之后，重复的元素被删除
+- 与运算对于集合来说就是求交集
+#### [202. 快乐数](https://leetcode-cn.com/problems/happy-number/)
+```python
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        return self.isHappy(sum(int(i) ** 2 for i in str(n))) if n > 4 else n == 1
 ```
 
 # 常用技巧总结
