@@ -3288,7 +3288,11 @@ class Solution:
 ```python
 class Solution:
     def isHappy(self, n: int) -> bool:
-        return self.isHappy(sum(int(i) ** 2 for i in str(n))) if n > 4 else n == 1
+        seen = {1}
+        while n not in seen:
+            seen.add(n)
+            n = sum(int(i) ** 2 for i in str(n))
+        return n == 1
 ```
 
 # 常用技巧总结
