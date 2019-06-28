@@ -3312,7 +3312,14 @@ class Solution:
         return [*map(s.index, s)] == [*map(t.index, t)]
 ```
 - 同构代表两个字符串中每个位置上字符在自身第一次出现的索引相同
-
+#### [599. 两个列表的最小索引总和](https://leetcode-cn.com/problems/minimum-index-sum-of-two-lists/)
+```python
+class Solution:
+    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+        d = {x: list1.index(x) + list2.index(x) for x in set(list1) & set(list2)}
+        return [x for x in d if d[x] == min(d.values())]
+```
+- 使用字典记录｛共同喜欢的商店：索引和｝，返回索引和并列最小的商店名
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
