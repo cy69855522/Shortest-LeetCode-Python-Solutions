@@ -21,7 +21,6 @@
 # 题库解析
 此专栏追求代码的**精简**和**技巧性**，默认已看过题目，🤡 没看过的话点标题可以跳转链接，咱们一起体验炫酷的 Python
 ## [1. Two Sum 4行](https://leetcode.com/problems/two-sum/)
-
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -3294,6 +3293,26 @@ class Solution:
             n = sum(int(i) ** 2 for i in str(n))
         return n == 1
 ```
+
+☄ **实际应用 - 哈希映射**
+#### [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+	d = {}
+	for i, n in enumerate(nums): 
+	    if n in d: return [d[n], i]
+	    d[target-n] = i
+```
+- O(N)时间效率的快速解法，用字典记录 ｛需要的值:当前索引｝
+#### [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/solution/1-xing-python-by-knifezhu-5/)
+```python
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return [*map(s.index, s)] == [*map(t.index, t)]
+```
+- 同构代表两个字符串中每个位置上字符在自身第一次出现的索引相同
+
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
