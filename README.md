@@ -1725,6 +1725,14 @@ class Solution:
         return len(diff) and max(diff) - min(diff) + 1
 ```
 - 获取所有当前数组与排序后数组具有不同数值的索引，最右边的索引 - 最左边的 + 1 就是结果
+## [599. Minimum Index Sum of Two Lists 2行](https://leetcode.com/problems/minimum-index-sum-of-two-lists/)
+```python
+class Solution:
+    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+        d = {x: list1.index(x) + list2.index(x) for x in set(list1) & set(list2)}
+        return [x for x in d if d[x] == min(d.values())]
+```
+- 使用字典记录｛共同喜欢的商店：索引和｝，返回索引和并列最小的商店名
 ## [724. Find Pivot Index 4行](https://leetcode.com/problems/find-pivot-index/)
 ```python
 class Solution:
