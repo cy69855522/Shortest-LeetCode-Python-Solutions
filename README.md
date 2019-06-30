@@ -1569,6 +1569,16 @@ class Solution:
 ```
 - 基本不等式(a+b)/2 >=√ab 推导自 (a-b)^2 >= 0 → a^2 + b^2 >= 2ab → (a+b)/2 >=√ab（换元），注意 a>0 且 b>0
 - `(r + num / r) / 2` >= √num 而 r > num / r 保证每次迭代 r 在不断减小,而`//`的存在保证最接近的时候能够逃离循环体
+## [387. First Unique Character in a String 2行](https://leetcode.com/problems/first-unique-character-in-a-string/)
+```python
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        d = {c: s.count(c) for c in set(s)}
+        return ([i for i, c in enumerate(s) if d[c] == 1] + [-1])[0]
+```
+- 首先用字典 d 储存｛字符：出现次数｝，注意这里的字符来自 set，为了避免重复操作，防止TLE
+- 用 list 记录 s 中出现次数为 1 的字符的索引
+- 返回 list 第一个元素，如果原来的 s 中不存在出现次数为 1 的字符，则会返回后面添加的 [-1] 作为第一个元素
 ## [394. Decode String 14行](https://leetcode.com/problems/decode-string/)
 ```python
 class Solution:
@@ -3328,6 +3338,18 @@ class Solution:
         return [x for x in d if d[x] == min(d.values())]
 ```
 - 使用字典记录｛共同喜欢的商店：索引和｝，返回索引和并列最小的商店名
+#### [387. 字符串中的第一个唯一字符](https://leetcode-cn.com/problems/first-unique-character-in-a-string/submissions/)
+```python
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        d = {c: s.count(c) for c in set(s)}
+        for i, c in enumerate(s):
+            if d[c] == 1:
+                return i
+        return -1
+```
+- 首先用字典 d 储存｛字符：出现次数｝，注意这里的字符来自 set，为了避免重复操作，防止TLE
+- 然后遍历 s 寻找出现次数为 1 的第一个字符索引，不存在则返回 -1
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
