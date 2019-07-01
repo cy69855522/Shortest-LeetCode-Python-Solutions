@@ -1558,6 +1558,34 @@ class Solution:
 ```
 - 经过 set 之后，重复的元素被删除
 - 与运算对于集合来说就是求交集
+## [350. Intersection of Two Arrays II 1行](https://leetcode.com/problems/intersection-of-two-arrays-ii/)
+```python
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return [*(collections.Counter(nums1) & collections.Counter(nums2)).elements()]
+```
+- 对于两个 Counter 对象，与操作意味着取两者都有的key, value取小的那一个
+- 参考：[Python Counter 计数工具](https://www.cnblogs.com/nisen/p/6052895.html)
+```python
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        r = []
+        i = j = 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] == nums2[j]:
+                r.append(nums1[i])
+                i += 1
+                j += 1
+            elif nums1[i] < nums2[j]:
+                i += 1
+            else:
+                j += 1
+        return r
+```
+- 进阶解法 ↑
+- 使用双指针将两个列表中共同的元素抠下来，因为已经排序，所以遇到不同元素时数值小的那个列表的指针向前移动
 ## [367. Valid Perfect Square 4行](https://leetcode.com/problems/valid-perfect-square/)
 ```python
 class Solution:
@@ -3350,6 +3378,34 @@ class Solution:
 ```
 - 首先用字典 d 储存｛字符：出现次数｝，注意这里的字符来自 set，为了避免重复操作，防止TLE
 - 然后遍历 s 寻找出现次数为 1 的第一个字符索引，不存在则返回 -1
+## [350. 两个数组的交集 II](https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/)
+```python
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return [*(collections.Counter(nums1) & collections.Counter(nums2)).elements()]
+```
+- 对于两个 Counter 对象，与操作意味着取两者都有的key, value取小的那一个
+- 参考：[Python Counter 计数工具](https://www.cnblogs.com/nisen/p/6052895.html)
+```python
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        r = []
+        i = j = 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] == nums2[j]:
+                r.append(nums1[i])
+                i += 1
+                j += 1
+            elif nums1[i] < nums2[j]:
+                i += 1
+            else:
+                j += 1
+        return r
+```
+- 进阶解法 ↑
+- 使用双指针将两个列表中共同的元素抠下来，因为已经排序，所以遇到不同元素时数值小的那个列表的指针向前移动
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
