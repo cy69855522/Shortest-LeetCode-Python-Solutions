@@ -1202,6 +1202,17 @@ class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         return len(nums) != len(set(nums))
 ```
+## [219. Contains Duplicate II 4行](https://leetcode.com/problems/contains-duplicate-ii/)
+```python
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        r, d = k + 1, {}
+        for i, n in enumerate(nums):
+            r, d[n] = min(r, i - d.get(n, -k - 1)), i
+        return r <= k
+```
+- 本题题目有误，实际意思是找同数字最小间隔，若不超过 k 则满足条件
+- 遍历列表，每次都比对最小间隔，并更新哈希表索引，当前位置往左的最小间隔一定是与上一次同数字出现的索引的距离
 ## [225. Implement Stack using Queues 6行](https://leetcode-cn.com/problems/implement-stack-using-queues/submissions/)
 ```python
 class MyStack:
@@ -3406,7 +3417,19 @@ class Solution:
 ```
 - 进阶解法 ↑
 - 使用双指针将两个列表中共同的元素抠下来，因为已经排序，所以遇到不同元素时数值小的那个列表的指针向前移动
-
+#### [219. 存在重复元素 II](https://leetcode-cn.com/problems/contains-duplicate-ii/)
+```python
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        r = float('inf')
+        d = {}
+        for i, n in enumerate(nums):
+            r = min(r, i - d.get(n, float('-inf')))
+            d[n] = i
+        return r <= k
+```
+- 本题题目有误，实际意思是找同数字最小间隔，若不超过 k 则满足条件
+- 遍历列表，每次都比对最小间隔，并更新哈希表索引，当前位置往左的最小间隔一定是与上一次同数字出现的索引的距离
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
