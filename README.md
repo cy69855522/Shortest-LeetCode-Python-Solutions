@@ -432,8 +432,14 @@ class Solution:
 		from itertools import permutations
 		return list(permutations(nums))
 	```
+## [49. Group Anagrams 1行](https://leetcode.com/problems/group-anagrams/)
+```python
+class Solution:
+    def groupAnagrams(self, strs):
+        return [[*x] for _, x in itertools.groupby(sorted(strs, key=sorted), sorted)]
+```
+- 使用 groupby 函数依据 sorted 结果分组
 ## [53. Maximum Subarray 2行](https://leetcode.com/problems/maximum-subarray/)
-
 ```python
 class Solution:
     def maxSubArray(self, nums):
@@ -3451,6 +3457,16 @@ class Solution:
 ```
 - 本题题目有误，实际意思是找同数字最小间隔，若不超过 k 则满足条件
 - 遍历列表，每次都比对最小间隔，并更新哈希表索引，当前位置往左的最小间隔一定是与上一次同数字出现的索引的距离
+#### [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)
+```python
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = collections.defaultdict(list)
+        for s in strs:
+	    d[''.join(sorted(s))].append(s)
+        return [*d.values()]
+```
+- 以排序后的单词为 key，将所有字符串分组
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
