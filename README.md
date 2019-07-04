@@ -379,6 +379,17 @@ class Solution:
 		i = (bisect.bisect_left(nums[k:] + nums[:k], target) + k) % max(len(nums), 1)
 		return i if nums and nums[i] == target else -1
 	```
+## [36. Valid Sudoku 4行](https://leetcode.com/problems/valid-sudoku/)
+```python
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row = [[x for x in y if x != '.'] for y in board]
+        col = [[x for x in y if x != '.'] for y in zip(*board)]
+        pal = [[board[i+m][j+n] for m in range(3) for n in range(3) if board[i+m][j+n] != '.'] for i in (0, 3, 6) for j in (0, 3, 6)]
+        return all(len(set(x)) == len(x) for x in (*row, *col, *pal))
+```
+- 利用 set 检查每个区块中是否有重复数字
+- pal 取区块的遍历方式是利用 i，j 遍历每个宫格左上角位置，然后取 3*3 区块
 ## [38. Count and Say 1行](https://leetcode.com/problems/count-and-say/)
 
 ```python
@@ -3467,6 +3478,21 @@ class Solution:
         return [*d.values()]
 ```
 - 以排序后的单词为 key，将所有字符串分组
+#### [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/)
+```python
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row, col, pal = eval(','.join(['[[0] * 9 for _ in range(9)]'] * 3))
+        for i, r in enumerate(board):
+            for j, n in enumerate(r):
+                if n == '.': continue
+                n = int(n) - 1
+                if row[i][n] or col[j][n] or pal[i // 3 * 3 + j // 3][n]: return False
+                row[i][n] = col[j][n] = pal[i // 3 * 3 + j // 3][n] = 1
+        return True
+```
+- 使用 3 个二维矩阵记录某数字是否已经在特定区域出现过，如第 1 行，第 4 列对于 row[0], col[3], pal[1] 区域，每个区域包含 9 个数值，用以记录其 索引 + 1 是否在改区域出现过
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
