@@ -50,16 +50,16 @@ class Solution:
 - None or 7 等于 7
 - 用 carry 记录是否应该进位
 ## [3. Longest Substring Without Repeating Characters 3行](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-
 ```python
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        b, m, d = 0, 0, {}
-        for i, l in enumerate(s): b, m, d[l] = max(b, d.get(l, -1) + 1), max(m, i - b), i
-        return max(m, len(s) - b)
+        i, r, d = 0, 0, {}
+        for j, c in enumerate(s): i, r, d[c] = max(i, d.get(c, -1) + 1), max(r, j - i), j
+        return max(r, len(s) - i)
 ```
-- b代表起始位置，m代表上一步的最大无重复子串，d是一个字典，记录着到当前步骤出现过的字符对应的最大位置
-- 每次迭代过程中，遇到遇见过的字符时，b就会变为那个字符上一次出现位置+1，m记录上一次应该达到的全局最大值，所以最后需要再比较一次
+- 双指针滑动窗口
+- i 代表起始位置，r 记录最优解，d 是一个字典，记录所有字符最后出现的位置
+- 每次迭代过程中，遇到遇见过的字符时，i 就会变为那个字符上一次出现位置 + 1，r 记录上一次应该达到的全局最大值，所以最后需要再比较一次
 ## [4. Median of Two Sorted Arrays 5行](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
 ```python
@@ -1715,6 +1715,14 @@ class Solution:
 	    - 原始数组：[4,3,2,7,8,2,3,1]
 	    - 重置后为：[-4,-3,-2,-7,`8`,`2`,-3,-1]
 	    - 结论：[8,2] 分别对应的index为[5,6]（消失的数字）
+## [454. 4Sum II 2行](https://leetcode.com/problems/4sum-ii/)
+```python
+class Solution:
+    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
+        dic = collections.Counter(a + b for a in A for b in B)
+        return sum(dic.get(- c - d, 0) for c in C for d in D)
+```
+- 思路同第一题 TWO SUM 的 O(N) 字典解法，记录需要的值
 ## [461. Hamming Distance 1行](https://leetcode.com/problems/hamming-distance/)
 ```python
 class Solution:
@@ -3492,6 +3500,64 @@ class Solution:
         return True
 ```
 - 使用 3 个二维矩阵记录某数字是否已经在特定区域出现过，如第 1 行，第 4 列对于 row[0], col[3], pal[1] 区域，每个区域包含 9 个数值，用以记录其 索引 + 1 是否在改区域出现过
+#### [652. 寻找重复的子树](https://leetcode-cn.com/problems/find-duplicate-subtrees/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def findDuplicateSubtrees(self, root: TreeNode) -> List[TreeNode]:
+        d, r = {}, []
+        def dfs(root):
+            if not root: return '#'
+            s = '# ' + ' '.join((str(root.val), dfs(root.left), dfs(root.right)))
+            d[s] = d.get(s, 0) + 1
+            if d[s] == 2: r.append(root)
+            return s
+        dfs(root)
+        return r
+```
+- 使用字典 d 记录｛子树结构：[root1，root2，……]｝
+#### [771. 宝石与石头](https://leetcode-cn.com/problems/jewels-and-stones/)
+```python
+class Solution:
+    def numJewelsInStones(self, J: str, S: str) -> int:
+        j = set(J)
+        return sum(bool(s in j) for s in S)
+```
+- set 的 in 操作时间复杂度为 O(1)
+#### [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/submissions/)
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        i, r, d = -1, 0, {}
+        for j, c in enumerate(s):
+            i = max(i, d.get(c, -1))
+            r = max(r, j - i)
+            d[c] = j
+        return r
+```
+- 双指针滑动窗口，i 代表窗口起始位置，j 代表窗口结束位置，r 记录最优结果，d 记录所有字符最后出现的位置（对于 j 遍历来说）
+#### [454. 四数相加 II](https://leetcode-cn.com/problems/4sum-ii/comments/)
+```python
+class Solution:
+    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
+        dic = {}
+        for a in A:
+            for b in B:
+                dic[a + b] = dic.get(a + b, 0) + 1
+
+        r = 0
+        for c in C:
+            for d in D:
+                r += dic.get(- c - d, 0)
+        return r
+```
+- 思路同第一题 TWO SUM 的 O(N) 字典解法，记录需要的值
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
