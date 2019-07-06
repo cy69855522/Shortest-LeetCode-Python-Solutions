@@ -1566,17 +1566,25 @@ class Solution:
 ```python
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        return [k for k, v in collections.Counter(nums).most_common(k)]
+        return [*next(zip(*collections.Counter(nums).most_common(k)))]
 ```
 - Counter类的目的是用来跟踪值出现的次数。它是一个无序的容器类型，以字典的键值对形式存储，其中元素作为key，其计数作为value
+- 关于 Counter，更多详细内容可参考 [这里](https://www.cnblogs.com/nisen/p/6052895.html)
 - 非内置解法：
 ```python
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        d = {}
+        d = {n: 0 for n in nums}
         for n in nums:
-            d[n] = d.get(n, 0) + 1
-        return sorted(d.keys(), key=d.get)[-k:]
+            d[n] += 1
+        
+        r = []
+        for _ in range(k):
+            n = max(d, key=d.get)
+            r.append(n)
+            d[n] = -1
+        
+        return r
 ```
 ## [349. Intersection of Two Arrays 1行](https://leetcode.com/problems/intersection-of-two-arrays/)
 ```python
@@ -3522,6 +3530,8 @@ class Solution:
         return r
 ```
 - 使用字典 d 记录｛子树结构：[root1，root2，……]｝
+
+☄ **小结**
 #### [771. 宝石与石头](https://leetcode-cn.com/problems/jewels-and-stones/)
 ```python
 class Solution:
@@ -3558,6 +3568,25 @@ class Solution:
         return r
 ```
 - 思路同第一题 TWO SUM 的 O(N) 字典解法，记录需要的值
+#### [347. 前K个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)
+```python
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d = {n: 0 for n in nums}
+        for n in nums:
+            d[n] += 1
+        
+        r = []
+        for _ in range(k):
+            n = max(d, key=d.get)
+            r.append(n)
+            d[n] = -1
+        
+        return r
+```
+- 时间复杂度 O(N)，空间复杂度 O(N)
+- 使用字典 d 记录｛数字：出现次数｝
+- 循环 k 次分别取出最大值放入结果列表 r
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
