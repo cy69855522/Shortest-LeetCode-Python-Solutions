@@ -3660,6 +3660,21 @@ class Solution:
                 l = m + 1
         return -1
 ```
+#### [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/comments/)
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l, h = 0, x
+        while l < h:
+            m = (l + h) // 2
+            if m**2 <= x < (m+1)**2:
+                return m
+            elif m**2 < x:
+                l = m + 1
+            else:
+                h = m - 1
+        return l
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
