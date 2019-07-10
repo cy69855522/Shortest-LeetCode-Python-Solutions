@@ -3675,6 +3675,30 @@ class Solution:
                 h = m - 1
         return l
 ```
+#### [374. 猜数字大小](https://leetcode-cn.com/problems/guess-number-higher-or-lower/submissions/)
+```python
+# The guess API is already defined for you.
+# @param num, your guess
+# @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
+# def guess(num):
+
+class Solution(object):
+    def guessNumber(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        l, h = 1, n
+        while l <= n:
+            m = (l + h) // 2
+            r = guess(m)
+            if not r:
+                return m
+            elif r == 1:
+                l = m + 1
+            else:
+                h = m - 1
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
