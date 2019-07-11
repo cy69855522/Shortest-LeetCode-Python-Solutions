@@ -3699,6 +3699,39 @@ class Solution(object):
             else:
                 h = m - 1
 ```
+#### [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # 寻找断点
+        k, l, h = 0, 1, len(nums) - 1
+        while l <= h:
+            m = (l + h) // 2
+            if nums[m] < nums[m - 1]:
+                k = m
+                break
+            elif nums[m] > nums[0]:
+                l = m + 1
+            else:
+                h = m - 1
+        
+        # 恢复升序
+        nums[k:], nums[:0] = [], nums[k:]
+        
+        # 搜索目标
+        l, h = 0, len(nums) - 1
+        while l <= h:
+            m = (l + h) // 2
+            if nums[m] == target:
+                return (m + k) % len(nums)
+            elif nums[m] < target:
+                l = m + 1
+            else:
+                h = m - 1
+        return -1
+```
+- 首先通过第一个二分查找得到升序排列时的开头（也就是数组中的最小值），称其为断点 k
+- 恢复数组后通过第二个二分查找得到目标索引
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
