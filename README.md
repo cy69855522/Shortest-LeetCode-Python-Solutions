@@ -3660,6 +3660,8 @@ class Solution:
                 l = m + 1
         return -1
 ```
+
+☄ **模板 I**
 #### [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/comments/)
 ```python
 class Solution:
@@ -3732,6 +3734,34 @@ class Solution:
 ```
 - 首先通过第一个二分查找得到升序排列时的开头（也就是数组中的最小值），称其为断点 k
 - 恢复数组后通过第二个二分查找得到目标索引
+
+☄ **模板 II**
+#### [278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)
+```python
+# The isBadVersion API is already defined for you.
+# @param version, an integer
+# @return a bool
+# def isBadVersion(version):
+
+class Solution:
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        l, h = 1, n
+        while l <= h:
+            m = (l + h) // 2
+            if isBadVersion(m) > m * isBadVersion(m - 1):
+                return m
+            elif isBadVersion(m):
+                h = m - 1
+            else:
+                l = m + 1
+```
+- 本题二分搜索中判断返回的条件为 当前版本为True且（当前索引为0 或 左边的版本为False）
+- `m *` 的作用是避免 `m - 1` 为负数，如果 m 为 0，则代表左边没有版本，只需判断当前版本是否为 True
+- True > False 或 0
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
