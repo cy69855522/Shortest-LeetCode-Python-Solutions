@@ -1476,6 +1476,23 @@ class Solution:
         return int(len(nums) * (len(nums) + 1) / 2 - sum(nums))
 ```
 - 等差数列求和公式
+## [278. First Bad Version 2行](https://leetcode.com/problems/first-bad-version/)
+```python
+# The isBadVersion API is already defined for you.
+# @param version, an integer
+# @return a bool
+# def isBadVersion(version):
+
+class Solution:
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        self.__class__.__getitem__ = lambda self, x: isBadVersion(x)
+        return bisect.bisect_left(self, True, 1, n)
+```
+- 
 ## [279. Perfect Squares 4行](https://leetcode.com/problems/perfect-squares/)
 ```python
 class Solution:
