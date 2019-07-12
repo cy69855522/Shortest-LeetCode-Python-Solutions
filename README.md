@@ -304,7 +304,7 @@ class Solution:
             if nums[i] == nums[i-1]: nums.pop(i)
         return len(nums)
 ```
-- 时间效率O(N)空间效率O(1)，逆遍历可以防止删除某个元素后影响下一步索引的定位
+- 时间效率O(N^2), pop操作的平均时间复杂度为O(N), 空间效率O(1)，逆遍历可以防止删除某个元素后影响下一步索引的定位
 - 每次删除数组元素会引发大量的数据迁移操作，使用以下算法解题效率更高
 	```python
 	class Solution:
