@@ -3805,6 +3805,28 @@ class Solution:
 - 本题二分搜索中判断返回的条件为 当前版本为True且（当前索引为0 或 左边的版本为False）
 - `m *` 的作用是避免 `m - 1` 为负数，如果 m 为 0，则代表左边没有版本，只需判断当前版本是否为 True
 - True > False 或 0
+#### [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/comments/)
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        l, h = 0, len(nums) - 1
+        while l <= h:
+            m = (l + h) // 2
+            if (not m or nums[m-1] < nums[m]) and (m == len(nums) - 1 or nums[m] > nums[m+1]):
+                return m
+            elif not m or nums[m] > nums[m-1]:
+                l = m + 1
+            else:
+                h = m - 1
+```
+- 标准的三岔二分搜索
+- python 二分套路解法：
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        self.__class__.__getitem__ = lambda self, m: m and nums[m-1] > nums[m]
+        return bisect.bisect_left(self, True, 0, len(nums)) - 1
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
