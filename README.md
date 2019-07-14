@@ -3835,6 +3835,27 @@ class Solution:
         self.__class__.__getitem__ = lambda self, m: m and nums[m-1] > nums[m]
         return bisect.bisect_left(self, True, 0, len(nums)) - 1
 ```
+#### [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/submissions/)
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, h = 0, len(nums) - 1
+        while l < h:
+            m = (l + h) // 2
+            if nums[m] < nums[-1]:
+                h = m
+            else:
+                l = m + 1
+        return nums[l]
+```
+-标准二岔二分搜索
+- python 二分套路公式：
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        self.__class__.__getitem__ = lambda self, m: nums[m] <= nums[-1] and m and nums[m] >  nums[m-1]
+        return nums[bisect.bisect_left(self, True, 0, len(nums)) - 1]
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
