@@ -3687,13 +3687,18 @@ class RandomizedSet:
 - 取随机数时：随机从数组里面挑一个O(1)
 ### [🌠 二分查找](https://leetcode-cn.com/explore/learn/card/linked-list/)
 - :black_joker:【知识卡片】二分查找利用已排好序的数组，每一次查找都可以将查找范围减半。查找范围内只剩一个数据时查找结束。数据量为 n 的数组，将其长度减半 log2n 次后，其中便只剩一个数据了。也就是说，在二分查找中重复执行“将目标数据和数组中间的数据进行比较后将查找范围减半”的操作 log2n 次后，就能找到目标数据（若没找到则可以得出数据不存在的结论），因此它的时间复杂度为 O(logn)
-- :tophat:【套路】
+- :tophat:【套路A】
 	```python
-	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件
+	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件（不包括target）
 	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums)) - 1
 	```
 	- python 中 bisect 模块针对的是 list, 如果直接构造 list，时间复杂度为 O(N)，因此我们修改当前类的魔法方法伪造 list
 	- bisect.left(用于比较的数组，搜索的值，起始范围(包括)，终止范围(不包括))：返回应该插入的位置
+- :tophat:【套路B】
+	```python
+	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件（包括target）
+	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums))
+	```
 
 ☄ **背景**
 #### [704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
@@ -3828,7 +3833,7 @@ class Solution:
                 h = m - 1
 ```
 - 标准的三岔二分搜索
-- python 二分套路解法：
+- python 二分公式套路A：
 ```python
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
@@ -3849,12 +3854,12 @@ class Solution:
         return nums[l]
 ```
 -标准二岔二分搜索
-- python 二分套路公式：
+- python 二分公式套路B：
 ```python
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        self.__class__.__getitem__ = lambda self, m: nums[m] <= nums[-1] and m and nums[m] >  nums[m-1]
-        return nums[bisect.bisect_left(self, True, 0, len(nums)) - 1]
+        self.__class__.__getitem__ = lambda self, m: nums[m] <= nums[-1]
+        return nums[bisect.bisect_left(self, True, 0, len(nums))]
 ```
 
 # 常用技巧总结
