@@ -3699,6 +3699,19 @@ class RandomizedSet:
 	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件（包括target）
 	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums))
 	```
+- :tophat:【非内置公式】
+	```python
+	class Solution:
+	    def 二分查找二岔模板(self, nums: List[int], target: int) -> List[int]:
+		l, h = 0, len(nums) - 1
+		while l < h:
+		    m = (l + h) // 2
+		    if 满足目标或向左搜索的条件:
+			h = m
+		    else:
+			l = m + 1
+		return l
+	```
 
 ☄ **背景**
 #### [704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
@@ -3860,6 +3873,37 @@ class Solution:
     def findMin(self, nums: List[int]) -> int:
         self.__class__.__getitem__ = lambda self, m: nums[m] <= nums[-1]
         return nums[bisect.bisect_left(self, True, 0, len(nums))]
+```
+
+☄ **模板 III**
+#### [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+```python
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        r = [-1, -1]
+        
+        l, h = 0, len(nums) - 1
+        while l < h:
+            m = (l + h) // 2
+            if target <= nums[m]:
+                h = m
+            else:
+                l = m + 1
+        if nums and nums[l] == target:
+            r[0] = l
+        
+        
+        l, h = 0, len(nums) - 1
+        while l < h:
+            m = (l + h) // 2
+            if target < nums[m] or (target == nums[m] and (m == len(nums) - 1 or nums[m] < nums[m+1])):
+                h = m
+            else:
+                l = m + 1
+        if nums and nums[l] == target:
+            r[1] = l
+        
+        return r
 ```
 
 # 常用技巧总结
