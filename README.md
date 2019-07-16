@@ -381,6 +381,12 @@ class Solution:
 		i = (bisect.bisect_left(nums[k:] + nums[:k], target) + k) % max(len(nums), 1)
 		return i if nums and nums[i] == target else -1
 	```
+## [35. Search Insert Position 1行](https://leetcode.com/problemset/all/?search=35)
+```python
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        return bisect.bisect_left(nums, target, 0, len(nums))
+```
 ## [36. Valid Sudoku 4行](https://leetcode.com/problems/valid-sudoku/)
 ```python
 class Solution:
