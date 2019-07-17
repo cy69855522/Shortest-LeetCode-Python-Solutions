@@ -1887,6 +1887,26 @@ class Solution:
         return [l[0] for l in d.values() if len(l) > 1]
 ```
 - 使用字典 d 记录｛子树结构：[root1，root2，……]｝
+## [658. Find K Closest Elements 2行](https://leetcode.com/problems/find-k-closest-elements/)
+```python
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        return sorted(heapq.nsmallest(k, arr, key=lambda n:(abs(n - x), n)))
+```
+- nsmallest 函数可以输出最小的N个数字，可参考[这里](https://www.baidu.com/link?url=6R6W8O3Ro6GQpHhQiuPUf5xvcYGSc9_8mB5lClF9-zM7kNYA1vszVmT63if0YPWPIT14W1_a_GnCPyunEW2q_yJmIYdjCqNiIlW-cp51tty&wd=&eqid=d729203a0001d4d8000000065d2ead3f)
+```python
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        l, h = 0, len(arr) - 1
+        while l < h:
+            m = (l + h) // 2
+            if arr[m] >= x:
+                h = m
+            else:
+                l = m + 1
+        return sorted(sorted(arr[max(0, l-k) : l+k], key=lambda y: abs(y - x))[:k])
+```
+- 二分查找法
 ## [724. Find Pivot Index 4行](https://leetcode.com/problems/find-pivot-index/)
 ```python
 class Solution:
@@ -3911,6 +3931,20 @@ class Solution:
         
         return r
 ```
+#### [658. 找到 K 个最接近的元素](https://leetcode-cn.com/problems/find-k-closest-elements/comments/)
+```python
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        l, h = 0, len(arr) - 1
+        while l < h:
+            m = (l + h) // 2
+            if arr[m] >= x:
+                h = m
+            else:
+                l = m + 1
+        return sorted(sorted(arr[max(0, l-k) : l+k], key=lambda y: abs(y - x))[:k])
+```
+- 二分查找 + 邻域排序
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
