@@ -1476,6 +1476,21 @@ class Solution:
 		return False
 	```
 	- 从矩阵右上角开始，若值比 target 大则证明这一列的值都比 target 大，继续搜索前面的列；若比 target 小说明 target 可能在后面的行中，进入下一行
+## [258. Add Digits 1行](https://leetcode.com/problems/add-digits/)
+```python
+class Solution:
+    def addDigits(self, num: int) -> int:
+        return num % 9 or 9 * bool(num)
+```
+- O(1) 数学推理：
+```python
+class Solution:
+    def addDigits(self, num: int) -> int:
+        while num > 9:
+            num = eval('+'.join(n for n in str(num)))
+        return num
+```
+- 循环判断
 ## [268. Missing Number 1行](https://leetcode.com/problems/missing-number/)
 ```python
 class Solution:
