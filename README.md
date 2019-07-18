@@ -3945,6 +3945,28 @@ class Solution:
         return sorted(sorted(arr[max(0, l-k) : l+k], key=lambda y: abs(y - x))[:k])
 ```
 - 二分查找 + 邻域排序
+#### [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/comments/)
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        l, h = 0, len(nums) - 1
+        while l <= h:
+            m = (l + h) // 2
+            if (not m or nums[m-1] < nums[m]) and (m == len(nums) - 1 or nums[m] > nums[m+1]):
+                return m
+            elif not m or nums[m] > nums[m-1]:
+                l = m + 1
+            else:
+                h = m - 1
+```
+- 标准的三岔二分搜索
+- python 二分公式套路A：
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        self.__class__.__getitem__ = lambda self, m: m and nums[m-1] > nums[m]
+        return bisect.bisect_left(self, True, 0, len(nums)) - 1
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
