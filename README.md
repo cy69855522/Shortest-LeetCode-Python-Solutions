@@ -3992,6 +3992,8 @@ class Solution:
         self.__class__.__getitem__ = lambda self, m: m and nums[m-1] > nums[m]
         return bisect.bisect_left(self, True, 0, len(nums)) - 1
 ```
+
+☄ **小结**
 #### [50. Pow(x, n)](https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode/)
 ```python
 class Solution:
