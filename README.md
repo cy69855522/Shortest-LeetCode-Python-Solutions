@@ -458,6 +458,16 @@ class Solution:
         return [[*x] for _, x in itertools.groupby(sorted(strs, key=sorted), sorted)]
 ```
 - 使用 groupby 函数依据 sorted 结果分组
+## [50. Pow(x, n) 2行](https://leetcode.com/problems/powx-n/)
+```python
+class Solution:
+    def myPow(self, x, n, r=1) -> float:
+        x, n = n < 0 and 1 / x or x, abs(n)
+        return self.myPow(x * x, n // 2, r * (not n % 2 or x)) if n else r
+```
+- 尾递归 O(logN) 解法
+- x^4 正常计算过程：x * x * x * x，O(N)
+- 优化后：(x**2)**2，O(logN)
 ## [53. Maximum Subarray 2行](https://leetcode.com/problems/maximum-subarray/)
 ```python
 class Solution:
@@ -3982,6 +3992,17 @@ class Solution:
         self.__class__.__getitem__ = lambda self, m: m and nums[m-1] > nums[m]
         return bisect.bisect_left(self, True, 0, len(nums)) - 1
 ```
+#### [50. Pow(x, n)](https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode/)
+```python
+class Solution:
+    def myPow(self, x, n, r=1) -> float:
+        x, n = n < 0 and 1 / x or x, abs(n)
+        return self.myPow(x * x, n // 2, r * (not n % 2 or x)) if n else r
+```
+- 尾递归 O(logN) 解法
+- x^4 正常计算过程：x * x * x * x，O(N)
+- 优化后：(x**2)**2，O(logN)
+
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
