@@ -3738,6 +3738,9 @@ class RandomizedSet:
 - 取随机数时：随机从数组里面挑一个O(1)
 ### [🌠 二分查找](https://leetcode-cn.com/explore/learn/card/linked-list/)
 - :black_joker:【知识卡片】二分查找利用已排好序的数组，每一次查找都可以将查找范围减半。查找范围内只剩一个数据时查找结束。数据量为 n 的数组，将其长度减半 log2n 次后，其中便只剩一个数据了。也就是说，在二分查找中重复执行“将目标数据和数组中间的数据进行比较后将查找范围减半”的操作 log2n 次后，就能找到目标数据（若没找到则可以得出数据不存在的结论），因此它的时间复杂度为 O(logn)
+	- 什么时候应该使用二分搜索？
+	- 1. 在一个已知的范围内寻找答案
+	- 2. 该范围集合有序
 - :tophat:【套路A】
 	```python
 	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件（不包括target）
@@ -4004,7 +4007,20 @@ class Solution:
 - 尾递归 O(logN) 解法
 - x^4 正常计算过程：x * x * x * x，O(N)
 - 优化后：(x**2)**2，O(logN)
-
+#### [367. 有效的完全平方数](https://leetcode-cn.com/problems/valid-perfect-square/)
+```python
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        l, h = 0, num
+        while l < h:
+            m = (l + h) // 2
+            if m * m >= num:
+                h = m
+            else:
+                l = m + 1
+        return l * l == num
+```
+- 一个数字的算术平方根一定小于等于它自身，因此答案被限制在`[0, num]`的范围内，且待选答案呈升序排列，故可用二分查找
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
