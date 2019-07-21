@@ -1966,6 +1966,14 @@ class Solution(object):
         return r
 ```
 - 入栈条件：当前元素比栈顶元素小，出栈条件：遇到比自己大的温度，出栈时索引距离即天数差
+## [744. Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/)
+```python
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        l = [x > target for x in letters]
+        return letters[l.index(max(l))]
+```
+- 返回列表中大于 target 的第一个字符或第一个字符（如果没有比 target 大的字符）
 ## [747. Largest Number At Least Twice of Others 2行](https://leetcode.com/problems/largest-number-at-least-twice-of-others/)
 ```python
 class Solution:
@@ -3751,7 +3759,7 @@ class RandomizedSet:
 - :tophat:【套路B】
 	```python
 	self.__class__.__getitem__ = lambda self, x: 向左搜索的条件（包括target）
-	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums))
+	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums) - 1)
 	```
 - :tophat:【非内置公式】
 	```python
@@ -4021,6 +4029,29 @@ class Solution:
         return l * l == num
 ```
 - 一个数字的算术平方根一定小于等于它自身，因此答案被限制在`[0, num]`的范围内，且待选答案呈升序排列，故可用二分查找
+#### [744. 寻找比目标字母大的最小字母](https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/solution/744-xun-zhao-bi-mu-biao-zi-mu-da-de-zui-xiao-zi-mu/)
+```python
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        l, h = 0, len(letters) - 1
+        while l < h:
+            m = (l + h) // 2
+            if letters[m] > target:
+                h = m
+            else:
+                l = m + 1
+        return letters[l] if letters[l] > target else letters[0]
+```
+- 二分查找 O(logN)
+- 所谓的循环只有在数组中所有字符比目标小的时候起作用，只需要在最后增加一个判断就行了
+```python
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        self.__class__.__getitem__ = lambda self, m: target < letters[m]
+        i = bisect.bisect_left(self, True, 0, len(letters) - 1)
+        return letters[i] if letters[i] > target else letters[0]
+```
+- 套路B
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
