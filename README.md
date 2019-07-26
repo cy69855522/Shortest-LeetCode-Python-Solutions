@@ -205,6 +205,21 @@ class Solution:
         return [''.join(c) for c in product(*[l[int(i)] for i in digits])] if digits else []
 ```
 - 本题相当于求解笛卡尔积
+## [18. 4Sum 5行](https://leetcode.com/problems/4sum/)
+```python
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        from itertools import combinations as com
+        dic, l = collections.defaultdict(list), [*com(range(len(nums)), 2)]
+        for a, b in l: dic[target - nums[a] - nums[b]].append((a, b))
+        r = [(*ab, c, d) for c, d in l for ab in dic[nums[c] + nums[d]]]
+        return [*set(tuple(sorted(nums[i] for i in t)) for t in r if len(set(t)) == 4)]
+```
+- 思想类似于 2SUM，先得到任意两个数字的和记入字典，然后再获得其余任意俩个数字，看看是否匹配。2个 2SUM 相当于 4SUM。时间复杂度为 O(N^2)
+- 1.用 combination 获得 nums 中任意两个不同索引的组合
+- 2.用字典记录任意两个数字的和，dic =｛除了这两个数字之外还差多少：这俩个数字在 nums 中的索引｝
+- 3.用 r 记录所有满足条件的索引序列，注意此时可能含有重复的索引
+- 4.利用 len + set 保证 a，b，c，d 各不相等，用 set 删除重复的结果
 ## [19. Remove Nth Node From End of List 5行](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
 ```python
 # Definition for singly-linked list.
