@@ -4129,6 +4129,18 @@ class Solution:
 ```
 - 进阶解法 ↑
 - 使用双指针将两个列表中共同的元素抠下来，因为已经排序，所以遇到不同元素时数值小的那个列表的指针向前移动
+#### [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/submissions/)
+```python
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        i, j = 0, len(numbers) - 1
+        while numbers[i] + numbers[j] != target:
+            if numbers[i] + numbers[j] > target:
+                j -= 1
+            else:
+                i += 1
+        return [i+1, j+1]
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
