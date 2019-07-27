@@ -4166,6 +4166,8 @@ class Solution:
                 i += 1
         return [i+1, j+1]
 ```
+
+☄ **更多练习 II**
 #### [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
 ```python
 class Solution:
