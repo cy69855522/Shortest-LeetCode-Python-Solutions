@@ -3790,7 +3790,7 @@ class RandomizedSet:
 - :tophat:【非内置公式】
 	```python
 	class Solution:
-	    def 二分查找二岔模板(self, nums: List[int], target: int) -> List[int]:
+	    def 二分查找二岔模板(self, nums: List[int], target: int):
 		l, h = 0, len(nums) - 1
 		while l < h:
 		    m = (l + h) // 2
