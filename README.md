@@ -3959,7 +3959,7 @@ class Solution:
                 l = m + 1
         return nums[l]
 ```
--标准二岔二分搜索
+- 标准二岔二分搜索
 - python 二分公式套路B：
 ```python
 class Solution:
