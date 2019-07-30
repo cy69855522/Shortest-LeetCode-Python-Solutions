@@ -4256,10 +4256,39 @@ class Solution:
                 l = m + 1
         return l
 ```
-- 二分搜索，总时间复杂度为O(NlogN)
+- 二分搜索，总时间复杂度为 O(Nlog(max(nums) - min(nums)))
 - m 搜索范围为`[0, max(nums) - min(nums)]`
 - 只要满足所有数对中距离小于等于 m 的对数大于等于 k 即可向左搜索
 - 判断以上条件时使用双指针滑窗，时间复杂度为 O(N)
+#### [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)
+```python
+class Solution:
+    def splitArray(self, nums: List[int], m: int) -> int:
+        l, h = 0, sum(nums)
+        while l < h:
+            mid = (l + h) >> 1
+            
+            # 贪心试错
+            c = 1; r = s = 0
+            for i, n in enumerate(nums):
+                if s + n > mid:
+                    c += 1
+                    r = max(r, s)
+                    s = n
+                else:
+                    s += n
+            r = max(r, s)
+            
+            if c <= m and r <= mid:
+                h = mid
+            else:
+                l = mid + 1
+        return l
+```
+- 本题是二分搜索试错法的又一经典案例，总时间复杂度为 O(Nlog(sum(nums)))
+- 我们寻求的答案（最小的子数组各自和最大值）mid 被限制于一个有序的区间 [0, sum(nums)] 之内
+- 向左搜索（包括 target）的条件为：nums 可以被划分为不超过 m 个和不超过 mid 的子数组
+- 判断条件成立使用了贪心算法：计数 c：nums 可以被划分为至少多少个和不超过 mid 的子数组（注意如果单个数字已经超过 mid 将被单独划分，所以最后需要判断最大子数组和 r 是否满足条件）
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
