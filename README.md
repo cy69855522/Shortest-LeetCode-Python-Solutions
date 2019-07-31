@@ -17,6 +17,7 @@
 	- [🦌 链表](#-%E9%93%BE%E8%A1%A8)（5 章节 26 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/) :calendar: 2019/06/25
 	- [🦎 哈希表](#-%E5%93%88%E5%B8%8C%E8%A1%A8)（5 章节 35 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/) :calendar: 2019/07/07
 	- [🐿 二分查找](#-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE)（8 章节 30 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/binary-search/) :calendar: 2019/07/30
+	- [🦜 二叉树]()（3 章节 16 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 
 ## 推荐
 - 与本项目有关联的，🛫 是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，并根据官方推荐的路线总结一套专题探索，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
 - 🌟 推荐刷题路线：[**专题探索**](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
@@ -4289,6 +4290,42 @@ class Solution:
 - 我们寻求的答案（最小的子数组各自和最大值）mid 被限制于一个有序的区间 [0, sum(nums)] 之内
 - 向左搜索（包括 target）的条件为：nums 可以被划分为不超过 m 个和不超过 mid 的子数组
 - 判断条件成立使用了贪心算法：计数 c：nums 可以被划分为至少多少个和不超过 mid 的子数组（注意如果单个数字已经超过 mid 将被单独划分，所以最后需要判断最大子数组和 r 是否满足条件）
+### [🌠 二叉树](https://leetcode-cn.com/explore/learn/card/queue-stack/)
+
+☄ **树的遍历**
+#### [144. 二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        return root and sum(([root.val], *map(self.preorderTraversal, [root.left, root.right])), []) or []
+```
+- 递归遍历
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        r, stack = [], root and [root] or []
+        while stack:
+            root = stack.pop()
+            r.append(root.val)
+            stack += root.right and [root.right] or []
+            stack += root.left and [root.left] or []
+        return r
+```
+- DFS 就是前序遍历
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
