@@ -4326,6 +4326,35 @@ class Solution:
         return r
 ```
 - DFS 就是前序遍历
+#### [94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        r = []
+        
+        # 初始化栈
+        stack = []
+        
+        # 进入堆栈循环
+        while stack or root:
+            if root: # 入栈条件
+                stack.append(root)
+                root = root.left
+            else: # 出栈条件
+                root = stack.pop()
+                r.append(root.val)
+                root = root.right
+        
+        return r
+```
+- 本题需使用栈来解决，关键点在于入栈条件和出栈条件的确定
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
