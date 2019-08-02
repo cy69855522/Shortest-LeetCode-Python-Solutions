@@ -1634,6 +1634,13 @@ class Solution:
         return bool(n % 4)
 ```
 - 只要轮到你的时候剩余石头数量不是 4 的倍数都是完胜，因为你有办法使得每次轮到对方的时候剩余石头数量都为 4 的倍数
+## [326. Power of Three 1行](https://leetcode.com/problems/power-of-three/)
+```python
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        return n > 0 and 3 ** round(math.log(n, 3)) == n
+```
+- math.log 函数得到的数据可能不够精确，可以使用 round 取整
 ## [328. Odd Even Linked List 6行](https://leetcode.com/problems/odd-even-linked-list/)
 ```python
 # Definition for singly-linked list.
