@@ -4362,6 +4362,24 @@ class Solution:
         return r
 ```
 - 本题需使用栈来解决，关键点在于入栈条件和出栈条件的确定
+#### [145. 二叉树的后序遍历](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        return root and sum((*map(self.postorderTraversal, [root.left, root.right]), [root.val]), []) or []
+```
+- 递归
+```python
+
+```
+- 迭代
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
