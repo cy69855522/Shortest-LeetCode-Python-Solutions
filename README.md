@@ -1661,7 +1661,6 @@ class Solution:
 - odd 记录上一个奇数位节点，p 记录前一个节点
 - 从第3个位置开始循环，每次都把当前节点接到 odd 后面，然后跳到下一个奇数位节点继续循环
 ## [344. Reverse String 1行](https://leetcode.com/problems/reverse-string/)
-
 ```python
 class Solution:
     def reverseString(self, s: List[str]) -> None:
@@ -1670,6 +1669,14 @@ class Solution:
         """
         s.reverse()
 ```
+## [345. Reverse Vowels of a String 2行](https://leetcode.com/problems/reverse-vowels-of-a-string/)
+```python
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        vowels = re.findall('(?i)[aeiou]', s)
+        return re.sub('(?i)[aeiou]', lambda m: vowels.pop(), s)
+```
+- 遍历俩次，第一次找出元音字母放进 stack，第二次每遇到一个就把之前的栈顶替换进来
 ## [347. Top K Frequent Elements 1行](https://leetcode.com/problems/top-k-frequent-elements/)
 ```python
 class Solution:
