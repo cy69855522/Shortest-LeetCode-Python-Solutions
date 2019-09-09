@@ -4411,6 +4411,35 @@ class Solution:
 ```
 - 迭代
 - DFS的输出顺序为 `根-右-左`，我们的目标（后序遍历）为 `左-右-根`，因此只需对调整后的 DFS 逆序输出即为后序遍历
+#### [102. 二叉树的层次遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        q = root and collections.deque([(root, 0)])
+        r = []
+        
+        while q:
+            node, layer = q.popleft()
+            
+            if len(r) < layer + 1:
+                r.append([])
+            r[layer].append(node.val)
+            
+            if node.left:
+                q.append((node.left, layer + 1))
+            if node.right:
+                q.append((node.right, layer + 1))
+            
+        return r
+```
+- 使用 BFS 遍历二叉树，队列同时记录节点与层次
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
