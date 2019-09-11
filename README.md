@@ -4440,6 +4440,26 @@ class Solution:
         return r
 ```
 - 使用 BFS 遍历二叉树，队列同时记录节点与层次
+#### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        
+        f = self.maxDepth
+        l = f(root.left)
+        r = f(root.right)
+        
+        return max(l, r) + 1
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
