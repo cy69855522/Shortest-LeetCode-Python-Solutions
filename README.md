@@ -765,7 +765,7 @@ class Solution:
 class Solution:
     def hasPathSum(self, root: TreeNode, sum: int) -> bool:
         if not root: return False
-        l, r, f = root.left, root.right, lambda x: x and self.hasPathSum(x, sum - root.val)
+        l, r, f = root.left, root.right, lambda x: self.hasPathSum(x, sum - root.val)
         return l is r and sum == root.val or f(l) or f(r)
 ```
 - 考虑初始状态：当树不存在时直接返回 False
