@@ -716,7 +716,7 @@ class Solution:
         return r
 ```
 - 迭代
-#### [101. Symmetric Tree 5行](https://leetcode.com/problems/symmetric-tree/)
+## [101. Symmetric Tree 5行](https://leetcode.com/problems/symmetric-tree/)
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
@@ -753,6 +753,25 @@ class Solution:
         return max(map(self.maxDepth,(root.left, root.right))) + 1 if root else 0
 ```
 - 利用map函数递归左右节点获取最大值，map函数会将参数一所指向的函数应用于参数二里的所有对象并返回所有结果构成的迭代器
+## [112. Path Sum 3行](https://leetcode.com/problems/path-sum/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if not root: return False
+        l, r, f = root.left, root.right, lambda x: x and self.hasPathSum(x, sum - root.val)
+        return l is r and sum == root.val or f(l) or f(r)
+```
+- 考虑初始状态：当树不存在时直接返回 False
+- 考虑支路1：当前节点为叶节点时直接判断总和是否达到要求
+- 考虑支路2：当前节点为非叶节点时将总和缩小并继续递归，判断左右节点是否存在满足条件的
+- 当递归函数到达叶节点时，sum 已经被削减了多次，此时 `sum - node.val` 即为 `原始的sum - 整条路径的总和`
 ## [118. Pascal's Triangle 1行](https://leetcode.com/problems/pascals-triangle/)
 ```python
 class Solution:
@@ -4463,6 +4482,16 @@ class Solution:
         return r
 ```
 - 使用 BFS 遍历二叉树，队列同时记录节点与层次
+
+☄ **运用递归解决树的问题**
+- 💡【一般思路】什么时候应该使用递归？
+	- 1. 递归可以看作是四维空间中的逻辑，也就是相比普通的一个函数多了一个时间维度，当下一次的结果需要以上一次的结果作为输入时使用递归函数
+	- 2. 简单来说，对于一个输入，一般的函数执行一次即可得到答案并返回，递归函数重复执行多次后返回
+- 💡【一般思路】如何使用递归？
+	- 1. 考虑初始状态
+	- 2. 考虑两条支路：
+		- 返回的结果还需要再次递归的结果：考虑如何连接不同时间上的俩个结果
+		- 返回的结果不需要再次递归的结果：通过其他条件判断后直接返回
 #### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 ```python
 # Definition for a binary tree node.
@@ -4513,6 +4542,31 @@ class Solution:
 	- 左节点的右子树与右节点左子树对称
 - 前6行处理特殊情况：root为None或root无子节点直接返回True，root只有一个子节点或root两个子节点不相等直接返回False
 - 第一个条件在前6行处理过了，对于第二和第三个条件，我们分别构造两个假树i(inner)和o(outer)，i代表内假树，对应条件二，o代表外假树，对应条件三。递归内外假树即可
+#### [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if root:
+            if root.left is root.right:
+                return sum == root.val
+            else:
+                l = root.left and self.hasPathSum(root.left, sum - root.val)
+                r = root.right and self.hasPathSum(root.right, sum - root.val)
+                return l or r
+        else:
+            return False
+```
+- 考虑初始状态：当树不存在时直接返回 False
+- 考虑支路1：当前节点为叶节点时直接判断总和是否达到要求
+- 考虑支路2：当前节点为非叶节点时将总和缩小并继续递归，判断左右节点是否存在满足条件的
+- 当递归函数到达叶节点时，sum 已经被削减了多次，此时 `sum - node.val` 即为 `原始的sum - 整条路径的总和`
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
