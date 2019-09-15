@@ -4569,6 +4569,35 @@ class Solution:
 - 考虑支路2：当前节点为非叶节点时将总和缩小并继续递归，判断左右节点是否存在满足条件的
 - 当递归函数到达叶节点时，sum 已经被削减了多次，此时 `sum - node.val` 即为 `原始的sum - 整条路径的总和`
 
+☄ **总结**
+#### [106. 从中序与后序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/comments/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        if not postorder:
+            return None
+        
+        root = TreeNode(postorder[-1])
+        n = inorder.index(root.val)
+        
+        root.left = self.buildTree(inorder[:n],postorder[:n])
+        root.right = self.buildTree(inorder[n+1:],postorder[n:-1])
+        
+        return root
+```
+- 后序遍历顺序为 `左, 右, 根`，因此后序遍历的末尾一定为根节点
+- 中序列表为 `[左子树中序序列, 根节点, 右子树中序序列]`
+- 后序列表为 `[左子树后序序列, 右子树后序序列, 根节点]`
+- 由于树中没有重复元素，我们可以通过 `index` 函数确定根节点在中序列表的位置，进而确定左右子树各自包含的节点总数，将中序与后序列表划分开
+- 每次递归生成根节点并继续递归左右子节点即可
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
