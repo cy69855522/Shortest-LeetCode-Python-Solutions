@@ -4357,6 +4357,7 @@ class Solution:
 ### [🌠 二叉树](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 
 ☄ **树的遍历**
+![](tree.png)
 #### [144. 二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
 ```python
 # Definition for a binary tree node.
