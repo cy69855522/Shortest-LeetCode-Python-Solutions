@@ -4597,6 +4597,33 @@ class Solution:
 - 后序列表为 `[左子树后序序列, 右子树后序序列, 根节点]`
 - 由于树中没有重复元素，我们可以通过 `index` 函数确定根节点在中序列表的位置，进而确定左右子树各自包含的节点总数，将中序与后序列表划分开
 - 每次递归生成根节点并继续递归左右子节点即可
+#### [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not inorder:
+            return None
+        
+        root = TreeNode(preorder[0])
+        n = inorder.index(root.val)
+        
+        root.left = self.buildTree(preorder[1:n+1], inorder[:n])
+        root.right = self.buildTree(preorder[n+1:], inorder[n+1:])
+        
+        return root
+```
+- 前序遍历顺序为 `根, 左, 右`，因此前序遍历的开端一定为根节点
+- 中序列表为 `[左子树中序序列, 根节点, 右子树中序序列]`
+- 前序列表为 `[根节点, 左子树后序序列, 右子树后序序列]`
+- 由于树中没有重复元素，我们可以通过 `index` 函数确定根节点在中序列表的位置，进而确定左右子树各自包含的节点总数，将中序与前序列表划分开
+- 每次递归生成根节点并继续递归左右子节点即可
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
