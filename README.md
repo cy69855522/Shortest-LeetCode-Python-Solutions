@@ -19,7 +19,8 @@
 	- [🐄 二分查找](#-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE)（8 章节 30 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/binary-search/) :calendar: 2019/07/30
 	- [🦉 二叉树](#-%E4%BA%8C%E5%8F%89%E6%A0%91)（3 章节 16 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 
 ## 推荐
-- 与本项目有关联的，🛫 是一个[ C++最清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)👻。Python篇注重熟悉语言特性，充分利用高级语言提供的已内置的功能避免冗余编码，最低成本地解决问题。C++篇注重通用思想，分专题逐个击破，深入探究算法流程。俩者同时服用效果更佳，只想学一门也不必担心，俩个项目相辅相成，Python篇会在题解之后添加常规解法作为补充，并根据官方推荐的路线总结一套专题探索，C++篇会利用python题解的思想优化代码，保证代码简洁，可读性高。
+- 🐱‍👤[Leetcode最简C++题解](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
+- 👻[ C++清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)
 - 🌟 推荐刷题路线：[**专题探索**](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
 # 题库解析
 此专栏追求代码的**精简**和**技巧性**，默认已看过题目，🤡 没看过的话点标题可以跳转链接，咱们一起体验炫酷的 Python
