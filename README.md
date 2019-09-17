@@ -4493,6 +4493,9 @@ class Solution:
 	- 2. 考虑两条支路：
 		- 返回的结果还需要再次递归的结果：考虑如何连接不同时间上的俩个结果
 		- 返回的结果不需要再次递归的结果：通过其他条件判断后直接返回
+- :tophat:【套路】树形递归
+	- 树形递归类题目一般将目光集中在某个节点上，考虑节点、左子节点、右子节点之间的关系，一般递归子节点
+	- 通常选择一个3层完美二叉树的第2层左子节点作为参考目标，然后设计递归思路
 #### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 ```python
 # Definition for a binary tree node.
@@ -4624,6 +4627,34 @@ class Solution:
 - 前序列表为 `[根节点, 左子树后序序列, 右子树后序序列]`
 - 由于树中没有重复元素，我们可以通过 `index` 函数确定根节点在中序列表的位置，进而确定左右子树各自包含的节点总数，将中序与前序列表划分开
 - 每次递归生成根节点并继续递归左右子节点即可
+#### [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if root and root.left:
+            root.left.next = root.right
+            
+            if root.next:
+                root.right.next = root.next.left
+            
+            self.connect(root.left)
+            self.connect(root.right)
+            
+        return root
+```
+- 对于任意一次递归，只需要考虑如何设置子节点的 next 属性：
+	- 将左子节点连接到右子节点
+	- 将右子节点连接到 `root.next` 的左子节点
+	- 递归左右节点
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
