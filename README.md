@@ -21,7 +21,6 @@
 ## 推荐
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
 - 🎃[ C++清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)
-- 
 - 🌟 推荐刷题路线：[**专题探索**](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
 # 题库解析
 此专栏追求代码的**精简**和**技巧性**，默认已看过题目，🤡 没看过的话点标题可以跳转链接，咱们一起体验炫酷的 Python
