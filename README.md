@@ -4656,6 +4656,39 @@ class Solution:
 	- 将左子节点连接到右子节点
 	- 将右子节点连接到 `root.next` 的左子节点
 	- 递归左右节点
+#### [117. 填充每个节点的下一个右侧节点指针 II](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if root and (root.left or root.right):
+            if root.left and root.right:
+                root.left.next = root.right
+            
+            node = root.right or root.left
+            head = root.next
+            while head and not (head.left or head.right):
+                head = head.next
+            node.next = head and (head.left or head.right)
+            
+            self.connect(root.right)
+            self.connect(root.left)
+            
+        return root
+```
+- 对于任意一次递归，只考虑如何设置子节点的 next 属性,分为三种情况：
+	- 没有子节点：直接返回
+	- 有一个子节点：将这个子节点的 `next` 属性设置为同层的下一个节点，即为 `root.next` 的最左边的一个节点，如果 `root.next` 没有子节点，则考虑 `root.next.next`，依次类推
+	- 有两个节点：左子节点指向右子节点，然后右子节点同第二种情况的做法
+- 注意递归的顺序需要从右到左
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
