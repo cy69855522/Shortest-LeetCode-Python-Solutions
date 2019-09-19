@@ -4689,6 +4689,22 @@ class Solution:
 	- 有一个子节点：将这个子节点的 `next` 属性设置为同层的下一个节点，即为 `root.next` 的最左边的一个节点，如果 `root.next` 没有子节点，则考虑 `root.next.next`，依次类推
 	- 有两个节点：左子节点指向右子节点，然后右子节点同第二种情况的做法
 - 注意递归的顺序需要从右到左
+#### [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        l = root.left and self.lowestCommonAncestor(root.left, p, q)
+        r = root.right and self.lowestCommonAncestor(root.right, p, q)
+        return root if root in (p, q) or l and r else l or r
+```
+- 递归全部节点，p 的祖先节点全部返回 p，q 的祖先节点全部返回 q，如果它同时是俩个节点的最近祖先，那么返回自身，否则返回 None
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
