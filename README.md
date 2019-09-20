@@ -4707,8 +4707,59 @@ class Solution:
 - 递归全部节点，p 的祖先节点全部返回 p，q 的祖先节点全部返回 q，如果它同时是俩个节点的最近祖先，那么返回自身，否则返回 None
 #### [297. 二叉树的序列化与反序列化](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)
 ```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        l = []
+        q = collections.deque([root])
+        while q:
+            root = q.popleft()
+            if root:
+                l.append(root.val)
+                q.extend([root.left, root.right])
+            else:
+                l.append(None)
+        return str(l)
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        l = eval(data)
+        head = TreeNode(l[0]) if l[0] is not None else None
+        q = collections.deque([head])
+        i = 1
+        while q:
+            root = q.popleft()
+            if root is not None:
+                root.left = TreeNode(l[i]) if l[i] is not None else None
+                root.right = TreeNode(l[i + 1]) if l[i + 1] is not None else None
+                i += 2
+                q.extend([root.left, root.right])
+        return head
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
 ```
-- 
+- BFS扫描，记录所有节点和他们的子节点（包括 子None）
+- 利用队列记录待还原节点，每次生成新节点后初始化其子节点并投入队列
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
