@@ -718,6 +718,22 @@ class Solution:
         return r
 ```
 - 迭代
+## [98. Validate Binary Search Tree 3行](https://leetcode.com/problems/validate-binary-search-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isValidBST(self, root: TreeNode, first=True) -> bool:
+        if not root: return first or []
+        l = self.isValidBST(root.left, 0) + [root.val] + self.isValidBST(root.right, 0)
+        return all([a > b for a, b in zip(l[1:], l)]) if first else l
+```
+- 搜索二叉树的中序遍历结果呈升序
 ## [101. Symmetric Tree 5行](https://leetcode.com/problems/symmetric-tree/)
 ```python
 # Definition for a binary tree node.
@@ -4764,6 +4780,27 @@ class Codec:
 ### [🌠 二叉搜索树](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/)
 
 ☄ **二叉搜索树简介**
+#### [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isValidBST(self, root: TreeNode, first=True) -> bool:
+        if not root:
+            return first or []
+        
+        f = self.isValidBST
+        l = f(root.left, 0) + [root.val] + f(root.right, 0)
+        
+        return all([a > b for a, b in zip(l[1:], l)]) if first else l
+```
+- 搜索二叉树的中序遍历结果呈升序
+- 若当前递归节点为根（`first` 为 `True`）则判断遍历结果是否呈升序，否则返回中序遍历列表用于拼接
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
