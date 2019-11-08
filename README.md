@@ -1166,6 +1166,69 @@ class Solution:
     def titleToNumber(self, s: str) -> int:
         return sum((ord(c) - 64) * 26**i for i, c in enumerate(s[::-1]))
 ```
+## [173. Binary Search Tree Iterator 6行](https://leetcode.com/problems/binary-search-tree-iterator/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.s = []
+        while root: self.s[len(self.s):], root = [root], root.left
+
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        r, root = self.s[-1], self.s.pop().right
+        while root: self.s[len(self.s):], root = [root], root.left
+        return r.val
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return bool(self.s)
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
+```
+- 模拟中序遍历的迭代过程，使用堆栈 `self.s` 进行深度优先搜索
+- 空间复杂度为 O(树的高度)
+- 平均时间复杂度 = 循环总次数（N） / 迭代器长度（N） = O(1)
+- 迭代器解法：
+```python
+from itertools import chain
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        def gen(root): yield from chain(gen(root.left), [root.val], gen(root.right)) if root else ()
+        self.iter, self.len = gen(root), 0
+        for _ in gen(root): self.len += 1
+
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        self.len -= 1
+        return next(self.iter)
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return bool(self.len)
+```
+- 平均时空复杂度： O(1)，O(1)
 ## [189. Rotate Array 1行](https://leetcode.com/problems/rotate-array/)
 ```python
 class Solution:
@@ -2039,6 +2102,20 @@ class Solution:
         return sorted(sorted(arr[max(0, l-k) : l+k], key=lambda y: abs(y - x))[:k])
 ```
 - 二分查找法
+## [700. Search in a Binary Search Tree 1行](https://leetcode.com/problems/search-in-a-binary-search-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        return root and (root.val == val and root or self.searchBST((root.left, root.right)[root.val < val], val))
+```
+- 递归
 ## [724. Find Pivot Index 4行](https://leetcode.com/problems/find-pivot-index/)
 ```python
 class Solution:
@@ -4801,6 +4878,70 @@ class Solution:
 ```
 - 搜索二叉树的中序遍历结果呈升序
 - 若当前递归节点为根（`first` 为 `True`）则判断遍历结果是否呈升序，否则返回中序遍历列表用于拼接
+#### [173. 二叉搜索树迭代器](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.s = []
+        while root:
+            self.s.append(root)
+            root = root.left
+
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        r = self.s.pop()
+        root = r.right
+        while root:
+            self.s.append(root)
+            root = root.left
+        return r.val
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return bool(self.s)
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
+```
+- 模拟中序遍历的迭代过程，使用堆栈 `self.s` 进行深度优先搜索
+- 空间复杂度为 O(树的高度)
+- 平均时间复杂度 = 循环总次数（N） / 迭代器长度（N） = O(1)
+#### [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root or root.val == val:
+            return root
+        else:
+            root = root.right if root.val < val else root.left
+            return self.searchBST(root, val)
+```
+- 根据BST的特性，对于每个节点：
+	- 如果目标值等于节点的值，则返回节点;
+	- 如果目标值小于节点的值，则继续在左子树中搜索;
+	- 如果目标值大于节点的值，则继续在右子树中搜索。
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
