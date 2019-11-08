@@ -1239,6 +1239,16 @@ class Solution:
         for _ in range(k % len(nums)): nums[-1:], nums[:0] = [], nums[-1:]
 ```
 - 时间复杂度 = O(k % len(nums))，空间复杂度 = O(1)
+## [190. Reverse Bits 1行](https://leetcode.com/problems/reverse-bits/)
+```python
+class Solution:
+    # @param n, an integer
+    # @return an integer
+    def reverseBits(self, n):
+        return int(bin(n)[2:].zfill(32)[::-1], 2)
+```
+- 字符串操作
+- [ziff用法](https://www.runoob.com/python/att-string-zfill.html)
 ## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
 ```python
 class Solution(object):
