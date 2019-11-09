@@ -1236,9 +1236,19 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        for _ in range(k % len(nums)): nums[-1:], nums[:0] = [], nums[-1:]
+        nums[:] = nums[len(nums) - k:] + nums[:len(nums) - k]
 ```
-- 时间复杂度 = O(k % len(nums))，空间复杂度 = O(1)
+- 空间复杂度 = O(N)
+- 进阶：
+	```python
+	class Solution:
+	    def rotate(self, nums: List[int], k: int) -> None:
+		"""
+		Do not return anything, modify nums in-place instead.
+		"""
+		for _ in range(k % len(nums)): nums[-1:], nums[:0] = [], nums[-1:]
+	```
+	- 时间复杂度 = O(k % len(nums))，空间复杂度 = O(1)
 ## [190. Reverse Bits 1行](https://leetcode.com/problems/reverse-bits/)
 ```python
 class Solution:
@@ -5016,3 +5026,4 @@ class Solution:
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
 - [Knife丶](https://github.com/cy69855522)[QQ1272068154  微信ly18597591102]
 - [zdylzdyl](https://github.com/zdylzdyl)
+- [ajin](https://github.com/ajinwu)
