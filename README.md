@@ -4931,6 +4931,8 @@ class BSTIterator:
 - 模拟中序遍历的迭代过程，使用堆栈 `self.s` 进行深度优先搜索
 - 空间复杂度为 O(树的高度)
 - 平均时间复杂度 = 循环总次数（N） / 迭代器长度（N） = O(1)
+
+☄ **在二叉搜索树中实现搜索操作**
 #### [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
 ```python
 # Definition for a binary tree node.
@@ -4952,6 +4954,40 @@ class Solution:
 	- 如果目标值等于节点的值，则返回节点;
 	- 如果目标值小于节点的值，则继续在左子树中搜索;
 	- 如果目标值大于节点的值，则继续在右子树中搜索。
+#### [701. 二叉搜索树中的插入操作](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        root = copy.deepcopy(root)
+        stack = [root]
+        
+        while stack:
+            node = stack.pop()
+            
+            if node.val > val:
+                if node.left:
+                    stack.append(node.left)
+                else:
+                    node.left = TreeNode(val)
+            else:
+                if node.right:
+                    stack.append(node.right)
+                else:
+                    node.right = TreeNode(val)
+        
+        return root
+```
+- 此处遵循经典插入方法，种使整体操作变化最小
+- 寻找到合适的叶位置后插入新节点，这样的操作只需要在原树的某个叶节点处延伸一个节点
+- 这里可以直接深拷贝构造新树，然后修改
+
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
