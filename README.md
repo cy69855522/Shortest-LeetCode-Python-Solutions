@@ -4997,7 +4997,51 @@ class Solution:
 - 此处遵循经典插入方法，种使整体操作变化最小
 - 寻找到合适的叶位置后插入新节点，这样的操作只需要在原树的某个叶节点处延伸一个节点
 - 这里可以直接深拷贝构造新树，然后修改
+#### [450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
+class Solution:
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+        dummy = TreeNode(float('-inf'))
+        dummy.right = root
+        root = dummy
+        
+        while root:
+            child_str = 'root.left' if root.val > key else 'root.right'
+            child = eval(child_str)
+            if not child or child.val != key: # 继续搜索删除目标的父节点
+                root = child
+            else: # 已经找到删除目标的父节点 root 和目标 child
+                if child.left is child.right: # 情况1.目标没有子节点
+                    exec(f'{child_str} = None')
+                elif not (child.left and child.right): # 情况2.目标只有左子或右子
+                    exec(f'{child_str} = child.left or child.right')
+                else: # 情况3.目标有左子和右子
+                    parent = child
+                    root = parent.right
+                    
+                    while root and root.left: # 搜索中序后继节点
+                        parent, root = root, root.left
+                        
+                    child.val = root.val
+                    side = 'right' if parent is child else 'left'
+                    exec(f'parent.{side} = root.right')
+                    
+        return dummy.right
+```
+- 此类题目细节比较多，建议罗列所有情况后再写代码
+- 本段代码为迭代流，涉及复杂知识点 [eval, exec](https://www.cnblogs.com/yangmingxianshen/p/7810496.html), [中序后继节点](https://www.jianshu.com/p/651a68f1fea9)，主要思想同[探索介绍的](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/65/basic-operations-in-a-bst/179/)，尽量保持原树结构
+- 首先可以分为俩类情况，删除目标为 root 或不为 root，构建一个虚拟节点连接上原来的 root，即可把所有情况归为删除目标不为 root 类
+- 细分有3种情况：
+	- 目标没有子节点：直接删除
+	- 目标只有左子或右子：用目标唯一的子节点替换目标
+	- 目标有左子和右子：替换目标的值为中序后继节点的值并删除后继节点
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
