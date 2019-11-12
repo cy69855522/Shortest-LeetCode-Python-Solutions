@@ -5083,6 +5083,7 @@ class Solution:
 	- 目标只有左子或右子：用目标唯一的子节点替换目标
 	- 目标有左子和右子：替换目标的值为中序后继节点的值并删除后继节点
 
+☄ **小结**
 #### [703. 数据流中的第K大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
 ```python
 class KthLargest:
