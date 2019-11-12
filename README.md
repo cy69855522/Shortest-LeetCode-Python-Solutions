@@ -5103,6 +5103,27 @@ class KthLargest:
 - 题目中提到 len(nums) >= k-1，因此我们加入一个无穷小使得 len(nums) >= k，以便构造一个 k 尺寸的小根堆
 - 堆中的数据意味着从第 k 大的数字到最大的数字
 - 维护堆的时间复杂度为 O(Tlogk)
+#### [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        l = root.left and self.lowestCommonAncestor(root.left, p, q)
+        r = root.right and self.lowestCommonAncestor(root.right, p, q)
+        
+        if root in (p, q) or l and r:
+            return root
+        else:
+            return l or r
+```
+- 递归全部节点，p 的祖先节点返回 p，q 的祖先节点返回 q，否则返回 None
+- 如果同时是俩个节点的最近祖先，也就是 p，q 分别位于左右子树，或者本身是 p、q 中的一个，那么返回自身
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
