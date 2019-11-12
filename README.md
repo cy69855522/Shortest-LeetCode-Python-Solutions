@@ -2136,6 +2136,46 @@ class Solution:
         return root and (root.val == val and root or self.searchBST((root.left, root.right)[root.val < val], val))
 ```
 - 递归
+## [703. Kth Largest Element in a Stream 3行](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
+```python
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.k, self.n = k, sorted(nums)
+
+    def add(self, val: int) -> int:
+        self.n.insert(bisect.bisect_left(self.n, val, 0, len(self.n)), val)
+        return self.n[-self.k]
+
+
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
+```
+- 首先对数组排序
+- 每次插入新值时使用二分查找搜索插入位置，保持插入后数组的升序性质，那么就可以直接取第 k 大的值
+- 时间复杂度 O(TlogN), 其中 T 代表插入次数
+- 其实可以在每次插入之后丢弃小于第 k 大数据之后的所有数字，这样时间复杂度可以降为 O(Tlogk)
+- 进阶可使用堆：
+```python
+class KthLargest:
+    def __init__(self, k: int, nums):
+        self.k, self.nums = k, heapq.nlargest(k, nums + [float('-inf')])
+        heapq.heapify(self.nums)
+
+    def add(self, val: int) -> int:
+        heapq.heappushpop(self.nums,val)
+        return self.nums[0]
+
+
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
+```
+- 题目中提到 len(nums) >= k-1，因此我们加入一个无穷小使得 len(nums) >= k，以便构造一个 k 尺寸的小根堆
+- 堆中的数据意味着从第 k 大的数字到最大的数字
+- 维护堆的时间复杂度为 O(Tlogk)
+
 ## [724. Find Pivot Index 4行](https://leetcode.com/problems/find-pivot-index/)
 ```python
 class Solution:
@@ -5042,6 +5082,26 @@ class Solution:
 	- 目标没有子节点：直接删除
 	- 目标只有左子或右子：用目标唯一的子节点替换目标
 	- 目标有左子和右子：替换目标的值为中序后继节点的值并删除后继节点
+
+#### [703. 数据流中的第K大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
+```python
+class KthLargest:
+    def __init__(self, k: int, nums):
+        self.k, self.nums = k, heapq.nlargest(k, nums + [float('-inf')])
+        heapq.heapify(self.nums)
+
+    def add(self, val: int) -> int:
+        heapq.heappushpop(self.nums,val)
+        return self.nums[0]
+
+
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
+```
+- 题目中提到 len(nums) >= k-1，因此我们加入一个无穷小使得 len(nums) >= k，以便构造一个 k 尺寸的小根堆
+- 堆中的数据意味着从第 k 大的数字到最大的数字
+- 维护堆的时间复杂度为 O(Tlogk)
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
