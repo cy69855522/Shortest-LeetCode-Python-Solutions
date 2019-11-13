@@ -5124,6 +5124,27 @@ class Solution:
 ```
 - 递归全部节点，p 的祖先节点返回 p，q 的祖先节点返回 q，否则返回 None
 - 如果同时是俩个节点的最近祖先，也就是 p，q 分别位于左右子树，或者本身是 p、q 中的一个，那么返回自身
+#### [220. 存在重复元素 III](https://leetcode-cn.com/problems/contains-duplicate-iii/)
+```python
+class Solution:
+    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+        l = []
+        
+        for j, n in enumerate(nums):
+            if j > k: # 滑动窗口
+                del l[bisect.bisect_left(l, nums[j - k - 1], 0, len(l))]
+            
+            i = bisect.bisect_left(l, n, 0, len(l))
+            l.insert(i, n)
+            if i and abs(l[i] - l[i - 1]) <= t or i < len(l) - 1 and abs(l[i] - l[i + 1]) <= t:
+                return True
+        
+        return False
+```
+- k 实际上限制了滑动窗口的大小，对于每个数字，我们只需要检查其前面的 k-1 个数字中是否存在与当前数字距离不超过 t 的数字即可
+- 检查的方法是在升序的列表中检查当前数字所在索引的左右两侧是否波动不超过 t
+- 因为使用了窗口，所以维护排序只需在之前已经排好序的数组 l 的基础上保持升序得插入新数字即可，这里使用二分查找搜索插入位置
+- 时间复杂度为 O(Nlog(min(N, K))) 空间复杂度为 O(min(N, K))
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
