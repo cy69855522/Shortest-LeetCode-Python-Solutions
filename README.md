@@ -5146,6 +5146,33 @@ class Solution:
 - 因为使用了窗口，所以维护排序只需在之前已经排好序的数组 l 的基础上保持升序得插入新数字即可，这里使用二分查找搜索插入位置
 - 时间复杂度为 O(Nlog(min(N, K))) 空间复杂度为 O(min(N, K))
 
+☄ **附录：高度平衡的二叉搜索树**
+#### [110. 平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isBalanced(self, root: TreeNode, first=True) -> bool:
+        if not root:
+            return True if first else 0
+        
+        l = self.isBalanced(root.left, False)
+        r = self.isBalanced(root.right, False)
+
+        if l is False or r is False:
+            return False
+        
+        return abs(l - r) <= 1 and max(l, r) + 1
+```
+- DFS递归每个节点
+- 如果这个节点不平衡，那么这棵树肯定不平衡，它和它的所有父节点都返回 False
+- 如果节点平衡，则返回当前树的高度 + 1（如果是根节点，直接返回True）
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
