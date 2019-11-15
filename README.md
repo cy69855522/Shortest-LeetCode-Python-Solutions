@@ -19,7 +19,7 @@
 	- [🐄 二分查找](#-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE)（8 章节 30 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/binary-search/) :calendar: 2019/07/30
 	- [🦉 二叉树](#-%E4%BA%8C%E5%8F%89%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 2019/09/21
 	- [🐦 二叉搜索树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/) :calendar: 2019/11/15
-	- [🦚🐝🦗🦈🦕🐉🐪🐂🦏🐈🦢🐡🐟🦡🐩 N叉树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 
+	- [🐝 N叉树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 
 	
 ## 推荐
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
@@ -5215,6 +5215,10 @@ class Solution:
 - 由以上性质，一个可行的递归条件可以得出：
 	- 每次返回的根节点处于数组中间，以其左右半数组分别递归构造左右子树
 	- 那么就意味着左子小于根，右子大于根，且所有节点左右子树节点数相差不超过 1 （由于递归的构树方式相同，所有节点都满足高度平衡）
+
+### [🌠 N叉树](https://leetcode-cn.com/explore/learn/card/n-ary-tree/)
+
+☄ **遍历**
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
