@@ -2093,6 +2093,45 @@ class Solution:
         return len(diff) and max(diff) - min(diff) + 1
 ```
 - 获取所有当前数组与排序后数组具有不同数值的索引，最右边的索引 - 最左边的 + 1 就是结果
+## [589. N-ary Tree Preorder Traversal 1行](https://leetcode.com/problems/n-ary-tree-preorder-traversal/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        return root and sum([[root.val], *map(self.preorder, root.children)], []) or []
+```
+- 递归解法，利用 and or 控制递归叶节点和普通节点
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        s = bool(root) * [root]
+        r = []
+        
+        while s:
+            root = s.pop()
+            r.append(root.val)
+            s += root.children[::-1]
+        
+        return r
+```
+- 迭代解法
+- root 为 `[]` 时 bool 值为 `False` 同 `0`，乘法结果为 `[]`，即可跳过 `while`
+- root 非空时 dfs 栈式迭代
+- 逆转 `children` 是由于栈的 `FILO(先入后出)` 特性
+
 ## [599. Minimum Index Sum of Two Lists 2行](https://leetcode.com/problems/minimum-index-sum-of-two-lists/)
 ```python
 class Solution:
