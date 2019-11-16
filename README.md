@@ -19,7 +19,7 @@
 	- [🐄 二分查找](#-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE)（8 章节 30 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/binary-search/) :calendar: 2019/07/30
 	- [🦉 二叉树](#-%E4%BA%8C%E5%8F%89%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 2019/09/21
 	- [🐦 二叉搜索树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/) :calendar: 2019/11/15
-	- [🐝 N叉树](#-n%E5%8F%89%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 
+	- [🐈 N叉树](#-n%E5%8F%89%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 
 	
 ## 推荐
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
