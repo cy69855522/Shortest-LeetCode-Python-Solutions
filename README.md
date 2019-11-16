@@ -5281,6 +5281,27 @@ class Solution:
 - root 为 `[]` 时 bool 值为 `False` 同 `0`，乘法结果为 `[]`，即可跳过 `while`
 - root 非空时 dfs 栈式迭代
 - 逆转 `children` 是由于栈的 `FILO(先入后出)` 特性
+#### [590. N-ary Tree Postorder Traversal](https://leetcode.com/problems/n-ary-tree-postorder-traversal/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        s = bool(root) * [root]
+        r = []
+        
+        while s:
+            root = s.pop()
+            r.append(root.val)
+            s += root.children
+        
+        return r[::-1]
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
