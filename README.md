@@ -5217,8 +5217,31 @@ class Solution:
 	- 那么就意味着左子小于根，右子大于根，且所有节点左右子树节点数相差不超过 1 （由于递归的构树方式相同，所有节点都满足高度平衡）
 
 ### [🌠 N叉树](https://leetcode-cn.com/explore/learn/card/n-ary-tree/)
-
 ☄ **遍历**
+#### [589. N叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        s = bool(root) * [root]
+        r = []
+        
+        while s:
+            root = s.pop()
+            r.append(root.val)
+            s += root.children[::-1]
+        
+        return r
+```
+- root 为 `[]` 时 bool 值为 `False` 同 `0`，乘法结果为 `[]`，即可跳过 `while`
+- root 非空时 dfs 栈式迭代
+- 逆转 `children` 是由于栈的 `FILO(先入后出)` 特性
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
