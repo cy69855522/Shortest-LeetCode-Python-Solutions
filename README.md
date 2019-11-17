@@ -19,7 +19,7 @@
 	- [🐄 二分查找](#-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE)（8 章节 30 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/binary-search/) :calendar: 2019/07/30
 	- [🦉 二叉树](#-%E4%BA%8C%E5%8F%89%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 2019/09/21
 	- [🐦 二叉搜索树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/) :calendar: 2019/11/15
-	- [🐈 N叉树](#-n%E5%8F%89%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 
+	- [🐈 N叉树](#-n%E5%8F%89%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 2019/11/17
 	
 ## 推荐
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
@@ -5303,6 +5303,49 @@ class Solution:
         return r[::-1]
 ```
 - 后序遍历为 `左右根`，只需将前序遍历 `根左右` 的子节点遍历顺序逆转并倒序输出即可，大体做法同前一题
+#### [429. N叉树的层序遍历](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def levelOrder(self, root: 'Node') -> List[List[int]]:
+        q = root and collections.deque([(root, 0)])
+        r = []
+        
+        while q:
+            root, layer = q.pop()
+            
+            if len(r) < layer + 1:
+                r.append([])
+            
+            r[layer].append((root.val))
+            q.extendleft([(child, layer + 1) for child in root.children])
+            
+        return r
+```
+- 使用队列 BFS 遍历
+- 在队列中多保留一个层次序号记录相应层索引
+
+☄ **递归**
+#### [559. N叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/)
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def maxDepth(self, root: 'Node') -> int:
+        return root and 1 + max(map(self.maxDepth, root.children or [None])) or 0
+```
+- Bottom Up 递归
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
