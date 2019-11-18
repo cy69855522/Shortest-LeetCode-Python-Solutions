@@ -20,7 +20,8 @@
 	- [🦉 二叉树](#-%E4%BA%8C%E5%8F%89%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 2019/09/21
 	- [🐦 二叉搜索树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/) :calendar: 2019/11/15
 	- [🐈 N叉树](#-n%E5%8F%89%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 2019/11/17
-	
+- ⏱ [递归 I]()（5 章节 28 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/featured/card/recursion-i/) :calendar: 
+
 ## 推荐
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
 - 🎃[ C++清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)
@@ -314,7 +315,22 @@ class Solution:
 - 如何修改每个节点的指针？
 
 	我们初始化 p(previous node) 为None。遍历降序排好的列表 r，r中的第一个元素就是值最大的元素，也就是我们应该返回的链表的结尾，我们设置它指向None，然后让p=这个节点，继续for循环。之后每经过一个节点 n 就把这个节点的next属性设置为上一个节点 p，遍历完成之后的 n，也就是我们遍历经过的最后一个元素，拥有最小的值，自然就是整个新链表的起始节点，我们将其作为输出值，函数返回。
-	
+## [24. Swap Nodes in Pairs 3行](https://leetcode.com/problems/swap-nodes-in-pairs/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if head and head.next:
+            head.next.next, head.next, head = head, self.swapPairs(head.next.next), head.next
+        return head
+```
+- 每次递归交换两个节点，并返回新头参与上次递归
+- 多值交换参考[`这里`](#常用技巧总结)
 ## [26. Remove Duplicates from Sorted Array 3行](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 ```python
