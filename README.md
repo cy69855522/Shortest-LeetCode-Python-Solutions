@@ -5363,6 +5363,42 @@ class Solution:
 ```
 - Bottom Up 递归
 
+## 精选
+### [🌠 递归 I](https://leetcode-cn.com/explore/learn/card/queue-stack/)
+
+☄ **递归原理**
+#### [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/)
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        for i in range(len(s) - 1, 0, -1):
+            s.insert(i, s.pop(0))
+```
+- 取出来，插到对应位置
+#### [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if head and head.next:
+            seco = head.next
+            head.next = self.swapPairs(seco.next)
+            seco.next = head
+            return seco
+        return head
+```
+- 交换列表中的前两个节点，也就是 `head` 和 `head.next(seco)`
+- `seco` 指向 `head`，`head` 指向递归 `seco.next` 后返回的后序链表的头结点
+- 返回新的头结点 `seco`
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
