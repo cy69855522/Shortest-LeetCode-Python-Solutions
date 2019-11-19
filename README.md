@@ -5416,6 +5416,18 @@ class Solution:
 - 通过递归获得前几层结果 `prev`
 - 通过上一层结果计算新的最后一层结果 `last`，`f(i,j) = f(i−1, j−1) + f(i−1, j)` （两边的 1 会在下一行代码中另外加）
 - 加入新行并返回
+#### [119. 杨辉三角 II](https://leetcode-cn.com/problems/pascals-triangle-ii/)
+```python
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        if rowIndex == 0:
+            return [1]
+        
+        prev = self.getRow(rowIndex - 1)
+        last = [sum(prev[j-1:j+1]) for j in range(1, rowIndex)]
+        return [1, *last, 1]
+```
+- 和前一题基本一致
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
