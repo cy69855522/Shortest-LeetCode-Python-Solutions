@@ -5399,6 +5399,24 @@ class Solution:
 - `seco` 指向 `head`，`head` 指向递归 `seco.next` 后返回的后序链表的头结点
 - 返回新的头结点 `seco`
 
+☄ **递推关系**
+#### [118. 杨辉三角](https://leetcode-cn.com/problems/pascals-triangle/)
+```python
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        if numRows <= 1:
+            return numRows * [[1]]
+        
+        prev = self.generate(numRows - 1)
+        last = [sum(prev[-1][j-1:j+1]) for j in range(1, numRows-1)]
+        prev.append([1, *last, 1])
+        return prev
+```
+- 首先判断特殊情况，`numRows` 为 0 则返回 `[]`，为 1 返回 `[[1]]`
+- 通过递归获得前几层结果 `prev`
+- 通过上一层结果计算新的最后一层结果 `last`，`f(i,j) = f(i−1, j−1) + f(i−1, j)` （两边的 1 会在下一行代码中另外加）
+- 加入新行并返回
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
