@@ -5445,6 +5445,7 @@ class Solution:
 ```
 - 对于每一次递归，将当前节点的 `next` 属性指向前一个节点，然后递归调用下一个节点
 - 如果当前节点为 `None` 则返回上一个节点，否则返回递归一下个节点的结果
+
 ☄ **Memoization（记忆化）技术**
 #### [509. 斐波那契数](https://leetcode-cn.com/problems/fibonacci-number/)
 ```python
