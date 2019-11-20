@@ -5445,6 +5445,19 @@ class Solution:
 ```
 - 对于每一次递归，将当前节点的 `next` 属性指向前一个节点，然后递归调用下一个节点
 - 如果当前节点为 `None` 则返回上一个节点，否则返回递归一下个节点的结果
+☄ **Memoization（记忆化）技术**
+#### [509. 斐波那契数](https://leetcode-cn.com/problems/fibonacci-number/)
+```python
+class Solution:
+    cache = {0:0, 1:1}
+    
+    def fib(self, N: int) -> int:
+        if N not in self.cache:
+            self.cache[N] = sum(map(self.fib, [N - 1, N - 2]))
+            
+        return self.cache[N]
+```
+- 使用哈希记忆进行剪枝
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
