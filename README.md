@@ -5428,6 +5428,23 @@ class Solution:
         return [1, *last, 1]
 ```
 - 和前一题基本一致
+#### [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode, tail=None) -> ListNode:
+        if head:
+            head.next, tail, head = tail, head, head.next
+            return self.reverseList(head, tail)
+        return tail
+```
+- 对于每一次递归，将当前节点的 `next` 属性指向前一个节点，然后递归调用下一个节点
+- 如果当前节点为 `None` 则返回上一个节点，否则返回递归一下个节点的结果
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
