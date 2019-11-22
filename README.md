@@ -5447,6 +5447,7 @@ class Solution:
 - 如果当前节点为 `None` 则返回上一个节点，否则返回递归一下个节点的结果
 
 ☄ **Memoization（记忆化）技术**
+- `递归 + 记忆` = `动态规划`
 #### [509. 斐波那契数](https://leetcode-cn.com/problems/fibonacci-number/)
 ```python
 class Solution:
@@ -5459,6 +5460,18 @@ class Solution:
         return self.cache[N]
 ```
 - 使用哈希记忆进行剪枝
+#### [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+```python
+class Solution:
+    d = {0:0, 1:1, 2:2}
+    
+    def climbStairs(self, n: int) -> int:
+        if n not in self.d:
+            self.d[n] = sum(map(self.climbStairs, [n - 1, n - 2]))
+            
+        return self.d[n]
+```
+- 到这一层的方法数 = 到前二层方法数的总和
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
