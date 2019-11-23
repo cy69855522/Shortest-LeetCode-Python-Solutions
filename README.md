@@ -5473,6 +5473,30 @@ class Solution:
 ```
 - 到这一层的方法数 = 到前二层方法数的总和
 
+☄ **复杂度分析**
+#### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def maxDepth(self, root: TreeNode, prev=0) -> int:
+        if not root:
+            return 0
+        
+        f = self.maxDepth
+        l = f(root.left)
+        r = f(root.right)
+        
+        return max(l, r) + 1
+```
+- 时间复杂度：O(N)，每次递归访问一个节点，总共N个节点
+- 空间复杂度：O(N)，最糟糕的情况是树完全不平衡，递归开栈消耗 O(N) 空间
+
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
 - dict.get 可以设置预设值，避免取到不存在的 key 时报错
