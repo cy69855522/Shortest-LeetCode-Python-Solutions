@@ -4087,7 +4087,20 @@ class RandomizedSet:
 	寻找的索引 = bisect.bisect_left(self, True, 0, len(nums) - 1)
 	```
 	- 搜索范围为 [0, len(nums) - 1]，注意此处为闭区间
-- :tophat:【非内置公式】
+- :tophat:【非内置公式A】
+	```python
+	class Solution:
+	    def 二分查找二岔模板(self, nums: List[int], target: int):
+		l, h = 0, len(nums)
+		while l < h:
+		    m = (l + h) // 2
+		    if 必须向左搜索的条件:
+			h = m
+		    else:
+			l = m + 1
+		return l - 1
+	```
+- :tophat:【非内置公式B】
 	```python
 	class Solution:
 	    def 二分查找二岔模板(self, nums: List[int], target: int):
