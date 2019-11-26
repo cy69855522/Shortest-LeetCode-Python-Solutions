@@ -282,7 +282,6 @@ class Solution:
 ```
 - 7 or 9 等于 7
 - None and 7 等于 None
-- sorted用在这里为了保证 l1 的值小于等于 l2 的值
 ## [23. Merge k Sorted Lists 4行](https://leetcode.com/problems/merge-k-sorted-lists/)
 ```python
 # Definition for singly-linked list.
@@ -5522,6 +5521,23 @@ class Solution:
 - 时间复杂度：O(logN)
 - 空间复杂度：O(logN)
 - x^4 = x^2 ** x^2, x^5 = x^2 * x^2 * x, 借此方法可以缩减计算量
+
+☄ **总结**
+#### [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if l1 and l2:
+            if l1.val > l2.val: l1, l2 = l2, l1
+            l1.next = self.mergeTwoLists(l1.next, l2)
+        return l1 or l2
+```
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
