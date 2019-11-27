@@ -5538,6 +5538,15 @@ class Solution:
             l1.next = self.mergeTwoLists(l1.next, l2)
         return l1 or l2
 ```
+#### [779. 第K个语法符号](https://leetcode-cn.com/problems/k-th-symbol-in-grammar/comments/)
+```python
+class Solution:
+    def kthGrammar(self, N: int, K: int) -> int:
+        return 0 if N == 1 else (K + 1) % 2 ^ self.kthGrammar(N - 1, (K + 1) // 2);
+```
+- 由于递推关系式可知第 `N` 行的第 `K` 个数计算自第 `N - 1` 行的第 `(K + 1) // 2` 个数
+- 我们称第 `N` 行的第 `K` 个数为C，第 `N - 1` 行的第 `(K + 1) // 2` 个数为 P
+- `0 → 01`，`1 → 10`，可见变换后实际上是在原来的数字后加了相对的数（这里称 0 与 1 相对），那么如果 K 为奇数则 `C = P`，否则 `C = P 的相对数`
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
