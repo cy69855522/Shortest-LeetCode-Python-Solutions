@@ -20,7 +20,7 @@
 	- [🦉 二叉树](#-%E4%BA%8C%E5%8F%89%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/data-structure-binary-tree/) :calendar: 2019/09/21
 	- [🐦 二叉搜索树](#-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91)（3 章节 16 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/) :calendar: 2019/11/15
 	- [🐈 N叉树](#-n%E5%8F%89%E6%A0%91)（3 章节 7 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/learn/card/n-ary-tree/) :calendar: 2019/11/17
-- ⏱ [递归 I](#-%E9%80%92%E5%BD%92-i)（5 章节 28 栏目） 高可读，不含VIP解锁题 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/featured/card/recursion-i/) :calendar: 
+- ⏱ [递归 I](#-%E9%80%92%E5%BD%92-i)（5 章节 28 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/featured/card/recursion-i/) :calendar: 2019/11/28
 
 ## 推荐
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
