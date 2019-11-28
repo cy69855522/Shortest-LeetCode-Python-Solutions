@@ -5547,6 +5547,30 @@ class Solution:
 - 由于递推关系式可知第 `N` 行的第 `K` 个数计算自第 `N - 1` 行的第 `(K + 1) // 2` 个数
 - 我们称第 `N` 行的第 `K` 个数为C，第 `N - 1` 行的第 `(K + 1) // 2` 个数为 P
 - `0 → 01`，`1 → 10`，可见变换后实际上是在原来的数字后加了相对的数（这里称 0 与 1 相对），那么如果 K 为奇数则 `C = P`，否则 `C = P 的相对数`
+#### [95. 不同的二叉搜索树 II](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
+```python
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x, l=None, r=None):
+        self.val = x
+        self.left = l
+        self.right = r
+
+class Solution:
+    def generateTrees(self, n: int) -> List[TreeNode]:
+        def gen(num):
+            if not num: yield None
+            for i, n in enumerate(num):
+                for l in gen(num[:i]):
+                    for r in gen(num[i + 1:]):
+                        yield TreeNode(n, l, r)
+        
+        return bool(n) * [*gen([*range(1, 1 + n)])]
+```
+- 构建递归生成器 `gen`，输入是一系列升序的数字，返回这些数字可能构成的所有二叉树结构
+- 首先，所有数字都有可能作为根，因此遍历 `num` 作为根
+- 根据二叉搜索树的特性（左子树所有节点小于根，右子树大于），可知根的左子树由比根小的数字构成，递归 `num[:i]` 就是左子树所有的可能结构，同理可获得右子树所有可能的结构
+- 左右递归结果的笛卡尔积 + `root`，即为整棵树所有可能的结构
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
