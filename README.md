@@ -1699,9 +1699,15 @@ class Solution:
 ```python
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
+        return sum(range(len(nums) + 1)) - sum(nums)
+```
+- O(N)时间，O(1)空间（迭代器）
+```python
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
         return int(len(nums) * (len(nums) + 1) / 2 - sum(nums))
 ```
-- 等差数列求和公式
+- 等差数列求和公式，O(1)空间
 ## [278. First Bad Version 2行](https://leetcode.com/problems/first-bad-version/)
 ```python
 # The isBadVersion API is already defined for you.
