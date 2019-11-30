@@ -2398,59 +2398,74 @@ class MyCircularQueue:
     def __init__(self, k: int):
         """
         Initialize your data structure here. Set the size of the queue to be k.
+        :param k:
+        :return:
         """
-        self.size = k
-        self.data = []
+        self.size = 0
+        self.max_size = k
+        self.data = [0] * k
+        self.front = self.rear = -1
 
     def enQueue(self, value: int) -> bool:
         """
         Insert an element into the circular queue. Return true if the operation is successful.
+        :param value:
+        :return:
         """
         if self.isFull():
             return False
-        
-        self.data.append(value)
+
+        if self.rear == -1:
+            self.rear = self.front = 0
+        else:
+            self.rear = (self.rear + 1) % self.max_size
+
+        self.data[self.rear] = value
+        self.size += 1
         return True
 
     def deQueue(self) -> bool:
         """
         Delete an element from the circular queue. Return true if the operation is successful.
+        :return:
         """
         if self.isEmpty():
             return False
-        
-        self.data.pop(0)
+
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.max_size
+        self.size -= 1
         return True
 
     def Front(self) -> int:
         """
         Get the front item from the queue.
+        :return:
         """
-        if self.isEmpty():
-            return -1
-        
-        return self.data[0]
+        return self.data[self.front] if self.size != 0 else -1
 
     def Rear(self) -> int:
         """
         Get the last item from the queue.
+        :return:
         """
-        if self.isEmpty():
-            return -1
-        
-        return self.data[-1]
-    
+        return self.data[self.rear] if self.size != 0 else -1
+
     def isEmpty(self) -> bool:
         """
         Checks whether the circular queue is empty or not.
+        :return:
         """
-        return not self.data
+        return self.size == 0
 
     def isFull(self) -> bool:
         """
         Checks whether the circular queue is full or not.
+        :return:
         """
-        return len(self.data) == self.size
+        return self.size == self.max_size
 
 
 # Your MyCircularQueue object will be instantiated and called as such:
