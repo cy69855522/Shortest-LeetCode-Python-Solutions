@@ -1844,6 +1844,14 @@ class Solution:
 ```
 - odd 记录上一个奇数位节点，p 记录前一个节点
 - 从第3个位置开始循环，每次都把当前节点接到 odd 后面，然后跳到下一个奇数位节点继续循环
+## [342. Power of Four 1行](https://leetcode.com/problems/power-of-four/)
+```python
+class Solution:
+    def isPowerOfFour(self, num: int) -> bool:
+        return num > 0 and not math.log(num, 4) % 1
+```
+- 采用 log 运算，若结果为整数则 `num` 为 4 的幂
+- 整数 % 1 为 0
 ## [344. Reverse String 1行](https://leetcode.com/problems/reverse-string/)
 ```python
 class Solution:
