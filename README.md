@@ -5627,7 +5627,7 @@ class Solution:
 
 # 解法汇总贡献者
 注：此处贡献名单仅代表汇总搜集贡献，不代表全部原创，欢迎所有更短的解法🤓
-- 此处排名不分先后，仅以首次参与时间记录
+- 此处排名不分先后，仅以首次参与时间记录，感谢所有贡献者🤟
 - [Knife丶](https://github.com/cy69855522)[QQ1272068154  微信ly18597591102]
 - [zdylzdyl](https://github.com/zdylzdyl)
 - [ajin](https://github.com/ajinwu)
