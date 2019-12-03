@@ -630,6 +630,15 @@ class Solution:
 - dp递归方程：到达当前楼梯的路径数 = 到达上个楼梯的路径数 + 到达上上个楼梯的路径数
 - 这里用一个元组 r 来储存（当前楼梯路径数，下一层楼梯路径数）
 - 利用 reduce 来代替for循环。[reduce 函数详解](https://www.cnblogs.com/XXCXY/p/5180245.html)
+## [71. Simplify Path 4行](https://leetcode.com/problems/simplify-path/)
+```
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        r = []
+        for s in path.split('/'):
+            r = {'':r, '.':r, '..':r[:-1]}.get(s, r + [s])
+        return '/' + '/'.join(r)
+```
 ## [78. Subsets 2行](https://leetcode.com/problems/subsets/)
 ```python
 class Solution:
