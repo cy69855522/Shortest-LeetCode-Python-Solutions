@@ -2412,6 +2412,21 @@ class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         return sorted(points, key=lambda x: x[0]**2 + x[1]**2)[:K]
 ```
+## [1290. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getDecimalValue(self, head: ListNode) -> int:
+        r = 0
+        while head: r, head = r << 1 | head.val, head.next
+        return r
+```
+- O(N), 位运算
 # 专题探索
 ![](思维导图.jpg)
 
