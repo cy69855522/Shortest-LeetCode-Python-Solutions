@@ -2121,6 +2121,13 @@ class Solution:
 - 按照从右上角到左下角的顺序遍历 matrix 的所有对角线并放入列表 temp
 - 如果 对角线元素个数 是偶数则应该把 temp 反转
 - 把 temp 加入结果 r
+## [507. Perfect Number](https://leetcode.com/problems/perfect-number/)
+```python
+class Solution:
+    def checkPerfectNumber(self, num: int) -> bool:
+        return num in (6, 28, 496, 8128, 33550336, 8589869056, 137438691328, 2305843008139952128)
+```
+- 题目中给出了解的范围，且解的个数是固定的，因此可以提前计算出所有解
 ## [557. Reverse Words in a String III 1行](https://leetcode.com/problems/reverse-words-in-a-string-iii/)
 ```python
 class Solution:
