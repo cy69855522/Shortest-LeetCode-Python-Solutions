@@ -415,6 +415,19 @@ class Solution:
 		i = (bisect.bisect_left(nums[k:] + nums[:k], target) + k) % max(len(nums), 1)
 		return i if nums and nums[i] == target else -1
 	```
+
+## [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+- 用自带的bisect函数，一行
+
+```python3
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        # if not nums or target not in nums:  return [-1, -1]
+        return [bisect.bisect_left(nums, target), bisect.bisect_right(nums, target)-1] \
+            if nums and target in nums else [-1, -1]
+```
+
 ## [35. Search Insert Position 1行](https://leetcode.com/problemset/all/?search=35)
 ```python
 class Solution:
