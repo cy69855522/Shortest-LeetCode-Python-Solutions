@@ -671,6 +671,18 @@ class Solution:
 - 所以之后做了两步转换，先将zip()返回的各个元组转换为list，在将整个转换为list
 - 替换matrix各行， 如果一整行为0， 则替换为0，否则为`col2row`对应的各行
 
+## [74. 搜索二维矩阵 4行](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+```python
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if not matrix or not matrix[0]:  return False
+        col = list(list(zip(*matrix))[0])  # set() -> list()
+        index = bisect.bisect_left(col, target, 0, len(matrix)-1)  # 二分查找
+        return target in (matrix[index] + matrix[index-1])
+```
+- 先获取首列，然后二分类找到这个数所在的行，然后进行判断
+
+
 ## [78. Subsets 2行](https://leetcode.com/problems/subsets/)
 ```python
 class Solution:
