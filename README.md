@@ -652,6 +652,37 @@ class Solution:
             r = {'':r, '.':r, '..':r[:-1]}.get(s, r + [s])
         return '/' + '/'.join(r)
 ```
+
+## [73. 矩阵置零  5行](https://leetcode-cn.com/problems/set-matrix-zeroes/)
+```python
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        row = [[0] * len(i) if 0 in i else i for i in matrix]
+        col = [[0] * len(j) if 0 in j else list(j) for j in zip(*matrix)]
+        col2row = list(map(list, zip(*col)))
+        # 上面一行效果等同：
+        # col2row = [list(i) for i in zip(*col)]
+        for i in range(len(matrix)):
+            matrix[i] = col2row[i] if row[i] != [0] * len(matrix[0]) else row[i]
+```
+- 获取每一行 / 列的值，假如有0 就整行 / 整列置为0
+- 重新将列排序列表转换为行排序列表，即原来的`matrix`中有0的列全为0，行不变
+- `zip(*col)` 返回的是`zip`类型，需要转换成list，其中元素类型为元组
+- 所以之后做了两步转换，先将zip()返回的各个元组转换为list，在将整个转换为list
+- 替换matrix各行， 如果一整行为0， 则替换为0，否则为`col2row`对应的各行
+
+## [74. 搜索二维矩阵 4行](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+```python
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if not matrix or not matrix[0]:  return False
+        col = list(list(zip(*matrix))[0])  # set() -> list()
+        index = bisect.bisect_left(col, target, 0, len(matrix)-1)  # 二分查找
+        return target in (matrix[index] + matrix[index-1])
+```
+- 先获取首列，然后二分类找到这个数所在的行，然后进行判断
+
+
 ## [78. Subsets 2行](https://leetcode.com/problems/subsets/)
 ```python
 class Solution:
