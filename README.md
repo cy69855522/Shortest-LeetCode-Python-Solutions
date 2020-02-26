@@ -690,6 +690,23 @@ class Solution:
         from itertools import combinations
         return sum([list(combinations(nums, i)) for i in range(len(nums) + 1)], [])
 ```
+
+## [80. 删除排序数组中的重复项 II 4行](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
+```python
+def removeDuplicates(nums: [int]) -> int:
+    for i in range(len(nums)-3, -1, -1):
+        if nums[i] == nums[i+1] and nums[i] == nums[i+2]:
+            nums.pop(i)
+    return len(nums)
+```
+- 从尾部开始考虑
+
+## [81. 搜索旋转排序数组 II 1行](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+```python
+def search(nums: [int], target: int) -> bool:
+    return target in nums
+```
+
 ## [83. Remove Duplicates from Sorted List 3行](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
 ```python
 # Definition for singly-linked list.
