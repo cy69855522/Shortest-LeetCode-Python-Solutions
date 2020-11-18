@@ -989,7 +989,7 @@ class Solution:
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         from functools import reduce
-        return reduce(int.__xor__, nums)
+        return reduce(xor, nums)
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了
 ## [138. Copy List with Random Pointer 1行](https://leetcode.com/problems/copy-list-with-random-pointer/)
@@ -1379,7 +1379,7 @@ class Solution:
         return int(bin(n)[2:].zfill(32)[::-1], 2)
 ```
 - 字符串操作
-- [ziff用法](https://www.runoob.com/python/att-string-zfill.html)
+- [zfill用法](https://www.runoob.com/python/att-string-zfill.html)
 ## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
 ```python
 class Solution(object):
@@ -1510,6 +1510,13 @@ class Solution:
 		    return nums[0]
 		return f(r, k - len(l) - len(m))
 	```
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return nlargest(k,nums)[-1]
+```
+
+- 用了 heapq 的 nlargest 函数，返回一个 list , 然后取最后一个
 ## [217. Contains Duplicate 1行](https://leetcode.com/problems/contains-duplicate/)
 ```python
 class Solution:
