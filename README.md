@@ -1772,6 +1772,19 @@ class Solution:
 		return False
 	```
 	- 从矩阵右上角开始，若值比 target 大则证明这一列的值都比 target 大，继续搜索前面的列；若比 target 小说明 target 可能在后面的行中，进入下一行
+## [242. 有效的字母异位词 1行](https://leetcode.com/problems/valid-anagram/)
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+```
+- O(n) 思路等于建哈希表
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+```
+- O(n log(n)) 排序后相等，原来就相等，利用 python 的 str 可以直接排序的特点
 ## [258. Add Digits 1行](https://leetcode.com/problems/add-digits/)
 ```python
 class Solution:
