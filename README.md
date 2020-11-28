@@ -2499,6 +2499,14 @@ class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         return sorted(points, key=lambda x: x[0]**2 + x[1]**2)[:K]
 ```
+## [976. 三角形的最大周长 2行](https://leetcode.com/problems/largest-perimeter-triangle/)
+```python
+class Solution:
+    def largestPerimeter(self, A: List[int]) -> int:
+        A.sort(reverse=True)
+        return next((i+j+k  for i,j,k in zip(A,A[1:],A[2:]) if j+k>i  ),0)
+```
+- 利用 next 函数返回第一个满足条件的值，不然就返回默认值的特点
 ## [1290. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
 ```python
 # Definition for singly-linked list.
