@@ -497,6 +497,17 @@ class Solution:
 		from itertools import permutations
 		return list(permutations(nums))
 	```
+## [48. rotate-image 1行](https://leetcode.com/problems/rotate-image/)
+先转置后镜像对称
+```python
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        matrix[:] = [i[::-1] for i in zip(*matrix)]
+```
+加 [:] 才会修改原列表
 ## [49. Group Anagrams 1行](https://leetcode.com/problems/group-anagrams/)
 ```python
 class Solution:
