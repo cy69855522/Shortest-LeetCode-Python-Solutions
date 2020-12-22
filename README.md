@@ -121,7 +121,7 @@ class Solution:
 ```python
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        return str(x) == str(x)[::-1]
+        return (k:=str(x)) == k[::-1]
 ```
 不使用字符串的进阶解法：
 
