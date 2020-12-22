@@ -497,6 +497,17 @@ class Solution:
 		from itertools import permutations
 		return list(permutations(nums))
 	```
+## [48. rotate-image 1行](https://leetcode.com/problems/rotate-image/)
+先转置后镜像对称
+```python
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        matrix[:] = [i[::-1] for i in zip(*matrix)]
+```
+加 [:] 才会修改原列表
 ## [49. Group Anagrams 1行](https://leetcode.com/problems/group-anagrams/)
 ```python
 class Solution:
@@ -989,7 +1000,7 @@ class Solution:
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         from functools import reduce
-        return reduce(int.__xor__, nums)
+        return reduce(xor, nums)
 ```
 - 这里用到了异或（xor），相同的数字异或后为0，0异或任何数都等于那个数，用reduce在列表所有元素之间使用异或^，那么留下的就是那个单独的数字了
 ## [138. Copy List with Random Pointer 1行](https://leetcode.com/problems/copy-list-with-random-pointer/)
@@ -1379,7 +1390,7 @@ class Solution:
         return int(bin(n)[2:].zfill(32)[::-1], 2)
 ```
 - 字符串操作
-- [ziff用法](https://www.runoob.com/python/att-string-zfill.html)
+- [zfill用法](https://www.runoob.com/python/att-string-zfill.html)
 ## [191. Number of 1 Bits 1行](https://leetcode.com/problems/number-of-1-bits/)
 ```python
 class Solution(object):
@@ -1510,6 +1521,13 @@ class Solution:
 		    return nums[0]
 		return f(r, k - len(l) - len(m))
 	```
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return nlargest(k,nums)[-1]
+```
+
+- 用了 heapq 的 nlargest 函数，返回一个 list , 然后取最后一个
 ## [217. Contains Duplicate 1行](https://leetcode.com/problems/contains-duplicate/)
 ```python
 class Solution:
@@ -1765,6 +1783,19 @@ class Solution:
 		return False
 	```
 	- 从矩阵右上角开始，若值比 target 大则证明这一列的值都比 target 大，继续搜索前面的列；若比 target 小说明 target 可能在后面的行中，进入下一行
+## [242. 有效的字母异位词 1行](https://leetcode.com/problems/valid-anagram/)
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+```
+- O(n) 思路等于建哈希表
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+```
+- O(n log(n)) 排序后相等，原来就相等，利用 python 的 str 可以直接排序的特点
 ## [258. Add Digits 1行](https://leetcode.com/problems/add-digits/)
 ```python
 class Solution:
@@ -2479,6 +2510,14 @@ class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         return sorted(points, key=lambda x: x[0]**2 + x[1]**2)[:K]
 ```
+## [976. 三角形的最大周长 2行](https://leetcode.com/problems/largest-perimeter-triangle/)
+```python
+class Solution:
+    def largestPerimeter(self, A: List[int]) -> int:
+        A.sort(reverse=True)
+        return next((i+j+k  for i,j,k in zip(A,A[1:],A[2:]) if j+k>i  ),0)
+```
+- 利用 next 函数返回第一个满足条件的值，不然就返回默认值的特点
 ## [1290. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
 ```python
 # Definition for singly-linked list.
