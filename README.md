@@ -21,6 +21,7 @@
 - ⏱ [递归 I](#-%E9%80%92%E5%BD%92-i)（5 章节 28 栏目） 高可读 [:bookmark_tabs: 题目详情](https://leetcode-cn.com/explore/featured/card/recursion-i/) :calendar: 2019/11/28
 
 ## 推荐
+- 🐱‍👤[Python的算法题公式化套路总结](https://github.com/cy69855522/Python-Algorithm-Formula/blob/main/README.md)
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
 - 🎃[ C++清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)
 - [🚀 AI Power](https://www.aipower.xyz) 云GPU租借/出租平台：Python是AI的核心，GPU是AI的动力，想要朝AI工程师发展的朋友不妨了解一下~ 现在注册并绑定（参考Github）即可获得高额算力，注册不涉及个人隐私信息，奖励可随时提现。详情请参考[AI Power指南](https://github.com/cy69855522/AI-Power)
