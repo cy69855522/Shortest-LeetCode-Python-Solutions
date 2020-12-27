@@ -1473,6 +1473,13 @@ class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         return [*map(s.index, s)] == [*map(t.index, t)]
 ```
+
+```python
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return all(s.index(i) == t.index(j) for i,j in zip(s,t))
+```
+
 - 同构代表两个字符串中每个位置上字符在自身第一次出现的索引相同
 ## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
 ```python
