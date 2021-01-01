@@ -2304,6 +2304,14 @@ class Solution:
         return [x for x in d if d[x] == min(d.values())]
 ```
 - 使用字典记录｛共同喜欢的商店：索引和｝，返回索引和并列最小的商店名
+## [605. Can-place-flowers 2行](https://leetcode.com/problems/can-place-flowers/)
+```python
+class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        s = "".join(str(i) for i in [0, *flowerbed, 0]).split("1")
+        return n <= sum((len(i) - 1) // 2 for i in s)
+```
+- 两边都加 0, 然后按 1 分割
 ## [652. Find Duplicate Subtrees 8行](https://leetcode.com/problems/find-duplicate-subtrees/)
 ```python
 # Definition for a binary tree node.
