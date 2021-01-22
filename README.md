@@ -2537,6 +2537,12 @@ class Solution:
         return next((i+j+k  for i,j,k in zip(A,A[1:],A[2:]) if j+k>i  ),0)
 ```
 - 利用 next 函数返回第一个满足条件的值，不然就返回默认值的特点
+## [989. 数组形式的整数加法 1行](https://leetcode.com/problems/add-to-array-form-of-integer/)
+```python
+class Solution:
+    def addToArrayForm(self, A: List[int], K: int) -> List[int]:
+        return map(int,str(int(''.join(map(str,A)))+K))
+```
 ## [1290. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
 ```python
 # Definition for singly-linked list.
