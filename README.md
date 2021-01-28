@@ -2419,6 +2419,13 @@ class Solution:
 - 本题利用双指针，利用 i，j 双向遍历数组。
 - l 记录当前索引左边所有数字之和，r 记录右边的和
 - diff 记录当前索引左边所有数字之和 - 右边所有数字之和，中心索引左右和相等，diff[中心索引] 为 0
+```python
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        前缀和 = [0, *list(accumulate(nums, add))]
+        return next((i for i in range(len(nums)) if 前缀和[i] == 前缀和[-1] - 前缀和[i + 1]), -1)
+```
+- 前缀和，利用 next 的默认值返回 -1，2 行
 ## [733. Flood Fill 6行](https://leetcode.com/problems/flood-fill/)
 ```python
 class Solution:
