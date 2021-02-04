@@ -2312,6 +2312,14 @@ class Solution:
         return n <= sum((len(i) - 1) // 2 for i in s)
 ```
 - 两边都加 0, 然后按 1 分割
+## [643. 子数组最大平均数 I 2行](https://leetcode.com/problems/maximum-average-subarray-i/)
+```python
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        presum = [0, *accumulate(nums, add)]
+        return max(presum[i + 1] - presum[i + 1 - k] for i in range(k - 1, len(nums))) / float(k)
+```
+- 前缀和
 ## [652. Find Duplicate Subtrees 8行](https://leetcode.com/problems/find-duplicate-subtrees/)
 ```python
 # Definition for a binary tree node.
