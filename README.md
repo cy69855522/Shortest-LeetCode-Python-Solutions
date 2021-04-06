@@ -1473,6 +1473,13 @@ class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         return [*map(s.index, s)] == [*map(t.index, t)]
 ```
+
+```python
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        return all(s.index(i) == t.index(j) for i,j in zip(s,t))
+```
+
 - 同构代表两个字符串中每个位置上字符在自身第一次出现的索引相同
 ## [206. Reverse Linked List 2行](https://leetcode.com/problems/reverse-linked-list/)
 ```python
@@ -2297,6 +2304,22 @@ class Solution:
         return [x for x in d if d[x] == min(d.values())]
 ```
 - 使用字典记录｛共同喜欢的商店：索引和｝，返回索引和并列最小的商店名
+## [605. Can-place-flowers 2行](https://leetcode.com/problems/can-place-flowers/)
+```python
+class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        s = "".join(str(i) for i in [0, *flowerbed, 0]).split("1")
+        return n <= sum((len(i) - 1) // 2 for i in s)
+```
+- 两边都加 0, 然后按 1 分割
+## [643. 子数组最大平均数 I 2行](https://leetcode.com/problems/maximum-average-subarray-i/)
+```python
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        presum = [0, *accumulate(nums, add)]
+        return max(presum[i + 1] - presum[i + 1 - k] for i in range(k - 1, len(nums))) / float(k)
+```
+- 前缀和
 ## [652. Find Duplicate Subtrees 8行](https://leetcode.com/problems/find-duplicate-subtrees/)
 ```python
 # Definition for a binary tree node.
@@ -2404,6 +2427,13 @@ class Solution:
 - 本题利用双指针，利用 i，j 双向遍历数组。
 - l 记录当前索引左边所有数字之和，r 记录右边的和
 - diff 记录当前索引左边所有数字之和 - 右边所有数字之和，中心索引左右和相等，diff[中心索引] 为 0
+```python
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        前缀和 = [0, *list(accumulate(nums, add))]
+        return next((i for i in range(len(nums)) if 前缀和[i] == 前缀和[-1] - 前缀和[i + 1]), -1)
+```
+- 前缀和，利用 next 的默认值返回 -1，2 行
 ## [733. Flood Fill 6行](https://leetcode.com/problems/flood-fill/)
 ```python
 class Solution:
@@ -2522,6 +2552,12 @@ class Solution:
         return next((i+j+k  for i,j,k in zip(A,A[1:],A[2:]) if j+k>i  ),0)
 ```
 - 利用 next 函数返回第一个满足条件的值，不然就返回默认值的特点
+## [989. 数组形式的整数加法 1行](https://leetcode.com/problems/add-to-array-form-of-integer/)
+```python
+class Solution:
+    def addToArrayForm(self, A: List[int], K: int) -> List[int]:
+        return map(int,str(int(''.join(map(str,A)))+K))
+```
 ## [1290. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
 ```python
 # Definition for singly-linked list.
