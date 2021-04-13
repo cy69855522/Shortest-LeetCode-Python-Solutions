@@ -24,13 +24,17 @@
 - 🐱‍👤[Python的算法题公式化套路总结](https://github.com/cy69855522/Python-Algorithm-Formula/blob/main/README.md)
 - 👻[ Leetcode最简C++题解 ](https://github.com/cy69855522/Simplest-LeetCode-Cpp-Solutions)
 - 🎃[ C++清晰题解汇总 ](https://github.com/cy69855522/Clearest-LeetCode-Cpp-Solutions)
-- [🚀 AI Power](https://www.aipower.xyz) 云GPU租借/出租平台：Python是AI的核心，GPU是AI的动力，想要朝AI工程师发展的朋友不妨了解一下~ 现在注册并绑定（参考Github）即可获得高额算力，注册不涉及个人隐私信息，奖励可随时提现。详情请参考[AI Power指南](https://github.com/cy69855522/AI-Power)
+- [🚀 AI Power](https://www.aipower.xyz) 云GPU租借/出租平台：Python是AI的核心，GPU是AI的动力，想要朝AI工程师发展的朋友不妨了解一下~ 现在注册并绑定（参考Github）即可获得高额算力。详情请参考[AI Power指南](https://github.com/cy69855522/AI-Power)
 - 🌟 推荐刷题路线：[**专题探索**](#专题探索) → [腾讯精选50题](https://leetcode-cn.com/problemset/all/?listId=ex0k24j) → [题库解析](#题库解析)
 - [常用技巧总结](常用技巧总结)
 - [隐藏的坑](隐藏的坑)
 
 # 题库解析
 此专栏追求代码的**精简**和**技巧性**，默认已看过题目，🤡 没看过的话点标题可以跳转链接，咱们一起体验炫酷的 Python
+
+<details>
+  <summary>点击展开折叠</summary>
+	
 ## [1. Two Sum 4行](https://leetcode.com/problems/two-sum/)
 ```python
 class Solution:
@@ -2573,6 +2577,9 @@ class Solution:
         return r
 ```
 - O(N), 位运算
+
+</details>
+
 # 专题探索
 ![](思维导图.jpg)
 
