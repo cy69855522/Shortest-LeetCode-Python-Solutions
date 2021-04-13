@@ -2590,9 +2590,13 @@ class Solution:
 - :black_joker:【知识卡片】Python 有内置的高效**模块**实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 - 栈一般使用 list 直接实现
 - Python 的 collections 模块提供的[ 双向队列 collections.deque ](https://www.baidu.com/link?url=-qZCpylhJB1LQ_DMC_6eJil4g9xLaHI8IbSsHpfxG1ZEPKH_AFN8sptkOXkKqjDr0E5atG6QSLELpTSww6Z3UKnLEf0eSppKGfssCw7fq3m&wd=&eqid=821793550017be6e000000065ce99df2)同时具有 栈 和 队列 的性质，也是一个不错的选择
-
+	
 ☄ **队列：先入先出的数据结构**
 - :black_joker:【知识卡片】**队列**中的数据呈线性排列，就和“队列”这个名字一样，把它想象成排成一 队的人更容易理解。在队列中，处理总是从第一名开始往后进行，而新来的人只能排在队尾。像队列这种最先进去的数据最先被取来，即“先进先出”的结构，我们称为 First In First Out，简称 FIFO
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [622. 设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
 ```python
 class MyCircularQueue:
@@ -2681,6 +2685,8 @@ class MyCircularQueue:
 ```
 - 此处为体现数据结构，直接使用list，list.pop(0)耗时较多，Python 有内置的高效模块实现队列/栈/优先队列：[queue模块](https://www.baidu.com/link?url=ucsY59H7zFlkJcIFNblaRqxfOmas8kRjDDro5uV3D8R2QVWWRNXWPKm2yQNAZBmOd6YGClvCsS8sZJsTTmMqGq&wd=&eqid=cbe60f050006128b000000065cd99a2e)
 
+</details>
+
 ☄ **队列和广度优先搜索**
 - :black_joker:【知识卡片】**广度优先搜索 BFS** 是一种对图进行搜索的算法。假设我们一开始位于某个顶点（即起点），此 时并不知道图的整体结构，而我们的目的是从起点开始顺着边搜索，直到到达指定顶点（即终 点）。在此过程中每走到一个顶点，就会判断一次它是否为终点。广度优先搜索会优先从离起点近的顶点开始搜索，这样由近及广的搜索方式也使得。根据 BFS 的特性，其常常被用于 `遍历` 和 `搜索最短路径`
 - :tophat:【套路】**BFS**一般流程：
@@ -2697,6 +2703,10 @@ class MyCircularQueue:
 		# }
 	```
 	- 使用 BFS 时，需要抓住 3 个关键点：根节点是什么？根节点的一阶邻域节点是哪些？什么时候停止搜索？
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
 ```python
 from queue import Queue
@@ -2814,12 +2824,18 @@ class Solution:
 ```
 - 将当前数字的总和视为节点，加上一个完全平方数后能达到的数字作为一阶邻域，搜索到达 n 的最短路径
 
+</details>
+
 ☄ **栈：后入先出的数据结构**
 - :black_joker:【知识卡片】**栈**也是一种数据呈线性排列的数据结构，不过在这种结构中，我们只能访问最新添加的数 据。栈就像是一摞书，拿到新书时我们会把它放在书堆的最上面，取书时也只能从最上面的新书开始取。Last In First Out，简称 LIFO，常常被用于数组中不同位置之间含有 `嵌套关系` 的题目
 - :tophat:【套路】**栈**问题关键点：
 	- 解决栈问题时，主要是需要确定入栈和出栈（从栈顶弹出）的条件
 	- 通常来说栈内储存的元素都是同一类元素，在某个层面上有共同的性质
 	- 嵌套关系是指出栈时得到的栈顶元素与当前判断是否入栈元素的关系，以此作为切入点套入计算题目结果所需的俩个元素是涉及栈的关键
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [155. 最小栈](https://leetcode-cn.com/problems/min-stack/solution/python-mei-ge-yi-xing-by-knifezhu/)
 ```python
 class MinStack:
@@ -2906,8 +2922,14 @@ class Solution:
 - 使用栈储存所有未处理的数字
 - 出栈时，我们总是将出栈元素与新的栈顶做运算，然后用结果更新新栈顶元素
 
+</details>
+
 ☄ **栈和深度优先搜索**
 - :black_joker:【知识卡片】**深度优先搜索 DFS** 和广度优先搜索一样，都是对图进行搜索的算法，目的也都是从起点开始搜索直到到达指定顶点（终点）。深度优先搜索会沿着一条路径不断往下搜索直到不能再继续为止，然后再折返，开始搜索下一条候补路径。正如树的遍历中所提到的，我们可以用 DFS 进行 `前序遍历`，`中序遍历` 和 `后序遍历`。在这三个遍历顺序中有一个共同的特性：除非我们到达最深的结点，否则我们永远不会回溯
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [200. 岛屿的个数](https://leetcode-cn.com/problems/number-of-islands/)
 ```python
 class Solution:
@@ -3003,6 +3025,8 @@ class Solution:
         return r
 ```
 
+</details>
+
 ☄ **小结**
 - :tophat:【套路】**迭代形 BFS/DFS**
 	```python
@@ -3028,6 +3052,10 @@ class Solution:
 			    self.dfs(node) # 递归
 		return image # 终止返回
 	```
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
 ```python
 class MyQueue:
@@ -3238,12 +3266,18 @@ class Solution:
         return len(seen) == len(rooms)
 ```
 
+</details>
+
 ### [🌠 数组和字符串](https://leetcode-cn.com/explore/learn/card/array-and-string/)
 
 ☄ **数组简介**
 - :tophat:【套路】**数组**问题必备锦囊：
 	- 有些题目在做题之前对数组排序往往可以简化解法
 	- 数组与字符串大体相似但在细节上会有不同，有时候相互转化可以简化问题
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [724. 寻找数组的中心索引](https://leetcode-cn.com/problems/find-pivot-index/submissions/)
 ```python
 class Solution:
@@ -3277,7 +3311,13 @@ class Solution:
         return list(map(int, str(int(''.join(map(str, digits))) + 1)))
 ```
 
+</details>
+
 ☄ **二维数组简介**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [498. 对角线遍历](https://leetcode-cn.com/problems/diagonal-traverse/submissions/)
 ```python
 class Solution:
@@ -3315,7 +3355,13 @@ class Solution:
         return numRows and r or []
 ```
 
+</details>
+
 ☄ **字符串简介**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [67. 二进制求和](https://leetcode-cn.com/problems/add-binary/submissions/)
 ```python
 class Solution:
@@ -3363,6 +3409,8 @@ class Solution:
 		return os.path.commonprefix(strs)
 	```
 
+</details>
+
 ☄ **双指针技巧**
 - :black_joker:【知识卡片】**双指针** 通常，我们只使用从第一个元素开始并在最后一个元素结束的一个指针来进行迭代。 但是，有时候，我们可能需要同时使用两个指针来进行迭代。
 	- 两个指针从 `不同位置` 出发：一个从始端开始，另一个从末端开始
@@ -3371,6 +3419,10 @@ class Solution:
 	- 两个指针以 `不同速度` 移动：一个指针快一些，另一个指针慢一些
 		- 快慢指针
 		- 滑动窗口
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/solution/python-1xing-shuang-zhi-zhen-by-knifezhu/)
 ```python
 class Solution:
@@ -3442,7 +3494,13 @@ class Solution:
 - i, j 双指针滑窗，O(N)时间复杂度，O(1)空间复杂度
 - a 代表 i 到 j 的总和
 
+</details>
+
 ☄ **小结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [189. 旋转数组](https://leetcode-cn.com/problems/rotate-array/)
 ```python
 class Solution:
@@ -3504,10 +3562,17 @@ class Solution:
             nums[i] = 0
             i += 1
 ```
+
+</details>
+
 ### [🌠 链表](https://leetcode-cn.com/explore/learn/card/linked-list/)
 - :black_joker:【知识卡片】链表是数据结构之一，其中的数据呈线性排列。在链表中，数据的添加和删除都较为方便， 就是访问比较耗费时间。实际上，相比较数组来说，并不存在链表这样一个对象，链表是由多个节点组成的，因此，我们能接触到的数据对象只有节点。我们可以根据节点来寻找周围节点，许多节点之间的关系抽象地构成了一个链表。
 
 ☄ **单链表**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [707. 设计链表](https://leetcode-cn.com/problems/design-linked-list/solution/python-by-nidadianlongge/)
 ```python
 class Node:
@@ -3584,7 +3649,13 @@ class MyLinkedList:
 ```
 - 本题构建了一个双向的环形链表，记录 key 节点，key.next 指向链表的 head，key.prev 指向链表的 tail
 
+</details>
+
 ☄ **双指针技巧**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/solution/2xing-python-by-knifezhu/)
 ```python
 # Definition for singly-linked list.
@@ -3681,7 +3752,13 @@ class Solution:
 ```
 - 列表记录整个链表，换成队列记录最后几个可以把空间复杂度压到 O(1)
 
+</details>
+
 ☄ **经典问题**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
 ```python
 # Definition for singly-linked list.
@@ -3761,10 +3838,22 @@ class Solution:
 - 首先使用快慢指针找到中点，第一个 while 停止时如果链表长度为奇数，s 为中点；否则 f 为 None，s 为右半部分的第一个节点
 - 若链表长度为奇数，s 前进一步，然后 p 和 s 往俩个方向同时遍历比对是否回文
 
+</details>
+
 ☄ **双链表**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 - 【设计链表】 同上
 
+</details>
+
 ☄ **小结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [21. 合并两个有序链表](https://leetcode-cn.com/explore/learn/card/linked-list/197/conclusion/762/)
 
 ```python
@@ -3890,10 +3979,17 @@ class Solution:
         return None
 ```
 - 用 list 记录链表，把链表当作环，修补原来的切断口，创造新的缺口（k）
+
+</details>
+
 ### [🌠 哈希表](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 - :black_joker:【知识卡片】在**哈希表**中，我们可以利用哈希函数快速访问到数组中的目标数据。如果发生哈希 冲突，就使用链表进行存储。这样一来，不管数据量为多少，我们都能够灵活应对。 如果数组的空间太小，使用哈希表的时候就容易发生冲突，线性查找的使用频率也会更高；反过来，如果数组的空间太大，就会出现很多空箱子，造成内存的浪费。因此， 给数组设定合适的空间非常重要。
 
 ☄ **设计哈希表**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/)
 ```python
 class Node:
@@ -4016,7 +4112,13 @@ class MyHashMap:
 # obj.remove(key)
 ```
 
+</details>
+
 ☄ **实际应用 - 哈希集合**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [217. 存在重复元素](https://leetcode-cn.com/problems/contains-duplicate/)
 ```python
 class Solution:
@@ -4050,7 +4152,13 @@ class Solution:
         return n == 1
 ```
 
+</details>
+
 ☄ **实际应用 - 哈希映射**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
 ```python
 class Solution:
@@ -4130,7 +4238,13 @@ class Solution:
 - 本题题目有误，实际意思是找同数字最小间隔，若不超过 k 则满足条件
 - 遍历列表，每次都比对最小间隔，并更新哈希表索引，当前位置往左的最小间隔一定是与上一次同数字出现的索引的距离
 
+</details>
+
 ☄ **实际应用 - 设计键**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)
 ```python
 class Solution:
@@ -4178,7 +4292,13 @@ class Solution:
 ```
 - 使用字典 d 记录｛子树结构：[root1，root2，……]｝
 
+</details>
+
 ☄ **小结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [771. 宝石与石头](https://leetcode-cn.com/problems/jewels-and-stones/)
 ```python
 class Solution:
@@ -4285,6 +4405,9 @@ class RandomizedSet:
 - 插入时：用哈希表来判断是否已存在O(1)，数组末尾增加一个元素O(1)，哈希表记录｛值：索引｝O(1)
 - 删除时：用哈希表来定位O(1)，把数组最后一个元素取下来顶替被删除元素位置O(1)，更新哈希表O(1)
 - 取随机数时：随机从数组里面挑一个O(1)
+
+</details>
+
 ### [🌠 二分查找](https://leetcode-cn.com/explore/learn/card/linked-list/)
 - :black_joker:【知识卡片】二分查找利用已排好序的数组，每一次查找都可以将查找范围减半。查找范围内只剩一个数据时查找结束。数据量为 n 的数组，将其长度减半 log2n 次后，其中便只剩一个数据了。也就是说，在二分查找中重复执行“将目标数据和数组中间的数据进行比较后将查找范围减半”的操作 log2n 次后，就能找到目标数据（若没找到则可以得出数据不存在的结论），因此它的时间复杂度为 O(logn)
 - 💡【一般思路】什么时候应该使用二分搜索？怎么样使用？
@@ -4337,6 +4460,10 @@ class RandomizedSet:
 	```
 
 ☄ **背景**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
 ```python
 class Solution:
@@ -4353,7 +4480,13 @@ class Solution:
         return -1
 ```
 
+</details>
+
 ☄ **模板 I**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/comments/)
 ```python
 class Solution:
@@ -4427,7 +4560,13 @@ class Solution:
 - 首先通过第一个二分查找得到升序排列时的开头（也就是数组中的最小值），称其为断点 k
 - 恢复数组后通过第二个二分查找得到目标索引
 
+</details>
+
 ☄ **模板 II**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)
 ```python
 # The isBadVersion API is already defined for you.
@@ -4498,7 +4637,13 @@ class Solution:
         return nums[bisect.bisect_left(self, True, 0, len(nums))]
 ```
 
+</details>
+
 ☄ **模板 III**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 ```python
 class Solution:
@@ -4565,7 +4710,13 @@ class Solution:
         return bisect.bisect_left(self, True, 0, len(nums)) - 1
 ```
 
+</details>
+
 ☄ **小结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [50. Pow(x, n)](https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode/)
 ```python
 class Solution:
@@ -4614,7 +4765,13 @@ class Solution:
 ```
 - 套路B
 
+</details>
+
 ☄ **更多练习**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/submissions/)
 ```python
 class Solution:
@@ -4702,7 +4859,13 @@ class Solution:
         return [i+1, j+1]
 ```
 
+</details>
+
 ☄ **更多练习 II**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
 ```python
 class Solution:
@@ -4819,10 +4982,17 @@ class Solution:
 - 我们寻求的答案（最小的子数组各自和最大值）mid 被限制于一个有序的区间 [0, sum(nums)] 之内
 - 向左搜索（包括 target）的条件为：nums 可以被划分为不超过 m 个和不超过 mid 的子数组
 - 判断条件成立使用了贪心算法：计数 c：nums 可以被划分为至少多少个和不超过 mid 的子数组（注意如果单个数字已经超过 mid 将被单独划分，所以最后需要判断最大子数组和 r 是否满足条件）
+
+</details>
+
 ### [🌠 二叉树](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 
 ☄ **树的遍历**
 ![](tree.png)
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [144. 二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
 ```python
 # Definition for a binary tree node.
@@ -4949,6 +5119,8 @@ class Solution:
 ```
 - 使用 BFS 遍历二叉树，队列同时记录节点与层次
 
+</details>
+
 ☄ **运用递归解决树的问题**
 - 💡【一般思路】什么时候应该使用递归？
 	- 1. 递归可以看作是四维空间中的逻辑，也就是相比普通的一个函数多了一个时间维度，当下一次的结果需要以上一次的结果作为输入时使用递归函数
@@ -4961,6 +5133,10 @@ class Solution:
 - :tophat:【套路】树形递归
 	- 树形递归类题目一般将目光集中在某个节点上，考虑节点、左子节点、右子节点之间的关系，一般递归子节点
 	- 通常选择一个3层完美二叉树的第2层左子节点作为参考目标，然后设计递归思路
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 ```python
 # Definition for a binary tree node.
@@ -5037,7 +5213,13 @@ class Solution:
 - 考虑支路2：当前节点为非叶节点时将总和缩小并继续递归，判断左右节点是否存在满足条件的
 - 当递归函数到达叶节点时，sum 已经被削减了多次，此时 `sum - node.val` 即为 `原始的sum - 整条路径的总和`
 
+</details>
+
 ☄ **总结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [106. 从中序与后序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/comments/)
 ```python
 # Definition for a binary tree node.
@@ -5224,9 +5406,16 @@ class Codec:
 ```
 - BFS扫描，记录所有节点和他们的子节点（包括 子None）
 - 利用队列记录待还原节点，每次生成新节点后初始化其子节点并投入队列
+
+</details>
+
 ### [🌠 二叉搜索树](https://leetcode-cn.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/)
 
 ☄ **二叉搜索树简介**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
 ```python
 # Definition for a binary tree node.
@@ -5292,7 +5481,13 @@ class BSTIterator:
 - 空间复杂度为 O(树的高度)
 - 平均时间复杂度 = 循环总次数（N） / 迭代器长度（N） = O(1)
 
+</details>
+
 ☄ **在二叉搜索树中实现搜索操作**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
 ```python
 # Definition for a binary tree node.
@@ -5393,7 +5588,13 @@ class Solution:
 	- 目标只有左子或右子：用目标唯一的子节点替换目标
 	- 目标有左子和右子：替换目标的值为中序后继节点的值并删除后继节点
 
+</details>
+
 ☄ **小结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [703. 数据流中的第K大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
 ```python
 class KthLargest:
@@ -5456,7 +5657,13 @@ class Solution:
 - 因为使用了窗口，所以维护排序只需在之前已经排好序的数组 l 的基础上保持升序得插入新数字即可，这里使用二分查找搜索插入位置
 - 时间复杂度为 O(Nlog(min(N, K))) 空间复杂度为 O(min(N, K))
 
+</details>
+
 ☄ **附录：高度平衡的二叉搜索树**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [110. 平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/)
 ```python
 # Definition for a binary tree node.
@@ -5506,8 +5713,14 @@ class Solution:
 	- 每次返回的根节点处于数组中间，以其左右半数组分别递归构造左右子树
 	- 那么就意味着左子小于根，右子大于根，且所有节点左右子树节点数相差不超过 1 （由于递归的构树方式相同，所有节点都满足高度平衡）
 
+</details>
+
 ### [🌠 N叉树](https://leetcode-cn.com/explore/learn/card/n-ary-tree/)
 ☄ **遍历**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [589. N叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/)
 ```python
 """
@@ -5582,7 +5795,13 @@ class Solution:
 - 使用队列 BFS 遍历
 - 在队列中多保留一个层次序号记录相应层索引
 
+</details>
+
 ☄ **递归**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [559. N叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/)
 ```python
 """
@@ -5598,10 +5817,16 @@ class Solution:
 ```
 - Bottom Up 递归
 
+</details>
+
 ## 精选
 ### [🌠 递归 I](https://leetcode-cn.com/explore/learn/card/queue-stack/)
 
 ☄ **递归原理**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/)
 ```python
 class Solution:
@@ -5634,7 +5859,13 @@ class Solution:
 - `seco` 指向 `head`，`head` 指向递归 `seco.next` 后返回的后序链表的头结点
 - 返回新的头结点 `seco`
 
+</details>
+
 ☄ **递推关系**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [118. 杨辉三角](https://leetcode-cn.com/problems/pascals-triangle/)
 ```python
 class Solution:
@@ -5681,8 +5912,14 @@ class Solution:
 - 对于每一次递归，将当前节点的 `next` 属性指向前一个节点，然后递归调用下一个节点
 - 如果当前节点为 `None` 则返回上一个节点，否则返回递归一下个节点的结果
 
+</details>
+
 ☄ **Memoization（记忆化）技术**
 - `递归 + 记忆` = `动态规划`
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [509. 斐波那契数](https://leetcode-cn.com/problems/fibonacci-number/)
 ```python
 class Solution:
@@ -5708,7 +5945,13 @@ class Solution:
 ```
 - 到这一层的方法数 = 到前二层方法数的总和
 
+</details>
+
 ☄ **复杂度分析**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 ```python
 # Definition for a binary tree node.
@@ -5745,7 +5988,13 @@ class Solution:
 - 空间复杂度：O(logN)
 - x^4 = x^2 ** x^2, x^5 = x^2 * x^2 * x, 借此方法可以缩减计算量
 
+</details>
+
 ☄ **总结**
+
+<details>
+  <summary>点击展开折叠</summary>
+
 #### [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 ```python
 # Definition for singly-linked list.
@@ -5794,6 +6043,8 @@ class Solution:
 - 首先，所有数字都有可能作为根，因此遍历 `num` 作为根
 - 根据二叉搜索树的特性（左子树所有节点小于根，右子树大于），可知根的左子树由比根小的数字构成，递归 `num[:i]` 就是左子树所有的可能结构，同理可获得右子树所有可能的结构
 - 左右递归结果的笛卡尔积 + `root`，即为整棵树所有可能的结构
+
+</details>
 
 # 常用技巧总结
 - set 中的 in 操作时间复杂度为 O(1)
