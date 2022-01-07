@@ -256,6 +256,15 @@ class Solution:
     def isValid(self, s: str) -> bool:
         while any(('()' in s, '[]' in s, '{}' in s)): s = s.replace('()', '').replace('[]', '').replace('{}', '')
         return not s
+	
+# 国际站上有一种写法是这样的，相比于上面，下面的写法更加优雅（好理解）一点
+class Solution:
+    def isValid(self, s: str) -> bool:
+        while s:
+            l = len(s)
+            s = s.replace('()', '').replace('[]', '').replace('{}', '')
+            if l == len(s):  break
+        return not s	
 ```
 - 不断删除有效括号直到不能删除，思路简单效率低。另外，stack的方法也很简单，而且快多了。
 
@@ -264,7 +273,7 @@ class Solution:
 	    def isValid(self, s: str) -> bool:
 	        stack, d = [], {'{': '}', '[': ']', '(': ')'}
 	        for p in s:
-	            if p in '{[(':
+	            if p in d:
 	                stack += [p];
 	            elif not (stack and d[stack.pop()] == p):
 	                return False
